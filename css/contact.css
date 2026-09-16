@@ -1,0 +1,264 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background-color: #f8fafc;
+    color: #172033;
+    font-family: Arial, sans-serif;
+}
+
+.contact-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 30px;
+}
+
+
+/* Page heading */
+
+.contact-heading {
+    margin-bottom: 32px;
+}
+
+.contact-heading h1 {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.contact-heading p {
+    color: #667085;
+    font-size: 15px;
+    margin: 0;
+}
+
+
+/* Three contact cards */
+
+.contact-info {
+    margin-bottom: 24px;
+}
+
+.contact-card {
+    flex: 1;
+    background-color: #ffffff;
+    border: 1px solid #dce3ed;
+    border-radius: 8px;
+    padding: 24px;
+    text-align: center;
+}
+
+.contact-card h3 {
+    font-size: 17px;
+    margin-bottom: 14px;
+}
+
+.contact-card p {
+    color: #667085;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.contact-card a {
+    color: #155eef;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+
+/* Form and right side */
+
+.contact-main {
+    align-items: flex-start;
+}
+
+.message-box {
+    flex: 1;
+    background-color: #ffffff;
+    border: 1px solid #dce3ed;
+    border-radius: 8px;
+    padding: 24px;
+}
+
+.message-box h2,
+.office-hours h2,
+.faq-box h2 {
+    font-size: 19px;
+    margin-bottom: 20px;
+}
+
+
+/* Name fields */
+
+.name-row {
+    margin-bottom: 16px;
+}
+
+.name-row label,
+.message-box label {
+    display: block;
+    font-size: 12px;
+    margin-bottom: 6px;
+    color: #344054;
+}
+
+
+/* Button */
+
+.send-button {
+    width: 100%;
+    padding: 11px;
+    border: none;
+    border-radius: 6px;
+    background-color: #2463eb;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.send-button:hover {
+    background-color: #1854d1;
+}
+
+
+/* Right side */
+
+.right-content {
+    flex: 1;
+}
+
+
+/* Office hours */
+
+.office-hours {
+    background-color: #2463eb;
+    color: white;
+    border-radius: 8px;
+    padding: 24px;
+    margin-bottom: 20px;
+}
+
+.office-hours h2 {
+    margin-bottom: 18px;
+}
+
+.office-hours h4 {
+    font-size: 13px;
+    margin-top: 15px;
+    margin-bottom: 8px;
+}
+
+.office-hours p {
+    font-size: 12px;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.office-hours hr {
+    border: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    margin: 18px 0;
+}
+
+
+/* FAQ */
+
+.faq-box {
+    background-color: #ffffff;
+    border: 1px solid #dce3ed;
+    border-radius: 8px;
+    padding: 24px;
+}
+
+.faq-item {
+    border-bottom: 1px solid #e4e7ec;
+    padding: 14px 0;
+}
+
+.faq-item:last-child {
+    border-bottom: none;
+}
+
+.faq-item h4 {
+    font-size: 13px;
+    margin: 0 0 6px;
+}
+
+.faq-item p {
+    color: #667085;
+    font-size: 11px;
+    line-height: 1.5;
+    margin: 0;
+}
+
+
+/* Assistance */
+
+.assistance-box {
+    background-color: #edf5ff;
+    border: 1px solid #b8d4ff;
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.assistance-box h3 {
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+
+.assistance-box p {
+    color: #667085;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.assistance-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.assistance-buttons button {
+    padding: 8px 14px;
+    border: 1px solid #2463eb;
+    border-radius: 5px;
+    background-color: #2463eb;
+    color: white;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.assistance-buttons button:last-child {
+    background-color: white;
+    color: #2463eb;
+}
+
+
+/* Mobile */
+
+@media (max-width: 768px) {
+
+    .contact-page {
+        padding: 30px 20px;
+    }
+
+    .contact-info {
+        flex-direction: column;
+    }
+
+    .contact-main {
+        flex-direction: column;
+    }
+
+    .message-box,
+    .right-content {
+        width: 100%;
+    }
+
+    .name-row {
+        flex-direction: column;
+    }
+
+}
