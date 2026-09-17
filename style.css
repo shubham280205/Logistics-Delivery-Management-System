@@ -1,5 +1,3 @@
-
-
 /* =========================
    RESET
 ========================= */
@@ -41,7 +39,7 @@ a {
 
     padding: 15px 6%;
 
-    background: white;
+    background: #ffffff;
 
     border-bottom: 1px solid #e5e7eb;
 
@@ -52,7 +50,9 @@ a {
 }
 
 
-/* Logo */
+/* =========================
+   LOGO
+========================= */
 
 .logo {
     display: flex;
@@ -69,7 +69,7 @@ a {
     justify-content: center;
 
     background: #2563eb;
-    color: white;
+    color: #ffffff;
 
     border-radius: 10px;
 
@@ -88,52 +88,59 @@ a {
 }
 
 
-/* Navigation */
+/* =========================
+   NAVIGATION LINKS
+========================= */
 
 .nav-links {
     display: flex;
     align-items: center;
-    gap: 30px;
+    gap: 14px;
 }
 
 .nav-links a {
-    color: #475569;
-    font-size: 15px;
-    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 
-    transition: 0.3s;
+    padding: 12px 18px;
+
+    color: #273449;
+
+    font-size: 16px;
+    font-weight: 400;
+
+    border-radius: 10px;
+
+    transition: all 0.2s ease;
 }
 
-.nav-links a:hover,
+
+/* Navigation icons */
+
+.nav-icon {
+    font-size: 21px;
+    line-height: 1;
+}
+
+
+/* Hover */
+
+.nav-links a:hover {
+    background: #f1f5f9;
+}
+
+
+/* Active Home */
+
 .nav-links a.active {
-    color: #2563eb;
-}
-
-
-/* Track button */
-
-.track-btn {
-    padding: 11px 20px;
-
-    background: #2563eb;
-    color: white;
-
-    border-radius: 8px;
-
-    font-size: 14px;
-    font-weight: 600;
-
-    transition: 0.3s;
-}
-
-.track-btn:hover {
-    background: #1d4ed8;
-    transform: translateY(-2px);
+    background: #2864e8;
+    color: #ffffff;
 }
 
 
 /* =========================
-   HERO
+   HERO SECTION
 ========================= */
 
 .hero {
@@ -147,17 +154,19 @@ a {
 
     gap: 60px;
 
-    background:
-        linear-gradient(
-            135deg,
-            #eff6ff,
-            #ffffff
-        );
+    background: linear-gradient(
+        135deg,
+        #eff6ff,
+        #ffffff
+    );
 }
 
 .hero-content {
     max-width: 600px;
 }
+
+
+/* Hero badge */
 
 .hero-badge {
     display: inline-block;
@@ -175,6 +184,9 @@ a {
     margin-bottom: 20px;
 }
 
+
+/* Hero heading */
+
 .hero h1 {
     font-size: clamp(42px, 6vw, 70px);
 
@@ -189,6 +201,9 @@ a {
     color: #2563eb;
 }
 
+
+/* Hero paragraph */
+
 .hero p {
     max-width: 550px;
 
@@ -200,11 +215,14 @@ a {
 }
 
 
-/* Hero buttons */
+/* =========================
+   HERO BUTTONS
+========================= */
 
 .hero-buttons {
     display: flex;
     gap: 15px;
+
     flex-wrap: wrap;
 }
 
@@ -216,26 +234,35 @@ a {
 
     font-weight: 600;
 
-    transition: 0.3s;
+    transition: all 0.3s ease;
 }
+
+
+/* Primary button */
 
 .primary-btn {
     background: #2563eb;
-    color: white;
+    color: #ffffff;
 }
 
 .primary-btn:hover {
     background: #1d4ed8;
+
     transform: translateY(-2px);
 }
 
+
+/* Secondary button */
+
 .secondary-btn {
-    background: white;
+    background: #ffffff;
+
     border: 1px solid #dbe2ea;
 }
 
 .secondary-btn:hover {
     border-color: #2563eb;
+
     color: #2563eb;
 }
 
@@ -247,7 +274,7 @@ a {
 .dashboard-card {
     width: 400px;
 
-    background: white;
+    background: #ffffff;
 
     border-radius: 18px;
 
@@ -259,9 +286,14 @@ a {
     border: 1px solid #e5e7eb;
 }
 
+
+/* Dashboard card header */
+
 .card-header {
     display: flex;
+
     justify-content: space-between;
+
     align-items: center;
 
     padding-bottom: 20px;
@@ -273,12 +305,16 @@ a {
 
 .card-header span {
     color: #64748b;
+
     font-size: 13px;
 }
 
 .card-header h3 {
     font-size: 19px;
 }
+
+
+/* Status dot */
 
 .status-dot {
     width: 10px;
@@ -290,10 +326,13 @@ a {
 }
 
 
-/* Delivery stat */
+/* =========================
+   DELIVERY STATISTICS
+========================= */
 
 .delivery-stat {
     display: flex;
+
     align-items: center;
 
     gap: 15px;
@@ -303,11 +342,15 @@ a {
     border-bottom: 1px solid #f1f5f9;
 }
 
+
+/* Stat icons */
+
 .stat-icon {
     width: 45px;
     height: 45px;
 
     display: flex;
+
     align-items: center;
     justify-content: center;
 
@@ -315,6 +358,9 @@ a {
 
     font-size: 19px;
 }
+
+
+/* Different icon backgrounds */
 
 .stat-icon.blue {
     background: #dbeafe;
@@ -332,6 +378,9 @@ a {
     background: #fee2e2;
 }
 
+
+/* Stat text */
+
 .delivery-stat span {
     display: block;
 
@@ -346,7 +395,7 @@ a {
 
 
 /* =========================
-   STATS
+   STATS SECTION
 ========================= */
 
 .stats-section {
@@ -356,7 +405,7 @@ a {
 
     position: relative;
 
-    background: white;
+    background: #ffffff;
 
     border-radius: 15px;
 
@@ -371,6 +420,9 @@ a {
     padding: 30px;
 }
 
+
+/* Individual stat */
+
 .stat-box {
     text-align: center;
 
@@ -383,22 +435,27 @@ a {
 
 .stat-box h2 {
     color: #2563eb;
+
     font-size: 30px;
 }
 
 .stat-box p {
     color: #64748b;
+
     font-size: 13px;
 }
 
 
 /* =========================
-   FEATURES
+   FEATURES SECTION
 ========================= */
 
 .features {
     padding: 100px 7%;
 }
+
+
+/* Section heading */
 
 .section-heading {
     text-align: center;
@@ -431,7 +488,9 @@ a {
 }
 
 
-/* Feature grid */
+/* =========================
+   FEATURE GRID
+========================= */
 
 .feature-grid {
     display: grid;
@@ -442,8 +501,11 @@ a {
     gap: 22px;
 }
 
+
+/* Feature card */
+
 .feature-card {
-    background: white;
+    background: #ffffff;
 
     padding: 28px;
 
@@ -451,7 +513,7 @@ a {
 
     border: 1px solid #e5e7eb;
 
-    transition: 0.3s;
+    transition: all 0.3s ease;
 }
 
 .feature-card:hover {
@@ -463,11 +525,15 @@ a {
     border-color: #bfdbfe;
 }
 
+
+/* Feature icon */
+
 .feature-icon {
     width: 50px;
     height: 50px;
 
     display: flex;
+
     align-items: center;
     justify-content: center;
 
@@ -480,9 +546,15 @@ a {
     margin-bottom: 20px;
 }
 
+
+/* Feature title */
+
 .feature-card h3 {
     margin-bottom: 10px;
 }
+
+
+/* Feature description */
 
 .feature-card p {
     color: #64748b;
@@ -491,6 +563,9 @@ a {
 
     margin-bottom: 20px;
 }
+
+
+/* Feature link */
 
 .feature-link {
     color: #2563eb;
@@ -502,7 +577,7 @@ a {
 
 
 /* =========================
-   CTA
+   CTA SECTION
 ========================= */
 
 .cta {
@@ -516,7 +591,7 @@ a {
 
     background: #1e40af;
 
-    color: white;
+    color: #ffffff;
 
     display: flex;
 
@@ -537,8 +612,11 @@ a {
     color: #dbeafe;
 }
 
+
+/* CTA button */
+
 .cta-btn {
-    background: white;
+    background: #ffffff;
 
     color: #1e40af;
 
@@ -549,6 +627,12 @@ a {
     font-weight: 600;
 
     white-space: nowrap;
+
+    transition: all 0.3s ease;
+}
+
+.cta-btn:hover {
+    transform: translateY(-2px);
 }
 
 
@@ -559,7 +643,7 @@ a {
 footer {
     background: #0f172a;
 
-    color: white;
+    color: #ffffff;
 
     padding: 45px 7%;
 
@@ -573,6 +657,9 @@ footer {
     gap: 30px;
 }
 
+
+/* Footer logo */
+
 .footer-logo h2 {
     margin-bottom: 5px;
 }
@@ -582,6 +669,9 @@ footer {
 
     font-size: 13px;
 }
+
+
+/* Footer links */
 
 .footer-links {
     display: flex;
@@ -597,11 +687,16 @@ footer {
     color: #cbd5e1;
 
     font-size: 13px;
+
+    transition: 0.2s;
 }
 
 .footer-links a:hover {
-    color: white;
+    color: #ffffff;
 }
+
+
+/* Copyright */
 
 .copyright {
     text-align: right;
@@ -612,15 +707,39 @@ footer {
 }
 
 
+/* ==================================================
+   RESPONSIVE DESIGN
+================================================== */
+
+
 /* =========================
-   RESPONSIVE
+   TABLET
 ========================= */
 
 @media (max-width: 1000px) {
 
-    .nav-links {
-        gap: 15px;
+    /* Navbar */
+
+    .navbar {
+        padding: 15px 4%;
     }
+
+    .nav-links {
+        gap: 5px;
+    }
+
+    .nav-links a {
+        padding: 11px 13px;
+
+        font-size: 15px;
+    }
+
+    .nav-icon {
+        font-size: 19px;
+    }
+
+
+    /* Hero */
 
     .hero {
         padding: 60px 5%;
@@ -634,13 +753,19 @@ footer {
         width: 350px;
     }
 
+
+    /* Features */
+
     .feature-grid {
         grid-template-columns:
             repeat(2, 1fr);
     }
-
 }
 
+
+/* =========================
+   MOBILE / TABLET
+========================= */
 
 @media (max-width: 768px) {
 
@@ -649,9 +774,9 @@ footer {
     .navbar {
         flex-wrap: wrap;
 
-        gap: 15px;
+        gap: 12px;
 
-        padding: 15px 5%;
+        padding: 12px 5%;
     }
 
     .nav-links {
@@ -663,11 +788,19 @@ footer {
 
         overflow-x: auto;
 
-        padding-bottom: 5px;
+        padding-bottom: 4px;
     }
 
-    .nav-actions {
-        display: none;
+    .nav-links a {
+        white-space: nowrap;
+
+        padding: 10px 14px;
+
+        font-size: 14px;
+    }
+
+    .nav-icon {
+        font-size: 18px;
     }
 
 
@@ -687,6 +820,7 @@ footer {
 
     .hero p {
         margin-left: auto;
+
         margin-right: auto;
     }
 
@@ -732,8 +866,7 @@ footer {
     }
 
     .feature-grid {
-        grid-template-columns:
-            1fr;
+        grid-template-columns: 1fr;
     }
 
 
@@ -762,7 +895,13 @@ footer {
 }
 
 
+/* =========================
+   SMALL MOBILE
+========================= */
+
 @media (max-width: 480px) {
+
+    /* Logo */
 
     .logo h2 {
         font-size: 17px;
@@ -772,17 +911,29 @@ footer {
         font-size: 9px;
     }
 
+
+    /* Navbar */
+
     .nav-links {
         justify-content: flex-start;
 
-        gap: 20px;
+        gap: 3px;
     }
 
     .nav-links a {
-        white-space: nowrap;
+        padding: 9px 11px;
 
         font-size: 13px;
+
+        gap: 6px;
     }
+
+    .nav-icon {
+        font-size: 16px;
+    }
+
+
+    /* Hero */
 
     .hero h1 {
         font-size: 40px;
@@ -791,6 +942,9 @@ footer {
     .hero p {
         font-size: 15px;
     }
+
+
+    /* Stats */
 
     .stats-section {
         width: 90%;
@@ -802,7 +956,14 @@ footer {
         font-size: 23px;
     }
 
+
+    /* CTA */
+
     .cta {
         width: 90%;
+    }
+
+    .cta h2 {
+        font-size: 25px;
     }
 }
