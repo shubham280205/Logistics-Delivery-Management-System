@@ -1,278 +1,465 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Contact - SwiftLogistics</title>
+    <title>Contact Us | Swift Logistics</title>
 
-    <!-- Bootstrap CSS -->
-     <link rel="stylesheet"
-href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- Bootstrap -->
     <link
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-        rel="stylesheet">
+        rel="stylesheet"
+    >
 
-    <!-- Our CSS -->
+    <!-- Bootstrap Icons -->
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    >
+
+    <!-- Contact CSS -->
     <link rel="stylesheet" href="css/contact.css">
 </head>
 
 <body>
 
-    <div class="contact-page">
+<div class="contact-page">
 
-        <!-- Page heading -->
-        <section class="contact-heading text-center">
-            <h1>Get In Touch</h1>
+    <!-- HERO -->
+    <section class="support-hero">
+
+        <div class="hero-content">
+
+            <span class="hero-label">
+                <i class="bi bi-headset"></i>
+                SWIFT SUPPORT
+            </span>
+
+            <h1>We're here to help.</h1>
 
             <p>
-                Have questions? We'd love to hear from you.
-                Send us a message and we'll respond as soon as possible.
+                Whether you need help tracking a shipment, resolving a delivery
+                issue, or simply have a question, our support team is ready to help.
             </p>
-        </section>
 
+            <div class="hero-buttons">
+                <button class="primary-btn">
+                    <i class="bi bi-geo-alt"></i>
+                    Track Shipment
+                </button>
 
-        <!-- Contact information -->
-       <section class="contact-info d-flex gap-3">
+                <button class="secondary-btn">
+                    <i class="bi bi-chat-dots"></i>
+                    Contact Support
+                </button>
+            </div>
 
-    <div class="contact-card">
-        <div class="icon-circle phone">
-            <i class="bi bi-telephone"></i>
         </div>
 
-        <h3>Call Us</h3>
+        <div class="hero-visual">
+            <div class="route-line"></div>
 
-        <p>Mon-Fri from 8am to 6pm</p>
+            <div class="location-point point-one">
+                <i class="bi bi-box-seam"></i>
+            </div>
 
-        <a href="tel:18007943800">1-800-SWIFT-00</a>
-    </div>
+            <div class="location-point point-two">
+                <i class="bi bi-truck"></i>
+            </div>
 
-    <div class="contact-card">
-        <div class="icon-circle email">
-            <i class="bi bi-envelope"></i>
+            <div class="location-point point-three">
+                <i class="bi bi-house-check"></i>
+            </div>
+
         </div>
 
-        <h3>Email Us</h3>
+    </section>
 
-        <p>We'll respond within 24 hours</p>
 
-        <a href="mailto:support@swiftlogistics.com">
-            support@swiftlogistics.com
-        </a>
-    </div>
+    <!-- QUICK HELP -->
+    <section class="quick-help">
 
-    <div class="contact-card">
-        <div class="icon-circle location">
-            <i class="bi bi-geo-alt"></i>
+        <div class="section-heading">
+            <span>QUICK HELP</span>
+            <h2>How can we help?</h2>
         </div>
 
-        <h3>Visit Us</h3>
+        <div class="help-grid">
 
-        <p>Come say hello at our office</p>
+            <div class="help-card">
+                <div class="help-icon blue-icon">
+                    <i class="bi bi-box-seam"></i>
+                </div>
 
-        <p>123 Logistics Blvd<br>New York, NY 10001</p>
-    </div>
+                <div>
+                    <h3>Track a Shipment</h3>
+                    <p>
+                        Check the current status and location of your package.
+                    </p>
+                </div>
 
-</section>
-
-
-        <!-- Main contact section -->
-        <section class="contact-main d-flex gap-3">
-
-            <!-- Contact form -->
-            <div class="message-box">
-
-                <h2>Send us a message</h2>
-
-                <form>
-
-                    <div 
-                    class="name-row">
-
-                        <div class="flex-grow-1">
-                            <label for="firstName">First Name</label>
-
-                            <input
-                                type="text"
-                                id="firstName"
-                                class="form-control"
-                                placeholder="John">
-                        </div>
+                <i class="bi bi-arrow-up-right card-arrow"></i>
+            </div>
 
 
-                        <div class="flex-grow-1">
-                            <label for="lastName">Last Name</label>
+            <div class="help-card">
+                <div class="help-icon orange-icon">
+                    <i class="bi bi-exclamation-triangle"></i>
+                </div>
 
-                            <input
-                                type="text"
-                                id="lastName"
-                                class="form-control"
-                                placeholder="Doe">
-                        </div>
+                <div>
+                    <h3>Delivery Issue</h3>
+                    <p>
+                        Get help with delayed, damaged, or missing shipments.
+                    </p>
+                </div>
 
+                <i class="bi bi-arrow-up-right card-arrow"></i>
+            </div>
+
+
+            <div class="help-card">
+                <div class="help-icon green-icon">
+                    <i class="bi bi-person-check"></i>
+                </div>
+
+                <div>
+                    <h3>General Support</h3>
+                    <p>
+                        Have a question? Our support team is ready to assist.
+                    </p>
+                </div>
+
+                <i class="bi bi-arrow-up-right card-arrow"></i>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- MAIN CONTENT -->
+    <section class="contact-main">
+
+        <!-- CONTACT FORM -->
+        <div class="message-box">
+
+            <div class="form-heading">
+                <span class="small-label">SEND US A MESSAGE</span>
+
+                <h2>How can we assist you?</h2>
+
+                <p>
+                    Tell us a little about your request and we'll get back to you
+                    as soon as possible.
+                </p>
+            </div>
+
+
+            <form>
+
+                <div class="name-row">
+
+                    <div>
+                        <label for="firstName">First Name</label>
+                        <input
+                            type="text"
+                            id="firstName"
+                            class="form-control"
+                            placeholder="Enter first name"
+                        >
                     </div>
 
+                    <div>
+                        <label for="lastName">Last Name</label>
+                        <input
+                            type="text"
+                            id="lastName"
+                            class="form-control"
+                            placeholder="Enter last name"
+                        >
+                    </div>
 
-                    <div class="mb-3">
-                        <label for="email">Email</label>
+                </div>
 
+
+                <div class="form-row">
+
+                    <div>
+                        <label for="email">Email Address</label>
                         <input
                             type="email"
                             id="email"
                             class="form-control"
-                            placeholder="john.doe@example.com">
+                            placeholder="you@example.com"
+                        >
                     </div>
 
-
-                    <div class="mb-3">
+                    <div>
                         <label for="phone">Phone Number</label>
-
                         <input
                             type="tel"
                             id="phone"
                             class="form-control"
-                            placeholder="+1 (555) 123-4567">
-                    </div>
-
-
-                    <div class="mb-3">
-                        <label for="subject">Subject</label>
-
-                        <select id="subject" class="form-select">
-
-                            <option>General Inquiry</option>
-                            <option>Shipment Issue</option>
-                            <option>Delivery Question</option>
-                            <option>Business Inquiry</option>
-
-                        </select>
-                    </div>
-
-
-                    <div class="mb-3">
-                        <label for="message">Message</label>
-
-                        <textarea
-                            id="message"
-                            class="form-control"
-                            rows="5"
-                            placeholder="Tell us more about your inquiry..."></textarea>
-                    </div>
-
-
-                    <button type="submit" class="send-button">
-                        Send Message
-                    </button>
-
-                </form>
-
-            </div>
-
-
-            <!-- Right side -->
-            <div class="right-content">
-
-                <!-- Office hours -->
-                <div class="office-hours">
-
-                    <h2>Office Hours</h2>
-
-                    <h4>Customer Service</h4>
-
-                    <p>
-                        Monday - Friday: 8:00 AM - 6:00 PM EST<br>
-                        Saturday: 9:00 AM - 4:00 PM EST<br>
-                        Sunday: Closed
-                    </p>
-
-                    <hr>
-
-                    <h4>Emergency Support</h4>
-
-                    <p>
-                        24/7 Available for urgent shipment issues
-                    </p>
-
-                </div>
-
-
-                <!-- FAQ -->
-                <div class="faq-box">
-
-                    <h2>Frequently Asked Questions</h2>
-
-                    <div class="faq-item">
-                        <h4>How do I track my shipment?</h4>
-
-                        <p>
-                            You can track your shipment using the tracking
-                            number provided in your confirmation email.
-                        </p>
-                    </div>
-
-
-                    <div class="faq-item">
-                        <h4>What are your delivery times?</h4>
-
-                        <p>
-                            Standard delivery takes 3-5 business days.
-                            Express delivery options are available.
-                        </p>
-                    </div>
-
-
-                    <div class="faq-item">
-                        <h4>Do you ship internationally?</h4>
-
-                        <p>
-                            Yes! We ship to over 200 countries worldwide.
-                        </p>
-                    </div>
-
-
-                    <div class="faq-item">
-                        <h4>How do I file a claim?</h4>
-
-                        <p>
-                            Contact our customer service team with your
-                            tracking number and details about the issue.
-                        </p>
+                            placeholder="+1 000 000 0000"
+                        >
                     </div>
 
                 </div>
 
 
-                <!-- Immediate assistance -->
-                <div class="assistance-box">
+                <div class="mb-3">
 
-                    <h3>Need immediate assistance?</h3>
+                    <label for="subject">What do you need help with?</label>
 
-                    <p>
-                        Our support team is available 24/7 to help
-                        with urgent shipment issues.
-                    </p>
+                    <select id="subject" class="form-select">
 
-                    <div class="assistance-buttons">
+                        <option selected disabled>
+                            Select a topic
+                        </option>
 
-                        <button type="button">
-                            Emergency Line
-                        </button>
+                        <option>Shipment Tracking</option>
+                        <option>Delivery Issue</option>
+                        <option>General Inquiry</option>
+                        <option>Business Inquiry</option>
+                        <option>Account Support</option>
 
-                        <button type="button">
-                            Live Chat
-                        </button>
+                    </select>
 
+                </div>
+
+
+                <div class="mb-3">
+
+                    <label for="message">Message</label>
+
+                    <textarea
+                        id="message"
+                        class="form-control"
+                        placeholder="Tell us how we can help..."
+                    ></textarea>
+
+                </div>
+
+
+                <button type="submit" class="send-button">
+                    Send Message
+                    <i class="bi bi-arrow-right"></i>
+                </button>
+
+            </form>
+
+        </div>
+
+
+        <!-- RIGHT SIDE -->
+        <div class="right-content">
+
+            <!-- CONTACT INFO -->
+            <div class="support-panel">
+
+                <span class="small-label light-label">
+                    GET IN TOUCH
+                </span>
+
+                <h2>We're one message away.</h2>
+
+                <p>
+                    Need a quick answer? Reach out through any of the channels below.
+                </p>
+
+
+                <div class="contact-detail">
+
+                    <div class="detail-icon">
+                        <i class="bi bi-telephone"></i>
+                    </div>
+
+                    <div>
+                        <span>CALL US</span>
+                        <strong>1-800-SWIFT-00</strong>
+                        <small>Mon-Fri · 8am to 6pm</small>
+                    </div>
+
+                </div>
+
+
+                <div class="contact-detail">
+
+                    <div class="detail-icon">
+                        <i class="bi bi-envelope"></i>
+                    </div>
+
+                    <div>
+                        <span>EMAIL US</span>
+                        <strong>support@swiftlogistics.com</strong>
+                        <small>Response within 24 hours</small>
+                    </div>
+
+                </div>
+
+
+                <div class="contact-detail">
+
+                    <div class="detail-icon">
+                        <i class="bi bi-geo-alt"></i>
+                    </div>
+
+                    <div>
+                        <span>VISIT US</span>
+                        <strong>123 Logistics Blvd</strong>
+                        <small>New York, NY 10001</small>
                     </div>
 
                 </div>
 
             </div>
 
-        </section>
 
-    </div>
+            <!-- OFFICE HOURS -->
+            <div class="office-hours">
+
+                <div class="section-title">
+                    <i class="bi bi-clock"></i>
+                    <h3>Customer Service Hours</h3>
+                </div>
+
+                <div class="hours-row">
+                    <span>Monday - Friday</span>
+                    <strong>8:00 AM - 6:00 PM</strong>
+                </div>
+
+                <div class="hours-row">
+                    <span>Saturday</span>
+                    <strong>9:00 AM - 4:00 PM</strong>
+                </div>
+
+                <div class="hours-row">
+                    <span>Sunday</span>
+                    <strong>Closed</strong>
+                </div>
+
+                <div class="emergency">
+
+                    <i class="bi bi-lightning-charge-fill"></i>
+
+                    <div>
+                        <strong>Emergency Support</strong>
+                        <p>
+                            24/7 support for urgent shipment issues.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FAQ -->
+    <section class="faq-section">
+
+        <div class="section-heading">
+            <span>FAQ</span>
+            <h2>Common questions</h2>
+        </div>
+
+
+        <div class="faq-grid">
+
+            <div class="faq-item">
+                <div class="faq-number">01</div>
+
+                <div>
+                    <h3>How can I track my shipment?</h3>
+                    <p>
+                        Enter your tracking number on the tracking page to see
+                        your shipment's latest status.
+                    </p>
+                </div>
+
+                <i class="bi bi-arrow-up-right"></i>
+            </div>
+
+
+            <div class="faq-item">
+                <div class="faq-number">02</div>
+
+                <div>
+                    <h3>How long does delivery take?</h3>
+                    <p>
+                        Delivery time depends on your destination and selected
+                        shipping service.
+                    </p>
+                </div>
+
+                <i class="bi bi-arrow-up-right"></i>
+            </div>
+
+
+            <div class="faq-item">
+                <div class="faq-number">03</div>
+
+                <div>
+                    <h3>Do you offer international shipping?</h3>
+                    <p>
+                        Yes. Swift Logistics provides shipping solutions for
+                        domestic and international deliveries.
+                    </p>
+                </div>
+
+                <i class="bi bi-arrow-up-right"></i>
+            </div>
+
+
+            <div class="faq-item">
+                <div class="faq-number">04</div>
+
+                <div>
+                    <h3>What if my package is damaged?</h3>
+                    <p>
+                        Contact our support team with your shipment details
+                        and we'll help you with the next steps.
+                    </p>
+                </div>
+
+                <i class="bi bi-arrow-up-right"></i>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- BOTTOM CTA -->
+    <section class="bottom-cta">
+
+        <div>
+            <span>NEED IMMEDIATE ASSISTANCE?</span>
+            <h2>Let's get your shipment back on track.</h2>
+        </div>
+
+        <div class="cta-buttons">
+
+            <button class="cta-primary">
+                <i class="bi bi-telephone"></i>
+                Emergency Line
+            </button>
+
+            <button class="cta-secondary">
+                <i class="bi bi-chat-dots"></i>
+                Live Chat
+            </button>
+
+        </div>
+
+    </section>
+
+</div>
 
 </body>
-
 </html>

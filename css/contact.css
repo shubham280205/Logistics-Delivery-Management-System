@@ -4,169 +4,344 @@
 
 body {
     margin: 0;
-    background-color: #f8fafc;
+    background-color: #f4f7fb;
     color: #172033;
     font-family: Arial, sans-serif;
 }
 
+
+/* =========================
+   MAIN PAGE
+========================= */
+
 .contact-page {
-    max-width: 1200px;
+    max-width: 1250px;
     margin: 0 auto;
-    padding: 40px 30px;
+    padding: 35px 30px 60px;
 }
 
 
-/* Page heading */
+/* =========================
+   HERO
+========================= */
 
-.contact-heading {
-    margin-bottom: 32px;
+.support-hero {
+    min-height: 330px;
+    background: #0f172a;
+    border-radius: 16px;
+    padding: 55px 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 45px;
 }
 
-.contact-heading h1 {
-    font-size: 32px;
+.hero-content {
+    max-width: 620px;
+    position: relative;
+    z-index: 2;
+}
+
+.hero-label,
+.small-label {
+    font-size: 11px;
     font-weight: 700;
-    margin-bottom: 10px;
+    letter-spacing: 1.5px;
+    color: #60a5fa;
 }
 
-.contact-heading p {
-    color: #667085;
+.hero-label i {
+    margin-right: 6px;
+}
+
+.hero-content h1 {
+    color: white;
+    font-size: 46px;
+    font-weight: 700;
+    margin: 12px 0 14px;
+}
+
+.hero-content p {
+    color: #cbd5e1;
     font-size: 15px;
-    margin: 0;
+    line-height: 1.7;
+    max-width: 570px;
+    margin-bottom: 25px;
 }
 
-
-/* Three contact cards */
-
-.contact-info {
-    margin-bottom: 24px;
+.hero-buttons {
+    display: flex;
+    gap: 12px;
 }
 
-.contact-card {
-    flex: 1;
-    background-color: #ffffff;
-    border: 1px solid #dce3ed;
-    border-radius: 8px;
-    padding: 24px;
-    text-align: center;
-    transition: 0.25s ease;
-}
-
-.contact-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
-}
-
-.contact-card h3 {
-    font-size: 17px;
-    margin-bottom: 14px;
-}
-
-.contact-card p {
-    color: #667085;
+.primary-btn,
+.secondary-btn {
+    border-radius: 6px;
+    padding: 11px 18px;
     font-size: 13px;
-    line-height: 1.5;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s ease;
 }
 
-.contact-card a {
-    color: #155eef;
-    text-decoration: none;
-    font-size: 13px;
+.primary-btn {
+    background: #2563eb;
+    border: 1px solid #2563eb;
+    color: white;
+}
+
+.primary-btn:hover {
+    background: #1d4ed8;
+}
+
+.secondary-btn {
+    background: transparent;
+    border: 1px solid #64748b;
+    color: white;
+}
+
+.secondary-btn:hover {
+    background: #1e293b;
+}
+
+.primary-btn i,
+.secondary-btn i {
+    margin-right: 6px;
 }
 
 
-/* Contact card icons */
+/* Hero visual */
 
-.icon-circle {
-    width: 60px;
-    height: 60px;
+.hero-visual {
+    width: 330px;
+    height: 200px;
+    position: relative;
+    opacity: 0.9;
+}
+
+.route-line {
+    position: absolute;
+    width: 260px;
+    height: 2px;
+    background: #334155;
+    top: 100px;
+    left: 25px;
+    transform: rotate(-12deg);
+}
+
+.location-point {
+    position: absolute;
+    width: 58px;
+    height: 58px;
     border-radius: 50%;
+    background: #1e293b;
+    border: 2px solid #3b82f6;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 auto 18px;
-    font-size: 24px;
+    color: #60a5fa;
+    font-size: 21px;
 }
 
-.phone {
+.point-one {
+    left: 0;
+    top: 105px;
+}
+
+.point-two {
+    left: 130px;
+    top: 65px;
+}
+
+.point-three {
+    right: 0;
+    top: 25px;
+}
+
+
+/* =========================
+   SECTION HEADINGS
+========================= */
+
+.section-heading {
+    margin-bottom: 20px;
+}
+
+.section-heading span {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: #2563eb;
+}
+
+.section-heading h2 {
+    font-size: 27px;
+    font-weight: 700;
+    margin: 6px 0 0;
+}
+
+
+/* =========================
+   QUICK HELP
+========================= */
+
+.quick-help {
+    margin-bottom: 45px;
+}
+
+.help-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.help-card {
+    background: white;
+    border: 1px solid #dce3ed;
+    border-radius: 10px;
+    padding: 22px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    position: relative;
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+.help-card:hover {
+    transform: translateY(-3px);
+    border-color: #93b4ef;
+    box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
+}
+
+.help-card h3 {
+    font-size: 15px;
+    margin: 0 0 6px;
+}
+
+.help-card p {
+    color: #64748b;
+    font-size: 12px;
+    line-height: 1.5;
+    margin: 0;
+    padding-right: 20px;
+}
+
+.help-icon {
+    min-width: 48px;
+    height: 48px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+}
+
+.blue-icon {
     background: #e8f0ff;
     color: #2563eb;
 }
 
-.email {
-    background: #dcfce7;
+.orange-icon {
+    background: #fff1e6;
+    color: #f97316;
+}
+
+.green-icon {
+    background: #e8f8ef;
     color: #16a34a;
 }
 
-.location {
-    background: #f3e8ff;
-    color: #9333ea;
+.card-arrow {
+    position: absolute;
+    right: 18px;
+    top: 18px;
+    color: #94a3b8;
+    font-size: 13px;
 }
 
 
-/* Form and right side */
+/* =========================
+   MAIN CONTACT SECTION
+========================= */
 
 .contact-main {
-    align-items: flex-start;
-    gap: 24px;
+    display: grid;
+    grid-template-columns: 1.4fr 0.8fr;
+    gap: 22px;
+    align-items: start;
+    margin-bottom: 50px;
 }
+
+
+/* Form */
 
 .message-box {
-    flex: 1;
-    background-color: #ffffff;
+    background: white;
     border: 1px solid #dce3ed;
-    border-radius: 8px;
-    padding: 28px 32px;
+    border-radius: 10px;
+    padding: 32px;
 }
 
-.message-box h2 {
-    font-size: 20px;
-    font-weight: 600;
-    margin-bottom: 26px;
+.form-heading {
+    margin-bottom: 28px;
 }
 
-.office-hours h2,
-.faq-box h2 {
-    font-size: 19px;
-    margin-bottom: 20px;
+.form-heading .small-label {
+    color: #2563eb;
 }
 
+.form-heading h2 {
+    font-size: 23px;
+    margin: 7px 0;
+}
 
-/* Name fields */
+.form-heading p {
+    color: #64748b;
+    font-size: 13px;
+    margin: 0;
+    line-height: 1.6;
+}
 
-.name-row {
+.name-row,
+.form-row {
     display: flex;
-    gap: 20px;
+    gap: 18px;
     margin-bottom: 18px;
 }
 
-.name-row > div {
+.name-row > div,
+.form-row > div {
     flex: 1;
 }
 
-.name-row label,
 .message-box label {
     display: block;
-    font-size: 13px;
+    font-size: 12px;
+    font-weight: 600;
     color: #344054;
     margin-bottom: 7px;
 }
 
-
-/* Form controls */
-
 .message-box .form-control,
 .message-box .form-select {
-    min-height: 40px;
+    min-height: 43px;
     border: 1px solid #d6dce5;
     border-radius: 6px;
-    font-size: 14px;
+    font-size: 13px;
     padding: 9px 12px;
+}
+
+.message-box .form-control::placeholder {
+    color: #98a2b3;
 }
 
 .message-box .form-control:focus,
 .message-box .form-select:focus {
-    border-color: #2463eb;
-    box-shadow: 0 0 0 2px rgba(36, 99, 235, 0.1);
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
 }
 
 .message-box .mb-3 {
@@ -174,165 +349,369 @@ body {
 }
 
 .message-box textarea {
-    min-height: 150px;
+    min-height: 145px;
     resize: vertical;
 }
 
-
-/* Send button */
-
 .send-button {
     width: 100%;
-    padding: 11px;
+    padding: 12px;
     border: none;
     border-radius: 6px;
-    background-color: #2463eb;
-    color: #ffffff;
-    font-size: 14px;
+    background: #2563eb;
+    color: white;
+    font-size: 13px;
+    font-weight: 600;
     cursor: pointer;
-    transition: background-color 0.2s ease;
+    transition: 0.2s ease;
 }
 
 .send-button:hover {
-    background-color: #1854d1;
+    background: #1d4ed8;
+}
+
+.send-button i {
+    margin-left: 7px;
 }
 
 
-/* Right side */
+/* =========================
+   RIGHT SIDE SUPPORT PANEL
+========================= */
 
 .right-content {
-    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.support-panel {
+    background: #2563eb;
+    border-radius: 10px;
+    padding: 27px;
+    color: white;
+}
+
+.light-label {
+    color: #bfdbfe;
+}
+
+.support-panel h2 {
+    font-size: 21px;
+    margin: 8px 0;
+}
+
+.support-panel > p {
+    color: #dbeafe;
+    font-size: 12px;
+    line-height: 1.6;
+    margin-bottom: 24px;
+}
+
+.contact-detail {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    padding: 15px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.detail-icon {
+    min-width: 38px;
+    height: 38px;
+    border-radius: 7px;
+    background: rgba(255, 255, 255, 0.13);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.contact-detail span {
+    display: block;
+    font-size: 9px;
+    letter-spacing: 1px;
+    color: #bfdbfe;
+    margin-bottom: 3px;
+}
+
+.contact-detail strong {
+    display: block;
+    font-size: 12px;
+    color: white;
+}
+
+.contact-detail small {
+    display: block;
+    color: #dbeafe;
+    font-size: 10px;
+    margin-top: 3px;
 }
 
 
-/* Office hours */
+/* =========================
+   OFFICE HOURS
+========================= */
 
 .office-hours {
-    background-color: #2463eb;
-    color: white;
-    border-radius: 8px;
-    padding: 24px;
-    margin-bottom: 20px;
+    background: white;
+    border: 1px solid #dce3ed;
+    border-radius: 10px;
+    padding: 25px;
 }
 
-.office-hours h2 {
+.section-title {
+    display: flex;
+    align-items: center;
+    gap: 9px;
     margin-bottom: 18px;
 }
 
-.office-hours h4 {
-    font-size: 13px;
-    margin-top: 15px;
-    margin-bottom: 8px;
+.section-title i {
+    color: #2563eb;
+    font-size: 17px;
 }
 
-.office-hours p {
-    font-size: 12px;
-    line-height: 1.6;
+.section-title h3 {
+    font-size: 16px;
     margin: 0;
 }
 
-.office-hours hr {
-    border: 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.3);
-    margin: 18px 0;
+.hours-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 9px 0;
+    border-bottom: 1px solid #edf0f4;
+}
+
+.hours-row span {
+    color: #64748b;
+    font-size: 12px;
+}
+
+.hours-row strong {
+    font-size: 12px;
+    color: #172033;
+}
+
+.emergency {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    margin-top: 18px;
+    padding: 13px;
+    border-radius: 7px;
+    background: #fff7ed;
+    color: #ea580c;
+}
+
+.emergency > i {
+    font-size: 18px;
+}
+
+.emergency strong {
+    display: block;
+    font-size: 12px;
+    color: #9a3412;
+}
+
+.emergency p {
+    margin: 3px 0 0;
+    font-size: 10px;
+    color: #c2410c;
 }
 
 
-/* FAQ */
+/* =========================
+   FAQ
+========================= */
 
-.faq-box {
-    background-color: #ffffff;
+.faq-section {
+    margin-bottom: 45px;
+}
+
+.faq-grid {
+    background: white;
     border: 1px solid #dce3ed;
-    border-radius: 8px;
-    padding: 24px;
+    border-radius: 10px;
+    overflow: hidden;
 }
 
 .faq-item {
-    border-bottom: 1px solid #e4e7ec;
-    padding: 14px 0;
+    min-height: 100px;
+    display: grid;
+    grid-template-columns: 45px 1fr 25px;
+    align-items: center;
+    gap: 10px;
+    padding: 20px 25px;
+    border-bottom: 1px solid #e8ecf1;
+    transition: 0.2s ease;
 }
 
 .faq-item:last-child {
     border-bottom: none;
 }
 
-.faq-item h4 {
-    font-size: 13px;
-    margin: 0 0 6px;
+.faq-item:hover {
+    background: #f8fafc;
+}
+
+.faq-number {
+    font-size: 11px;
+    font-weight: 700;
+    color: #2563eb;
+}
+
+.faq-item h3 {
+    font-size: 14px;
+    margin: 0 0 5px;
 }
 
 .faq-item p {
-    color: #667085;
+    color: #64748b;
     font-size: 11px;
     line-height: 1.5;
     margin: 0;
 }
 
-
-/* Immediate assistance */
-
-.assistance-box {
-    background-color: #edf5ff;
-    border: 1px solid #b8d4ff;
-    border-radius: 8px;
-    padding: 20px;
-    margin-top: 20px;
+.faq-item > i {
+    color: #94a3b8;
 }
 
-.assistance-box h3 {
-    font-size: 16px;
-    margin-bottom: 8px;
+
+/* =========================
+   BOTTOM CTA
+========================= */
+
+.bottom-cta {
+    background: #eaf2ff;
+    border: 1px solid #c7dbff;
+    border-radius: 10px;
+    padding: 27px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
-.assistance-box p {
-    color: #667085;
-    font-size: 12px;
-    line-height: 1.5;
+.bottom-cta > div:first-child span {
+    color: #2563eb;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.3px;
 }
 
-.assistance-buttons {
+.bottom-cta h2 {
+    font-size: 20px;
+    margin: 6px 0 0;
+}
+
+.cta-buttons {
     display: flex;
     gap: 10px;
 }
 
-.assistance-buttons button {
-    padding: 8px 14px;
-    border: 1px solid #2463eb;
-    border-radius: 5px;
-    background-color: #2463eb;
-    color: white;
+.cta-primary,
+.cta-secondary {
+    padding: 10px 15px;
+    border-radius: 6px;
     font-size: 12px;
+    font-weight: 600;
     cursor: pointer;
 }
 
-.assistance-buttons button:last-child {
-    background-color: white;
-    color: #2463eb;
+.cta-primary {
+    background: #2563eb;
+    border: 1px solid #2563eb;
+    color: white;
+}
+
+.cta-secondary {
+    background: white;
+    border: 1px solid #2563eb;
+    color: #2563eb;
+}
+
+.cta-primary i,
+.cta-secondary i {
+    margin-right: 5px;
 }
 
 
-/* Mobile */
+/* =========================
+   RESPONSIVE
+========================= */
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
 
-    .contact-page {
-        padding: 30px 20px;
+    .support-hero {
+        padding: 40px;
     }
 
-    .contact-info {
-        flex-direction: column;
+    .hero-visual {
+        display: none;
     }
 
     .contact-main {
+        grid-template-columns: 1fr;
+    }
+
+    .help-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .bottom-cta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+}
+
+
+@media (max-width: 650px) {
+
+    .contact-page {
+        padding: 25px 15px 40px;
+    }
+
+    .support-hero {
+        padding: 32px 25px;
+        min-height: auto;
+    }
+
+    .hero-content h1 {
+        font-size: 34px;
+    }
+
+    .hero-buttons {
         flex-direction: column;
     }
 
-    .message-box,
-    .right-content {
+    .primary-btn,
+    .secondary-btn {
         width: 100%;
     }
 
-    .name-row {
+    .message-box {
+        padding: 23px;
+    }
+
+    .name-row,
+    .form-row {
         flex-direction: column;
+        gap: 18px;
+    }
+
+    .faq-item {
+        grid-template-columns: 35px 1fr 15px;
+        padding: 18px;
+    }
+
+    .cta-buttons {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .cta-primary,
+    .cta-secondary {
+        width: 100%;
     }
 }
