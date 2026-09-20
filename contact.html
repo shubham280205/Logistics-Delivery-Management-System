@@ -19,10 +19,60 @@
     >
 
     <!-- Contact CSS -->
-    <link rel="stylesheet" href="css/contact.css">
+    <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="css/contact.css">
 </head>
 
 <body>
+    <!-- ================= NAVBAR ================= -->
+
+<header class="navbar">
+
+    <div class="logo">
+        <div class="logo-icon">L</div>
+
+        <div>
+            <h2>LogiTrack</h2>
+            <span>Delivery Management</span>
+        </div>
+    </div>
+
+    <nav class="nav-links">
+
+        <!-- Home -->
+        <a href="index.html">
+            <span class="nav-icon">⌂</span>
+            Home
+        </a>
+
+        <!-- Track Shipment -->
+        <a href="tracking.html">
+            <span class="nav-icon">⌾</span>
+            Track Shipment
+        </a>
+
+        <!-- Dashboard -->
+        <a href="dashboard.html">
+            <span class="nav-icon">⊞</span>
+            Dashboard
+        </a>
+
+        <!-- Manage -->
+        <a href="manage.html">
+            <span class="nav-icon">⚙</span>
+            Manage
+        </a>
+
+        <!-- Contact -->
+        <a href="contact.html" class="active">
+            <span class="nav-icon">☎</span>
+            Contact
+        </a>
+
+    </nav>
+
+</header>
+
 
 <div class="contact-page">
 
@@ -44,15 +94,15 @@
             </p>
 
             <div class="hero-buttons">
-                <button class="primary-btn">
-                    <i class="bi bi-geo-alt"></i>
-                    Track Shipment
-                </button>
+                <a href="tracking.html" class="primary-btn">
+    <i class="bi bi-geo-alt"></i>
+    Track Shipment
+</a>
 
-                <button class="secondary-btn">
-                    <i class="bi bi-chat-dots"></i>
-                    Contact Support
-                </button>
+                <a href="#contact-form" class="secondary-btn">
+    <i class="bi bi-chat-dots"></i>
+    Contact Support
+</a>
             </div>
 
         </div>
@@ -143,7 +193,7 @@
     <section class="contact-main">
 
         <!-- CONTACT FORM -->
-        <div class="message-box">
+        <div class="message-box" id="contact-form"></div>
 
             <div class="form-heading">
                 <span class="small-label">SEND US A MESSAGE</span>
