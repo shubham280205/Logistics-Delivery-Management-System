@@ -475,7 +475,17 @@
         background: #fff2b8;
         color: #b77700;
       }
+      .stat-card {
+        transition:
+          transform 0.2s ease,
+          box-shadow 0.2s ease;
+        cursor: pointer;
+      }
 
+      .stat-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(20, 40, 70, 0.12);
+      }
       @media (max-width: 1100px) {
         .stats-grid {
           grid-template-columns: repeat(2, 1fr);
