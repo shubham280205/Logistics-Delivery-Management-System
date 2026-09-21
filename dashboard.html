@@ -1,9 +1,14 @@
 <!doctype html>
+
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>Logistics Dashboard</title>
+
+    <!-- Main website CSS for navbar -->
+    <link rel="stylesheet" href="style.css" />
 
     <style>
       * {
@@ -11,6 +16,7 @@
         padding: 0;
         box-sizing: border-box;
       }
+
       .stat-card {
         transition:
           transform 0.2s ease,
@@ -22,6 +28,7 @@
         transform: translateY(-5px);
         box-shadow: 0 8px 20px rgba(20, 40, 70, 0.12);
       }
+
       body {
         font-family: Arial, Helvetica, sans-serif;
         background: #f6f8fb;
@@ -77,11 +84,9 @@
         width: 58px;
         height: 58px;
         border-radius: 11px;
-
         display: flex;
         align-items: center;
         justify-content: center;
-
         font-size: 28px;
         font-weight: bold;
       }
@@ -161,63 +166,42 @@
 
       .bar-chart {
         height: 360px;
-
         display: flex;
         align-items: flex-end;
-
         gap: 18px;
-
         padding: 20px 15px 40px 55px;
-
         border-left: 1px solid #9db0c9;
         border-bottom: 1px solid #9db0c9;
-
         position: relative;
-
         background-image: linear-gradient(#e2e9f2 1px, transparent 1px);
-
         background-size: 100% 25%;
       }
 
       .bar {
         flex: 1;
         max-width: 70px;
-
         background: #397fee;
-
         border-radius: 9px 9px 0 0;
-
         position: relative;
       }
 
       .bar span {
         position: absolute;
-
         bottom: -30px;
         left: 50%;
-
         transform: translateX(-50%);
-
         color: #536b8c;
         font-size: 15px;
       }
 
-      /* =========================
-           REVENUE TREND
-        ========================= */
-
       .line-chart {
         height: 360px;
-
         position: relative;
-
         border-left: 1px solid #9db0c9;
         border-bottom: 1px solid #9db0c9;
-
         background-image:
           linear-gradient(#e2e9f2 1px, transparent 1px),
           linear-gradient(90deg, #e2e9f2 1px, transparent 1px);
-
         background-size:
           100% 25%,
           20% 100%;
@@ -225,11 +209,9 @@
 
       .revenue-line {
         position: absolute;
-
         left: 6%;
         right: 4%;
         top: 50px;
-
         height: 240px;
       }
 
@@ -241,66 +223,48 @@
 
       .months {
         display: flex;
-
         justify-content: space-between;
-
         position: absolute;
-
         bottom: -32px;
         left: 6%;
         right: 4%;
-
         color: #536b8c;
       }
 
       .lower-grid {
         display: grid;
-
         grid-template-columns: 1fr 2fr;
-
         gap: 28px;
-
         margin-bottom: 38px;
       }
 
       .section-card {
         background: #ffffff;
-
         border: 1px solid #e1e7ef;
-
         border-radius: 16px;
-
         padding: 28px;
-
         box-shadow: 0 2px 5px rgba(20, 40, 70, 0.08);
       }
 
       .section-title {
         font-size: 22px;
         font-weight: 600;
-
         color: #172b4d;
-
         margin-bottom: 28px;
       }
 
       .pie-container {
         display: flex;
-
         align-items: center;
         justify-content: center;
-
         min-height: 290px;
-
         position: relative;
       }
 
       .pie {
         width: 190px;
         height: 190px;
-
         border-radius: 50%;
-
         background: conic-gradient(
           #16b982 0deg 190deg,
           #ffffff 190deg 193deg,
@@ -318,49 +282,39 @@
 
       .delivered {
         color: #0db67c;
-
         top: 10px;
         left: 50%;
-
         transform: translateX(-50%);
       }
 
       .pending {
         color: #f29d00;
-
         bottom: 15px;
         right: 30px;
       }
 
       .transit {
         color: #397fee;
-
         bottom: 55px;
         left: 5px;
       }
 
       .cancelled {
         color: #ed4444;
-
         right: -10px;
         top: 105px;
       }
 
       .quick-grid {
         display: grid;
-
         grid-template-columns: 1fr 1fr;
-
         gap: 20px;
       }
 
       .quick-card {
         min-height: 110px;
-
         border-radius: 12px;
-
         padding: 20px;
-
         border: 1px solid;
       }
 
@@ -386,66 +340,48 @@
 
       .quick-title {
         font-size: 16px;
-
         margin-bottom: 10px;
       }
 
       .quick-value {
         font-size: 28px;
-
         font-weight: bold;
       }
 
       .shipments {
         background: #ffffff;
-
         border: 1px solid #e1e7ef;
-
         border-radius: 16px;
-
         overflow: hidden;
-
         box-shadow: 0 2px 5px rgba(20, 40, 70, 0.08);
       }
 
       .shipments-title {
         padding: 28px;
-
         font-size: 22px;
         font-weight: 600;
-
         color: #172b4d;
-
         border-bottom: 1px solid #e3e8ef;
       }
 
       table {
         width: 100%;
-
         border-collapse: collapse;
       }
 
       th {
         text-align: left;
-
         padding: 20px 28px;
-
         background: #f7f9fc;
-
         color: #526b8b;
-
         font-size: 14px;
-
         letter-spacing: 0.5px;
       }
 
       td {
         padding: 20px 28px;
-
         border-bottom: 1px solid #e5e9ef;
-
         font-size: 17px;
-
         color: #26364d;
       }
 
@@ -455,19 +391,14 @@
 
       .tracking {
         color: #1764e8;
-
         font-weight: 600;
       }
 
       .status {
         display: inline-block;
-
         padding: 8px 15px;
-
         border-radius: 20px;
-
         font-size: 14px;
-
         font-weight: 600;
       }
 
@@ -485,17 +416,7 @@
         background: #fff2b8;
         color: #b77700;
       }
-      .stat-card {
-        transition:
-          transform 0.2s ease,
-          box-shadow 0.2s ease;
-        cursor: pointer;
-      }
 
-      .stat-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 8px 20px rgba(20, 40, 70, 0.12);
-      }
       @media (max-width: 1100px) {
         .stats-grid {
           grid-template-columns: repeat(2, 1fr);
@@ -556,64 +477,101 @@
   </head>
 
   <body>
+    <!-- ================= NAVBAR ================= -->
+
+    <header class="navbar">
+      <div class="logo">
+        <div class="logo-icon">L</div>
+
+        <div>
+          <h2>LogiTrack</h2>
+          <span>Delivery Management</span>
+        </div>
+      </div>
+
+      <nav class="nav-links">
+        <a href="index.html">
+          <span class="nav-icon">⌂</span>
+          Home
+        </a>
+
+        <a href="pages/tracking.html">
+          <span class="nav-icon">⌾</span>
+          Track Shipment
+        </a>
+
+        <a href="dashboard.html" class="active">
+          <span class="nav-icon">⊞</span>
+          Dashboard
+        </a>
+
+        <a href="pages/manage.html">
+          <span class="nav-icon">⚙</span>
+          Manage
+        </a>
+
+        <a href="pages/contact.html">
+          <span class="nav-icon">☎</span>
+          Contact
+        </a>
+      </nav>
+    </header>
+
+    <!-- ================= DASHBOARD ================= -->
+
     <main class="container">
       <!-- DASHBOARD HEADING -->
 
       <div class="heading">
         <h1>Dashboard</h1>
-
         <p>Welcome back! Here's what's happening today.</p>
       </div>
+
+      <!-- ================= STAT CARDS ================= -->
 
       <div class="stats-grid">
         <div class="stat-card">
           <div class="stat-top">
             <div class="stat-icon blue-icon">◇</div>
-
             <div class="percent positive">+12.5%</div>
           </div>
 
           <div class="stat-number">12,459</div>
-
           <div class="stat-label">Total Shipments</div>
         </div>
 
         <div class="stat-card">
           <div class="stat-top">
             <div class="stat-icon yellow-icon">◷</div>
-
             <div class="percent positive">+8.2%</div>
           </div>
 
           <div class="stat-number">1,847</div>
-
           <div class="stat-label">Pending Deliveries</div>
         </div>
 
         <div class="stat-card">
           <div class="stat-top">
             <div class="stat-icon green-icon">✓</div>
-
             <div class="percent positive">+18.7%</div>
           </div>
 
           <div class="stat-number">3,256</div>
-
           <div class="stat-label">Delivered Today</div>
         </div>
 
         <div class="stat-card">
           <div class="stat-top">
             <div class="stat-icon purple-icon">▱</div>
-
             <div class="percent negative">-3.1%</div>
           </div>
 
           <div class="stat-number">892</div>
-
           <div class="stat-label">Active Deliveries</div>
         </div>
       </div>
+
+      <!-- ================= CHARTS ================= -->
 
       <div class="chart-grid">
         <div class="chart-card">
@@ -660,15 +618,10 @@
                 />
 
                 <circle cx="0" cy="120" r="8" fill="#16b982" />
-
                 <circle cx="120" cy="150" r="8" fill="#16b982" />
-
                 <circle cx="240" cy="65" r="8" fill="#16b982" />
-
                 <circle cx="360" cy="82" r="8" fill="#16b982" />
-
                 <circle cx="480" cy="25" r="8" fill="#16b982" />
-
                 <circle cx="600" cy="42" r="8" fill="#16b982" />
               </svg>
             </div>
@@ -684,6 +637,8 @@
           </div>
         </div>
       </div>
+
+      <!-- ================= LOWER SECTION ================= -->
 
       <div class="lower-grid">
         <div class="section-card">
@@ -708,30 +663,28 @@
           <div class="quick-grid">
             <div class="quick-card quick-blue">
               <div class="quick-title">♧ &nbsp; Active Customers</div>
-
               <div class="quick-value">8,247</div>
             </div>
 
             <div class="quick-card quick-green">
               <div class="quick-title">$ &nbsp; Monthly Revenue</div>
-
               <div class="quick-value">$88,000</div>
             </div>
 
             <div class="quick-card quick-purple">
               <div class="quick-title">▱ &nbsp; Active Vehicles</div>
-
               <div class="quick-value">156</div>
             </div>
 
             <div class="quick-card quick-orange">
               <div class="quick-title">↗ &nbsp; Avg. Delivery Time</div>
-
               <div class="quick-value">2.4 days</div>
             </div>
           </div>
         </div>
       </div>
+
+      <!-- ================= RECENT SHIPMENTS ================= -->
 
       <div class="shipments">
         <div class="shipments-title">Recent Shipments</div>
@@ -740,13 +693,9 @@
           <thead>
             <tr>
               <th>TRACKING ID</th>
-
               <th>CUSTOMER</th>
-
               <th>DESTINATION</th>
-
               <th>STATUS</th>
-
               <th>DATE</th>
             </tr>
           </thead>
@@ -754,9 +703,7 @@
           <tbody>
             <tr>
               <td class="tracking">SW123456</td>
-
               <td>John Doe</td>
-
               <td>New York, NY</td>
 
               <td>
@@ -768,9 +715,7 @@
 
             <tr>
               <td class="tracking">SW123457</td>
-
               <td>Jane Smith</td>
-
               <td>Los Angeles, CA</td>
 
               <td>
@@ -782,9 +727,7 @@
 
             <tr>
               <td class="tracking">SW123458</td>
-
               <td>Bob Johnson</td>
-
               <td>Chicago, IL</td>
 
               <td>
@@ -796,9 +739,7 @@
 
             <tr>
               <td class="tracking">SW123459</td>
-
               <td>Alice Brown</td>
-
               <td>Houston, TX</td>
 
               <td>
@@ -810,9 +751,7 @@
 
             <tr>
               <td class="tracking">SW123460</td>
-
               <td>Charlie Wilson</td>
-
               <td>Phoenix, AZ</td>
 
               <td>
