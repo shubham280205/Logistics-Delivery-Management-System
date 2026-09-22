@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Track Shipment | Swift Logistics</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    >
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: #f4f7fb;
+            color: #172033;
+            font-family: Arial, sans-serif;
+        }
+
+        .tracking-page {
+            max-width: 1100px;
+            margin: auto;
+            padding: 60px 25px;
+        }
+
+        .tracking-hero {
+            background: #0f172a;
+            border-radius: 16px;
+            padding: 55px;
+            color: white;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .tracking-label {
+            color: #60a5fa;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+        }
+
+        .tracking-hero h1 {
+            font-size: 42px;
+            margin: 12px 0;
+        }
+
+        .tracking-hero p {
+            color: #cbd5e1;
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+
+        .tracking-form {
+            max-width: 650px;
+            margin: auto;
+            display: flex;
+            gap: 10px;
+        }
+
+        .tracking-form input {
+            flex: 1;
+            border: none;
+            border-radius: 6px;
+            padding: 14px;
+            font-size: 14px;
+        }
+
+        .tracking-form button {
+            background: #f97316;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 0 25px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .tracking-form button:hover {
+            background: #ea580c;
+        }
+
+        .tracking-result {
+            display: none;
+            background: white;
+            border: 1px solid #dce3ed;
+            border-radius: 10px;
+            padding: 30px;
+        }
+
+        .result-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .result-header h2 {
+            font-size: 20px;
+            margin: 0;
+        }
+
+        .status {
+            background: #dcfce7;
+            color: #15803d;
+            padding: 7px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .shipment-info {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .info-box {
+            background: #f8fafc;
+            border-radius: 8px;
+            padding: 18px;
+        }
+
+        .info-box span {
+            display: block;
+            color: #64748b;
+            font-size: 10px;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+        }
+
+        .info-box strong {
+            font-size: 13px;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 35px;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-bottom: 25px;
+        }
+
+        .timeline-item:last-child {
+            padding-bottom: 0;
+        }
+
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: -27px;
+            top: 5px;
+            width: 12px;
+            height: 12px;
+            background: #2563eb;
+            border-radius: 50%;
+        }
+
+        .timeline-item:not(:last-child)::after {
+            content: "";
+            position: absolute;
+            left: -22px;
+            top: 17px;
+            width: 2px;
+            height: calc(100% - 5px);
+            background: #dbeafe;
+        }
+
+        .timeline-item h4 {
+            font-size: 13px;
+            margin: 0 0 5px;
+        }
+
+        .timeline-item p {
+            color: #64748b;
+            font-size: 11px;
+            margin: 0;
+        }
+
+        .error-message {
+            display: none;
+            color: #dc2626;
+            font-size: 12px;
+            margin-top: 12px;
+        }
+
+        @media (max-width: 650px) {
+
+            .tracking-page {
+                padding: 30px 15px;
+            }
+
+            .tracking-hero {
+                padding: 35px 20px;
+            }
+
+            .tracking-hero h1 {
+                font-size: 32px;
+            }
+
+            .tracking-form {
+                flex-direction: column;
+            }
+
+            .tracking-form button {
+                padding: 13px;
+            }
+
+            .shipment-info {
+                grid-template-columns: 1fr;
+            }
+
+            .result-header {
+                align-items: flex-start;
+                gap: 10px;
+                flex-direction: column;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+<!-- ================= NAVBAR ================= -->
+<header class="navbar">
+
+    <div class="logo">
+
+        <div class="logo-icon">L</div>
+
+        <div>
+            <h2>LogiTrack</h2>
+            <span>Delivery Management</span>
+        </div>
+
+    </div>
+
+    <nav class="nav-links">
+
+        <!-- Home -->
+        <a href="index.html">
+            <span class="nav-icon">⌂</span>
+            Home
+        </a>
+
+        <!-- Track Shipment -->
+        <a href="tracking.html" class="active">
+            <span class="nav-icon">↗</span>
+            Track Shipment
+        </a>
+
+        <!-- Dashboard -->
+        <a href="pages/dashboard.html">
+            <span class="nav-icon">▦</span>
+            Dashboard
+        </a>
+
+        <!-- Manage -->
+        <a href="pages/manage.html">
+            <span class="nav-icon">⚙</span>
+            Manage
+        </a>
+
+        <!-- Contact -->
+        <a href="contact.html">
+            <span class="nav-icon">✉</span>
+            Contact
+        </a>
+
+    </nav>
+
+</header>
+
+<div class="tracking-page">
+
+    <section class="tracking-hero">
+
+        <span class="tracking-label">
+            SWIFT LOGISTICS
+        </span>
+
+        <h1>Track your shipment.</h1>
+
+        <p>
+            Enter your tracking number to see the latest status of your shipment.
+        </p>
+
+        <form class="tracking-form" id="trackingForm">
+
+            <input
+                type="text"
+                id="trackingNumber"
+                placeholder="Enter tracking number"
+            >
+
+            <button type="submit">
+                <i class="bi bi-search"></i>
+                Track
+            </button>
+
+        </form>
+
+        <div class="error-message" id="errorMessage">
+            Please enter a valid tracking number.
+        </div>
+
+    </section>
+
+
+    <section class="tracking-result" id="trackingResult">
+
+        <div class="result-header">
+
+            <h2>Shipment Details</h2>
+
+            <span class="status">
+                IN TRANSIT
+            </span>
+
+        </div>
+
+
+        <div class="shipment-info">
+
+            <div class="info-box">
+                <span>Tracking Number</span>
+                <strong id="resultTrackingNumber"></strong>
+            </div>
+
+            <div class="info-box">
+                <span>Origin</span>
+                <strong>New York, NY</strong>
+            </div>
+
+            <div class="info-box">
+                <span>Destination</span>
+                <strong>Chicago, IL</strong>
+            </div>
+
+        </div>
+
+
+        <h3 style="font-size: 16px; margin-bottom: 20px;">
+            Shipment Progress
+        </h3>
+
+
+        <div class="timeline">
+
+            <div class="timeline-item">
+                <h4>Shipment picked up</h4>
+                <p>New York, NY · Sep 15, 10:30 AM</p>
+            </div>
+
+            <div class="timeline-item">
+                <h4>Arrived at sorting facility</h4>
+                <p>Newark, NJ · Sep 15, 6:45 PM</p>
+            </div>
+
+            <div class="timeline-item">
+                <h4>In transit</h4>
+                <p>Shipment is currently moving to destination.</p>
+            </div>
+
+            <div class="timeline-item">
+                <h4>Estimated delivery</h4>
+                <p>Chicago, IL · Sep 18</p>
+            </div>
+
+        </div>
+
+    </section>
+
+</div>
+
+
+
+
+</body>
+
+</html>
