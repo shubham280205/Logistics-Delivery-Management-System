@@ -3,376 +3,521 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LogiTrack | Shipment and delivery management</title>
+    <meta name="description" content="Create shipments, assign drivers and follow every delivery from pickup to doorstep with LogiTrack.">
 
-    <title>Logistics & Delivery Management System</title>
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-<!-- ================= NAVBAR ================= -->
 
-<header class="navbar">
+<a class="skip-link" href="#main">Skip to main content</a>
 
-    <div class="logo">
-        <div class="logo-icon">L</div>
+<!-- ================= HEADER ================= -->
+<header class="site-header">
+    <div class="header-inner">
+        <a href="index.html" class="logo" aria-label="LogiTrack home">
+            <svg class="logo-mark" viewBox="0 0 32 32" aria-hidden="true">
+                <rect width="32" height="32" rx="8" fill="#1a5fd0"/>
+                <path d="M10 7.5v14.5h8" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="23.5" cy="22" r="3.2" fill="#f0a020"/>
+            </svg>
+            <span class="logo-word">Logi<b>Track</b></span>
+        </a>
 
-        <div>
-            <h2>LogiTrack</h2>
-            <span>Delivery Management</span>
-        </div>
+        <nav class="nav" id="main-nav" aria-label="Main">
+            <a href="index.html" aria-current="page">Home</a>
+
+            <a href="tracking.html">
+                <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12 21s7-6.1 7-11.2A7 7 0 0 0 5 9.8C5 14.9 12 21 12 21Z"/>
+                    <circle cx="12" cy="9.8" r="2.3"/>
+                </svg>
+                Track Shipment
+            </a>
+
+            <!-- Dashboard -->
+            <a href="dashboard.html">
+                <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <rect x="4" y="4" width="6" height="6" rx="1"/>
+                    <rect x="14" y="4" width="6" height="6" rx="1"/>
+                    <rect x="4" y="14" width="6" height="6" rx="1"/>
+                    <rect x="14" y="14" width="6" height="6" rx="1"/>
+                </svg>
+                Dashboard
+            </a>
+
+            <a href="reports.html">
+                <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.09a2 2 0 0 1 1 1.74v.5a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.38a2 2 0 0 0-.73-2.73l-.15-.09a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/>
+                    <circle cx="12" cy="12" r="3"/>
+                </svg>
+                Manage
+            </a>
+
+            <a href="contact.html">
+                <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M6.6 10.8a15.7 15.7 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1.1-.2c1.2.5 2.5.7 3.8.7a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.6 21 3 13.4 3 4a1 1 0 0 1 1-1h3.3a1 1 0 0 1 1 1c0 1.3.2 2.6.7 3.8a1 1 0 0 1-.2 1.1L6.6 10.8Z"/>
+                </svg>
+                Contact
+            </a>
+        </nav>
+
+        <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="main-nav">
+            <span></span><span></span><span></span>
+        </button>
     </div>
-
-
-    <nav class="nav-links">
-
-        <!-- Home -->
-        <a href="index.html" class="active">
-            <span class="nav-icon">⌂</span>
-            Home
-        </a>
-
-        <!-- Track Shipment -->
-        <a href="pages/tracking.html">
-            <span class="nav-icon">⌾</span>
-            Track Shipment
-        </a>
-
-        <!-- Dashboard -->
-        <a href="pages/dashboard.html">
-            <span class="nav-icon">⊞</span>
-            Dashboard
-        </a>
-
-        <!-- Manage -->
-        <a href="pages/manage.html">
-            <span class="nav-icon">⚙</span>
-            Manage
-        </a>
-
-        <!-- Contact -->
-        <a href="contact.html">
-            <span class="nav-icon">☎</span>
-            Contact
-        </a>
-
-    </nav>
-
 </header>
 
-    <!-- ================= HERO SECTION ================= -->
+<main id="main">
 
-    <main>
+    <!-- ================= HERO ================= -->
+    <section class="hero" aria-labelledby="hero-title">
+        <img class="hero-bg-image" src="logitrack-hero.jpg" alt="LogiTrack delivery scene" aria-hidden="true">
 
-        <section class="hero">
+        <!-- Route line: dotted = planned route, solid = distance covered -->
+        <svg class="hero-scene" viewBox="0 0 1440 230" preserveAspectRatio="xMidYMax slice" aria-hidden="true" focusable="false">
 
-            <div class="hero-content">
+            <!-- flat skyline, purely decorative -->
+            <g class="skyline">
+                <rect x="60" y="118" width="46" height="72"/>
+                <rect x="118" y="96" width="34" height="94"/>
+                <rect x="168" y="132" width="52" height="58"/>
+                <rect x="960" y="100" width="40" height="90"/>
+                <rect x="1010" y="70" width="52" height="120"/>
+                <rect x="1074" y="118" width="34" height="72"/>
+                <rect x="1160" y="88" width="46" height="102"/>
+                <rect x="1218" y="128" width="60" height="62"/>
+                <rect x="1300" y="104" width="38" height="86"/>
 
-                <div class="hero-badge">
-                    🚚 Smart Logistics Management
-                </div>
+                <g class="skyline-windows">
+                    <rect x="128" y="108" width="6" height="8"/>
+                    <rect x="128" y="126" width="6" height="8"/>
+                    <rect x="128" y="144" width="6" height="8"/>
+                    <rect x="138" y="108" width="6" height="8"/>
+                    <rect x="138" y="126" width="6" height="8"/>
+                    <rect x="138" y="144" width="6" height="8"/>
+                    <rect x="1022" y="84" width="6" height="8"/>
+                    <rect x="1022" y="102" width="6" height="8"/>
+                    <rect x="1022" y="120" width="6" height="8"/>
+                    <rect x="1022" y="138" width="6" height="8"/>
+                    <rect x="1036" y="84" width="6" height="8"/>
+                    <rect x="1036" y="102" width="6" height="8"/>
+                    <rect x="1036" y="120" width="6" height="8"/>
+                    <rect x="1036" y="138" width="6" height="8"/>
+                    <rect x="1172" y="100" width="6" height="8"/>
+                    <rect x="1172" y="118" width="6" height="8"/>
+                    <rect x="1172" y="136" width="6" height="8"/>
+                    <rect x="1184" y="100" width="6" height="8"/>
+                    <rect x="1184" y="118" width="6" height="8"/>
+                    <rect x="1184" y="136" width="6" height="8"/>
+                </g>
+            </g>
 
-                <h1>
-                    Manage Your
-                    <span>Deliveries</span>
-                    Smarter
-                </h1>
+            <!-- route the scooter is running -->
+            <path class="route-base" d="M-10 190H1450"/>
+            <path class="route-done" pathLength="1" d="M-10 190H1450"/>
+            <circle class="route-pin pin-1" cx="230" cy="190" r="7"/>
+            <circle class="route-pin pin-3" cx="1230" cy="190" r="7"/>
 
-                <p>
-                    A simple and efficient logistics management system
-                    designed to manage shipments, track deliveries,
-                    monitor drivers and generate reports.
+            <!-- speed lines -->
+            <g class="speed-lines">
+                <line x1="470" y1="150" x2="540" y2="150"/>
+                <line x1="450" y1="168" x2="535" y2="168"/>
+                <line x1="475" y1="186" x2="530" y2="186"/>
+            </g>
+
+            <!-- delivery scooter + rider, flat illustration -->
+            <g transform="translate(620 190)">
+                <g class="scooter">
+                    <ellipse class="scooter-shadow" cx="65" cy="8" rx="90" ry="9"/>
+
+                    <!-- delivery box, sits behind the seat -->
+                    <rect class="box" x="0" y="-70" width="44" height="42" rx="6"/>
+                    <rect class="box-strap" x="0" y="-52" width="44" height="6"/>
+                    <path class="box-mark" d="M12 -55 32 -55 M12 -47 26 -47"/>
+
+                    <!-- single-silhouette scooter body -->
+                    <path class="body-main" d="
+                        M14 -14
+                        C14 -32 26 -42 42 -42
+                        C50 -42 57 -40 61 -36
+                        C68 -52 85 -63 104 -63
+                        C120 -63 132 -53 130 -38
+                        L127 -14
+                    Z"/>
+
+                    <circle class="headlamp" cx="122" cy="-40" r="5"/>
+
+                    <!-- wheels -->
+                    <circle class="wheel-tyre" cx="26" cy="0" r="18"/>
+                    <circle class="wheel-hub" cx="26" cy="0" r="7"/>
+                    <circle class="wheel-tyre" cx="112" cy="0" r="18"/>
+                    <circle class="wheel-hub" cx="112" cy="0" r="7"/>
+
+                    <!-- handlebar -->
+                    <path class="handle-stem" d="M104 -63 108 -85"/>
+                    <path class="handle-bar" d="M89 -87 L127 -84"/>
+
+                    <!-- rider leg, bent to the footboard -->
+                    <path class="rider-dark" d="M56 -36 Q66 -20 82 -13"/>
+                    <ellipse class="rider-shoe" cx="84" cy="-12" rx="10" ry="6.5"/>
+
+                    <!-- rider torso + arm, one flowing stroke to the handlebar -->
+                    <path class="rider-main" d="M56 -36 Q76 -92 112 -83"/>
+
+                    <!-- head + helmet -->
+                    <circle class="helmet-main" cx="84" cy="-95" r="16"/>
+                    <path class="helmet-visor" d="M71 -90 C71 -82 77 -77 84 -77 C91 -77 97 -82 97 -90 L94 -90 C94 -85 90 -82 84 -82 C78 -82 74 -85 74 -90Z"/>
+                    <path class="helmet-stripe" d="M70 -102 98 -102"/>
+                </g>
+            </g>
+        </svg>
+
+        <div class="hero-inner">
+            <div class="hero-copy">
+                <h1 id="hero-title">Every shipment, tracked to the doorstep.</h1>
+                <p class="hero-lead">
+                    LogiTrack helps you create shipments, assign drivers and follow each delivery
+                    from pickup to doorstep, all from one dashboard.
                 </p>
 
-                <div class="hero-buttons">
+                <div class="hero-actions">
+                    <a href="shipments.html" class="btn btn-primary">Create a shipment</a>
+                    <a href="#features" class="btn btn-ghost">See features</a>
+                </div>
+            </div>
 
-                    <a href="pages/shipments.html" class="primary-btn">
-                        Manage Shipments
-                    </a>
+            <!-- Waybill-style tracking card -->
+            <div class="waybill">
+                <div class="waybill-top">
+                    <h2>Track a shipment</h2>
+                    <p>Enter the tracking ID from your booking confirmation.</p>
 
-                    <a href="pages/tracking.html" class="secondary-btn">
-                        Track Delivery →
-                    </a>
+                    <form class="track-form" action="tracking.html" method="get">
+                        <label class="visually-hidden" for="trackingId">Tracking ID</label>
+                        <input id="trackingId" name="trackingId" type="text" placeholder="e.g. LT-204183" autocomplete="off" required>
+                        <button type="submit">Track</button>
+                    </form>
 
+                    <a href="contact.html" class="help-link">Can't find your ID?</a>
+                </div>
+
+                <div class="waybill-bottom">
+                    <div class="sample-head">
+                        <p class="sample-label">Sample shipment</p>
+                        <p class="status status-transit">In transit</p>
+                    </div>
+
+                    <p class="sample-id">LT-204183</p>
+                    <p class="sample-route">Agra to Mathura</p>
+
+                    <ol class="stepper" aria-label="Shipment progress">
+                        <li class="is-done">Picked up</li>
+                        <li class="is-current" aria-current="step">In transit</li>
+                        <li>Out for delivery</li>
+                        <li>Delivered</li>
+                    </ol>
+
+                    <dl class="sample-meta">
+                        <div>
+                            <dt>Driver</dt>
+                            <dd>Rakesh Yadav</dd>
+                        </div>
+
+                        <div>
+                            <dt>Expected</dt>
+                            <dd>Today, 6:30 pm</dd>
+                        </div>
+                    </dl>
+
+                    <div class="barcode" aria-hidden="true"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= STATS ================= -->
+    <section class="stats" aria-label="LogiTrack in numbers">
+        <dl class="stats-list">
+            <div class="stat">
+                <dt>Total shipments</dt>
+                <dd>1,248</dd>
+            </div>
+
+            <div class="stat">
+                <dt>Delivered successfully</dt>
+                <dd>1,226</dd>
+            </div>
+
+            <div class="stat">
+                <dt>Active drivers</dt>
+                <dd>125</dd>
+            </div>
+
+            <div class="stat">
+                <dt>Delivery success rate</dt>
+                <dd>98.2%</dd>
+            </div>
+        </dl>
+    </section>
+
+    <!-- ================= FEATURES ================= -->
+    <section class="features" id="features" aria-labelledby="features-title">
+        <div class="container">
+
+            <div class="section-head">
+                <h2 id="features-title">Everything a delivery run needs, in one place</h2>
+                <p>Manage shipments, drivers and tracking from a single platform instead of separate sheets and phone calls.</p>
+            </div>
+
+            <div class="features-layout">
+
+                <ul class="feature-list">
+
+                    <li>
+                        <a href="shipments.html" class="feature">
+                            <span class="feature-icon">
+                                <svg viewBox="0 0 24 24" aria-hidden="true">
+                                    <path d="M12 3 4 7.5v9L12 21l8-4.5v-9L12 3Z"/>
+                                    <path d="m4 7.5 8 4.5 8-4.5"/>
+                                    <path d="M12 12v9"/>
+                                </svg>
+                            </span>
+
+                            <span class="feature-body">
+                                <h3>Shipment management</h3>
+                                <p>Create shipments, edit details and keep every booking in one list.</p>
+                            </span>
+
+                            <svg class="feature-arrow" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="m9 5 7 7-7 7"/>
+                            </svg>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="tracking.html" class="feature">
+                            <span class="feature-icon">
+                                <svg viewBox="0 0 24 24" aria-hidden="true">
+                                    <path d="M12 21s7-6.1 7-11.2A7 7 0 0 0 5 9.8C5 14.9 12 21 12 21Z"/>
+                                    <circle cx="12" cy="9.8" r="2.4"/>
+                                </svg>
+                            </span>
+
+                            <span class="feature-body">
+                                <h3>Real-time tracking</h3>
+                                <p>See which stage a parcel has reached, from pickup to delivery.</p>
+                            </span>
+
+                            <svg class="feature-arrow" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="m9 5 7 7-7 7"/>
+                            </svg>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="drivers.html" class="feature">
+                            <span class="feature-icon">
+                                <svg viewBox="0 0 24 24" aria-hidden="true">
+                                    <path d="M3 6.5h10V16H3z"/>
+                                    <path d="M13 10h4.2l3.3 3.3V16H13"/>
+                                    <circle class="wheel" cx="7.5" cy="17.5" r="2"/>
+                                    <circle class="wheel" cx="16.5" cy="17.5" r="2"/>
+                                </svg>
+                            </span>
+
+                            <span class="feature-body">
+                                <h3>Driver management</h3>
+                                <p>Add drivers, assign them to shipments and see who is on the road.</p>
+                            </span>
+
+                            <svg class="feature-arrow" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="m9 5 7 7-7 7"/>
+                            </svg>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="reports.html" class="feature">
+                            <span class="feature-icon">
+                                <svg viewBox="0 0 24 24" aria-hidden="true">
+                                    <path d="M4 20h16"/>
+                                    <path d="M7 16v-5M12 16V6M17 16v-8"/>
+                                </svg>
+                            </span>
+
+                            <span class="feature-body">
+                                <h3>Reports and analytics</h3>
+                                <p>Check delivery counts and success rates by day, week or month.</p>
+                            </span>
+
+                            <svg class="feature-arrow" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="m9 5 7 7-7 7"/>
+                            </svg>
+                        </a>
+                    </li>
+
+                </ul>
+
+                <!-- Sample dispatch board -->
+                <div class="board">
+                    <div class="board-head">
+                        <h3>Today's shipments</h3>
+                        <span>Sample data</span>
+                    </div>
+
+                    <div class="board-scroll">
+                        <table>
+                            <caption class="visually-hidden">Sample list of today's shipments</caption>
+
+                            <thead>
+                                <tr>
+                                    <th scope="col">Shipment</th>
+                                    <th scope="col">Route</th>
+                                    <th scope="col" class="col-driver">Driver</th>
+                                    <th scope="col">Status</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr>
+                                    <th scope="row">LT-204183</th>
+                                    <td>Agra to Mathura</td>
+                                    <td class="col-driver">Rakesh Yadav</td>
+                                    <td><span class="status status-transit">In transit</span></td>
+                                </tr>
+
+                                <tr>
+                                    <th scope="row">LT-204179</th>
+                                    <td>Delhi to Jaipur</td>
+                                    <td class="col-driver">Imran Khan</td>
+                                    <td><span class="status status-out">Out for delivery</span></td>
+                                </tr>
+
+                                <tr>
+                                    <th scope="row">LT-204171</th>
+                                    <td>Mathura to Lucknow</td>
+                                    <td class="col-driver">Suresh Kumar</td>
+                                    <td><span class="status status-done">Delivered</span></td>
+                                </tr>
+
+                                <tr>
+                                    <th scope="row">LT-204166</th>
+                                    <td>Noida to Gwalior</td>
+                                    <td class="col-driver">Deepak Sharma</td>
+                                    <td><span class="status status-picked">Picked up</span></td>
+                                </tr>
+
+                                <tr>
+                                    <th scope="row">LT-204158</th>
+                                    <td>Jaipur to Agra</td>
+                                    <td class="col-driver">Manoj Singh</td>
+                                    <td><span class="status status-delayed">Delayed</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="board-foot">
+                        <a href="shipments.html" class="board-link">
+                            View all shipments
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="m9 5 7 7-7 7"/>
+                            </svg>
+                        </a>
+                    </div>
                 </div>
 
             </div>
+        </div>
+    </section>
 
-
-            <!-- Dashboard Card -->
-
-            <div class="dashboard-card">
-
-                <div class="card-header">
-
-                    <div>
-                        <span>Delivery Overview</span>
-                        <h3>Today's Activity</h3>
-                    </div>
-
-                    <div class="status-dot"></div>
-
-                </div>
-
-
-                <div class="delivery-stat">
-
-                    <div class="stat-icon blue">
-                        📦
-                    </div>
-
-                    <div>
-                        <span>Total Shipments</span>
-                        <strong>1,248</strong>
-                    </div>
-
-                </div>
-
-
-                <div class="delivery-stat">
-
-                    <div class="stat-icon green">
-                        ✓
-                    </div>
-
-                    <div>
-                        <span>Delivered</span>
-                        <strong>986</strong>
-                    </div>
-
-                </div>
-
-
-                <div class="delivery-stat">
-
-                    <div class="stat-icon orange">
-                        🚚
-                    </div>
-
-                    <div>
-                        <span>In Transit</span>
-                        <strong>184</strong>
-                    </div>
-
-                </div>
-
-
-                <div class="delivery-stat">
-
-                    <div class="stat-icon red">
-                        !
-                    </div>
-
-                    <div>
-                        <span>Delayed</span>
-                        <strong>78</strong>
-                    </div>
-
-                </div>
-
+    <!-- ================= CTA ================= -->
+    <section class="cta-wrap" aria-labelledby="cta-title">
+        <div class="cta">
+            <div class="cta-text">
+                <h2 id="cta-title">Ready to run your deliveries from one place?</h2>
+                <p>Add your first shipment and assign a driver today.</p>
             </div>
 
-        </section>
+            <a href="shipments.html" class="btn btn-light">Create a shipment</a>
+        </div>
+    </section>
 
+</main>
 
-        <!-- ================= STATS ================= -->
+<!-- ================= FOOTER ================= -->
+<footer class="site-footer">
+    <div class="container footer-grid">
 
-        <section class="stats-section">
-
-            <div class="stat-box">
-                <h2>1,248+</h2>
-                <p>Total Shipments</p>
-            </div>
-
-            <div class="stat-box">
-                <h2>986</h2>
-                <p>Successful Deliveries</p>
-            </div>
-
-            <div class="stat-box">
-                <h2>125</h2>
-                <p>Active Drivers</p>
-            </div>
-
-            <div class="stat-box">
-                <h2>98.2%</h2>
-                <p>Delivery Success Rate</p>
-            </div>
-
-        </section>
-
-
-        <!-- ================= FEATURES ================= -->
-
-        <section class="features">
-
-            <div class="section-heading">
-
-                <span>OUR FEATURES</span>
-
-                <h2>
-                    Everything You Need
-                    to Manage Deliveries
-                </h2>
-
-                <p>
-                    Manage your complete delivery operation
-                    from one simple platform.
-                </p>
-
-            </div>
-
-
-            <div class="feature-grid">
-
-                <a href="pages/shipments.html" class="feature-card">
-
-                    <div class="feature-icon">
-                        📦
-                    </div>
-
-                    <h3>Shipment Management</h3>
-
-                    <p>
-                        Create, manage and organize all your
-                        shipments from one place.
-                    </p>
-
-                    <span class="feature-link">
-                        Manage Shipments →
-                    </span>
-
-                </a>
-
-
-                <a href="pages/tracking.html" class="feature-card">
-
-                    <div class="feature-icon">
-                        📍
-                    </div>
-
-                    <h3>Real-Time Tracking</h3>
-
-                    <p>
-                        Track delivery status and monitor
-                        shipments throughout their journey.
-                    </p>
-
-                    <span class="feature-link">
-                        Track Delivery →
-                    </span>
-
-                </a>
-
-
-                <a href="pages/drivers.html" class="feature-card">
-
-                    <div class="feature-icon">
-                        🚚
-                    </div>
-
-                    <h3>Driver Management</h3>
-
-                    <p>
-                        Manage drivers, assignments and
-                        delivery responsibilities easily.
-                    </p>
-
-                    <span class="feature-link">
-                        View Drivers →
-                    </span>
-
-                </a>
-
-
-                <a href="pages/reports.html" class="feature-card">
-
-                    <div class="feature-icon">
-                        📊
-                    </div>
-
-                    <h3>Reports & Analytics</h3>
-
-                    <p>
-                        View delivery statistics and generate
-                        useful performance reports.
-                    </p>
-
-                    <span class="feature-link">
-                        View Reports →
-                    </span>
-
-                </a>
-
-            </div>
-
-        </section>
-
-
-        <!-- ================= CTA ================= -->
-
-        <section class="cta">
-
-            <div>
-
-                <h2>
-                    Ready to Manage Your Deliveries?
-                </h2>
-
-                <p>
-                    Start managing shipments and tracking
-                    deliveries efficiently.
-                </p>
-
-            </div>
-
-            <a href="pages/shipments.html" class="cta-btn">
-                Get Started →
+        <div class="footer-brand">
+            <a href="index.html" class="logo" aria-label="LogiTrack home">
+                <svg class="logo-mark" viewBox="0 0 32 32" aria-hidden="true">
+                    <rect width="32" height="32" rx="8" fill="#1a5fd0"/>
+                    <path d="M10 7.5v14.5h8" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                    <circle cx="23.5" cy="22" r="3.2" fill="#f0a020"/>
+                </svg>
+                <span class="logo-word">Logi<b>Track</b></span>
             </a>
 
-        </section>
-
-    </main>
-
-
-    <!-- ================= FOOTER ================= -->
-
-    <footer>
-
-        <div class="footer-logo">
-            <h2>LogiTrack</h2>
-            <p>
-                Smart logistics and delivery management.
-            </p>
+            <p>Shipment, driver and delivery management in one system.</p>
         </div>
 
-        <div class="footer-links">
+        <nav class="footer-col" aria-label="Manage">
+            <h2>Manage</h2>
 
-            <a href="index.html">Home</a>
+            <ul>
+                <li><a href="shipments.html">Shipments</a></li>
+                <li><a href="drivers.html">Drivers</a></li>
+                <li><a href="reports.html">Reports</a></li>
+            </ul>
+        </nav>
 
-            <a href="pages/shipments.html">
-                Shipments
-            </a>
+        <nav class="footer-col" aria-label="Support">
+            <h2>Support</h2>
 
-            <a href="pages/tracking.html">
-                Tracking
-            </a>
+            <ul>
+                <li><a href="tracking.html">Track a shipment</a></li>
+                <li><a href="contact.html">Contact us</a></li>
+                <li><a href="login.html">Login</a></li>
+            </ul>
+        </nav>
 
-            <a href="pages/drivers.html">
-                Drivers
-            </a>
+    </div>
 
-            <a href="pages/reports.html">
-                Reports
-            </a>
-
+    <div class="footer-bottom">
+        <div class="container">
+            <p>&copy; 2026 LogiTrack. All rights reserved.</p>
         </div>
+    </div>
+</footer>
 
-        <p class="copyright">
-            © 2026 LogiTrack. All Rights Reserved.
-        </p>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const header = document.querySelector(".site-header");
+    const toggle = document.querySelector(".menu-toggle");
+    const nav = document.querySelector("#main-nav");
 
-    </footer>
+    if (!header || !toggle || !nav) return;
+
+    toggle.addEventListener("click", () => {
+        const open = header.classList.toggle("nav-open");
+        toggle.setAttribute("aria-expanded", String(open));
+        toggle.setAttribute("aria-label", open ? "Close navigation" : "Open navigation");
+    });
+
+    nav.querySelectorAll("a").forEach(link => {
+        link.addEventListener("click", () => {
+            header.classList.remove("nav-open");
+            toggle.setAttribute("aria-expanded", "false");
+            toggle.setAttribute("aria-label", "Open navigation");
+        });
+    });
+});
+</script>
 
 </body>
 </html>
