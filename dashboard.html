@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -784,49 +784,60 @@
   </head>
 
   <body>
-    <header class="navbar">
-      <div class="logo">
-        <div class="logo-icon">L</div>
-
-        <div>
-          <h2>LogiTrack</h2>
-
-          <span> Delivery Management </span>
-        </div>
-      </div>
-
-      <nav class="nav-links">
-        <a href="index.html">
-          <span class="nav-icon"> ⌂ </span>
-
-          Home
+    <header class="site-header">
+    <div class="header-inner">
+        <a href="index.html" class="logo" aria-label="LogiTrack home">
+            <svg class="logo-mark" viewBox="0 0 32 32" aria-hidden="true">
+                <rect width="32" height="32" rx="8" fill="#1a5fd0"/>
+                <path d="M10 7.5v14.5h8" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="23.5" cy="22" r="3.2" fill="#f0a020"/>
+            </svg>
+            <span class="logo-word">Logi<b>Track</b></span>
         </a>
 
-        <a href="pages/tracking.html">
-          <span class="nav-icon"> ⌾ </span>
+        <nav class="nav" id="main-nav" aria-label="Main">
+            <a href="index.html">Home</a>
 
-          Track Shipment
-        </a>
+            <a href="tracking.html">
+                <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12 21s7-6.1 7-11.2A7 7 0 0 0 5 9.8C5 14.9 12 21 12 21Z"/>
+                    <circle cx="12" cy="9.8" r="2.3"/>
+                </svg>
+                Track Shipment
+            </a>
 
-        <a href="dashboard.html" class="active">
-          <span class="nav-icon"> ⊞ </span>
+            <!-- Dashboard -->
+            <a href="dashboard.html">
+                <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <rect x="4" y="4" width="6" height="6" rx="1"/>
+                    <rect x="14" y="4" width="6" height="6" rx="1"/>
+                    <rect x="4" y="14" width="6" height="6" rx="1"/>
+                    <rect x="14" y="14" width="6" height="6" rx="1"/>
+                </svg>
+                Dashboard
+            </a>
 
-          Dashboard
-        </a>
+            <a href="manage.html">
+                <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.09a2 2 0 0 1 1 1.74v.5a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.38a2 2 0 0 0-.73-2.73l-.15-.09a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/>
+                    <circle cx="12" cy="12" r="3"/>
+                </svg>
+                Manage
+            </a>
 
-        <a href="pages/manage.html">
-          <span class="nav-icon"> ⚙ </span>
+            <a href="contact.html">
+                <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M6.6 10.8a15.7 15.7 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1.1-.2c1.2.5 2.5.7 3.8.7a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.6 21 3 13.4 3 4a1 1 0 0 1 1-1h3.3a1 1 0 0 1 1 1c0 1.3.2 2.6.7 3.8a1 1 0 0 1-.2 1.1L6.6 10.8Z"/>
+                </svg>
+                Contact
+            </a>
+        </nav>
 
-          Manage
-        </a>
-
-        <a href="pages/contact.html">
-          <span class="nav-icon"> ☎ </span>
-
-          Contact
-        </a>
-      </nav>
-    </header>
+        <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="main-nav">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</header>
 
     <main class="dashboard">
       <section class="hero">
@@ -844,7 +855,7 @@
           </p>
 
           <div class="hero-badges">
-            <div class="hero-badge">● Live Operations</div>
+            <div class="hero-badge">â— Live Operations</div>
 
             <div class="hero-badge">Updated Today</div>
           </div>
@@ -854,9 +865,9 @@
       <section class="stats-grid">
         <div class="stat-card">
           <div class="stat-top">
-            <div class="stat-icon blue">▣</div>
+            <div class="stat-icon blue">â–£</div>
 
-            <div class="trend up">↑ 12.5%</div>
+            <div class="trend up">â†‘ 12.5%</div>
           </div>
 
           <h3>Total Shipments</h3>
@@ -868,9 +879,9 @@
 
         <div class="stat-card">
           <div class="stat-top">
-            <div class="stat-icon yellow">◷</div>
+            <div class="stat-icon yellow">â—·</div>
 
-            <div class="trend up">↑ 8.2%</div>
+            <div class="trend up">â†‘ 8.2%</div>
           </div>
 
           <h3>Pending Deliveries</h3>
@@ -882,9 +893,9 @@
 
         <div class="stat-card">
           <div class="stat-top">
-            <div class="stat-icon green">✓</div>
+            <div class="stat-icon green">âœ“</div>
 
-            <div class="trend up">↑ 18.7%</div>
+            <div class="trend up">â†‘ 18.7%</div>
           </div>
 
           <h3>Delivered Today</h3>
@@ -896,9 +907,9 @@
 
         <div class="stat-card">
           <div class="stat-top">
-            <div class="stat-icon purple">▰</div>
+            <div class="stat-icon purple">â–°</div>
 
-            <div class="trend down">↓ 3.1%</div>
+            <div class="trend down">â†“ 3.1%</div>
           </div>
 
           <h3>Active Deliveries</h3>
@@ -913,12 +924,12 @@
         <div class="card">
           <div class="card-header">
             <div class="card-title">
-              <div class="card-icon">▥</div>
+              <div class="card-icon">â–¥</div>
 
               <h2>Monthly Shipments</h2>
             </div>
 
-            <div class="filter">Last 6 Months ▾</div>
+            <div class="filter">Last 6 Months â–¾</div>
           </div>
 
           <div class="bar-chart">
@@ -963,12 +974,12 @@
         <div class="card">
           <div class="card-header">
             <div class="card-title">
-              <div class="card-icon">↗</div>
+              <div class="card-icon">â†—</div>
 
               <h2>Revenue Trend</h2>
             </div>
 
-            <div class="filter">Last 6 Months ▾</div>
+            <div class="filter">Last 6 Months â–¾</div>
           </div>
 
           <div class="revenue-box">
@@ -1037,7 +1048,7 @@
         <div class="card">
           <div class="card-header">
             <div class="card-title">
-              <div class="card-icon">◔</div>
+              <div class="card-icon">â—”</div>
 
               <h2>Shipment Status</h2>
             </div>
@@ -1093,7 +1104,7 @@
         <div class="card">
           <div class="card-header">
             <div class="card-title">
-              <div class="card-icon">⚡</div>
+              <div class="card-icon">âš¡</div>
 
               <h2>Quick Stats</h2>
             </div>
@@ -1130,12 +1141,12 @@
       <section class="card recent-card">
         <div class="card-header">
           <div class="card-title">
-            <div class="card-icon">▰</div>
+            <div class="card-icon">â–°</div>
 
             <h2>Recent Shipments</h2>
           </div>
 
-          <div class="view-all">View All →</div>
+          <div class="view-all">View All â†’</div>
         </div>
 
         <div class="table-wrapper">
@@ -1242,3 +1253,4 @@
     </main>
   </body>
 </html>
+
