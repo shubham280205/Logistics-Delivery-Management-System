@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Manage Deliveries | LogiTrack</title>
+
+    <link rel="stylesheet" href="manage.css">
+
+</head>
+
+
+<body>
+
+
+<!-- ================= NAVBAR ================= -->
+
+<header class="navbar">
+
+    <div class="logo">
+
+        <div class="logo-icon">
+            L
+        </div>
+
+        <div>
+
+            <h2>LogiTrack</h2>
+
+            <span>
+                Delivery Management
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <nav class="nav-links">
+
+        <a href="index.html">
+            <span class="nav-icon">⌂</span>
+            Home
+        </a>
+
+
+        <a href="pages/tracking.html">
+            <span class="nav-icon">⌾</span>
+            Track Shipment
+        </a>
+
+
+        <a href="pages/dashboard.html">
+            <span class="nav-icon">⊞</span>
+            Dashboard
+        </a>
+
+
+        <a href="index.html" class="active">
+            <span class="nav-icon">⚙</span>
+            Manage
+        </a>
+
+
+        <a href="pages/contact.html">
+            <span class="nav-icon">☎</span>
+            Contact
+        </a>
+
+    </nav>
+
+</header>
+
+
+
+<!-- ================= MAIN ================= -->
+
+<main>
+
+
+<!-- ================= HERO ================= -->
+
+<section class="manage-hero">
+
+
+    <div class="hero-overlay"></div>
+
+
+    <div class="manage-hero-content">
+
+        <p class="hero-label">
+            OPERATIONS MADE SIMPLE
+        </p>
+
+
+        <h1>
+            Manage Deliveries
+            <br>
+            <span>with Confidence</span>
+        </h1>
+
+
+        <p class="hero-description">
+
+            Keep your shipments, routes, and resources
+            organized every step of the way.
+
+        </p>
+
+
+        <div class="hero-features">
+
+
+            <div class="hero-feature">
+
+                <div class="hero-feature-icon">
+                    📦
+                </div>
+
+                <p>
+                    Organize
+                    <br>
+                    Shipments
+                </p>
+
+            </div>
+
+
+            <div class="hero-feature">
+
+                <div class="hero-feature-icon">
+                    👥
+                </div>
+
+                <p>
+                    Coordinate
+                    <br>
+                    Drivers
+                </p>
+
+            </div>
+
+
+            <div class="hero-feature">
+
+                <div class="hero-feature-icon">
+                    🔗
+                </div>
+
+                <p>
+                    Optimize
+                    <br>
+                    Routes
+                </p>
+
+            </div>
+
+
+            <div class="hero-feature">
+
+                <div class="hero-feature-icon">
+                    📊
+                </div>
+
+                <p>
+                    Improve
+                    <br>
+                    Efficiency
+                </p>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= STATISTICS ================= -->
+
+<section class="management-stats">
+
+
+    <div class="management-stat">
+
+        <div class="management-stat-icon blue">
+            📦
+        </div>
+
+        <div>
+
+            <p>Total Shipments</p>
+
+            <h2 id="totalShipments">
+                248
+            </h2>
+
+            <small class="positive">
+                ↑ 12%
+            </small>
+
+            <small>
+                vs last week
+            </small>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="management-stat">
+
+        <div class="management-stat-icon blue">
+            🚚
+        </div>
+
+        <div>
+
+            <p>In Transit</p>
+
+            <h2 id="transitShipments">
+                36
+            </h2>
+
+            <small class="neutral">
+                →
+            </small>
+
+            <small>
+                On the move
+            </small>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="management-stat">
+
+        <div class="management-stat-icon green">
+            ✓
+        </div>
+
+        <div>
+
+            <p>Delivered</p>
+
+            <h2 id="deliveredShipments">
+                186
+            </h2>
+
+            <small class="positive">
+                ↑ 8%
+            </small>
+
+            <small>
+                vs last week
+            </small>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="management-stat">
+
+        <div class="management-stat-icon red">
+            !
+        </div>
+
+        <div>
+
+            <p>Pending / Delayed</p>
+
+            <h2 id="pendingShipments">
+                26
+            </h2>
+
+            <small class="negative">
+                ↓ 3%
+            </small>
+
+            <small>
+                Require attention
+            </small>
+
+        </div>
+
+    </div>
+
+
+
+    <button
+        class="add-shipment-button"
+        onclick="addShipment()"
+    >
+
+        + Add Shipment
+
+    </button>
+
+
+</section>
+
+
+
+<!-- ================= SHIPMENT AREA ================= -->
+
+<section class="shipment-section">
+
+
+    <!-- SEARCH AND FILTER -->
+
+    <div class="filter-box">
+
+
+        <div class="search-container">
+
+            <span>
+                ⌕
+            </span>
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search by tracking number, sender, receiver, or destination..."
+                onkeyup="filterShipments()"
+            >
+
+        </div>
+
+
+
+        <select
+            id="statusFilter"
+            onchange="filterShipments()"
+        >
+
+            <option value="all">
+                All Status
+            </option>
+
+            <option value="In Transit">
+                In Transit
+            </option>
+
+            <option value="Delivered">
+                Delivered
+            </option>
+
+            <option value="Pending">
+                Pending
+            </option>
+
+            <option value="Delayed">
+                Delayed
+            </option>
+
+        </select>
+
+
+
+        <select
+            id="dateFilter"
+            onchange="filterShipments()"
+        >
+
+            <option value="all">
+                All Dates
+            </option>
+
+            <option value="recent">
+                Recent
+            </option>
+
+            <option value="old">
+                Older
+            </option>
+
+        </select>
+
+
+
+        <button
+            class="reset-button"
+            onclick="resetFilters()"
+        >
+
+            ↻ Reset
+
+        </button>
+
+
+    </div>
+
+
+
+    <!-- ================= TABLE ================= -->
+
+    <div class="table-container">
+
+        <table>
+
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        Tracking No.
+                    </th>
+
+                    <th>
+                        Sender
+                    </th>
+
+                    <th>
+                        Receiver
+                    </th>
+
+                    <th>
+                        Route
+                    </th>
+
+                    <th>
+                        Date
+                    </th>
+
+                    <th>
+                        Weight
+                    </th>
+
+                    <th>
+                        Status
+                    </th>
+
+                    <th>
+                        Actions
+                    </th>
+
+                </tr>
+
+            </thead>
+
+
+
+            <tbody id="shipmentTable">
+
+
+                <!-- SHIPMENT 1 -->
+
+                <tr>
+
+                    <td>
+                        <a class="tracking-number">
+                            SW123456
+                        </a>
+                    </td>
+
+                    <td>
+                        Amazon Warehouse
+                    </td>
+
+                    <td>
+                        John Doe
+                    </td>
+
+                    <td>
+                        San Francisco, CA
+                        →
+                        New York, NY
+                    </td>
+
+                    <td>
+                        2026-06-05
+                    </td>
+
+                    <td>
+                        2.5 kg
+                    </td>
+
+                    <td>
+                        <p class="status in-transit">
+                            In Transit
+                        </p>
+                    </td>
+
+                    <td>
+
+                        <button
+                            class="view-button"
+                            onclick="viewShipment('SW123456')"
+                        >
+                            View
+                        </button>
+
+                        <button
+                            class="more-button"
+                            onclick="moreOptions('SW123456')"
+                        >
+                            ⋮
+                        </button>
+
+                    </td>
+
+                </tr>
+
+
+
+                <!-- SHIPMENT 2 -->
+
+                <tr>
+
+                    <td>
+                        <a class="tracking-number">
+                            SW123457
+                        </a>
+                    </td>
+
+                    <td>
+                        Apple Store
+                    </td>
+
+                    <td>
+                        Jane Smith
+                    </td>
+
+                    <td>
+                        Cupertino, CA
+                        →
+                        Los Angeles, CA
+                    </td>
+
+                    <td>
+                        2026-06-04
+                    </td>
+
+                    <td>
+                        1.2 kg
+                    </td>
+
+                    <td>
+                        <p class="status delivered">
+                            Delivered
+                        </p>
+                    </td>
+
+                    <td>
+
+                        <button
+                            class="view-button"
+                            onclick="viewShipment('SW123457')"
+                        >
+                            View
+                        </button>
+
+                        <button
+                            class="more-button"
+                            onclick="moreOptions('SW123457')"
+                        >
+                            ⋮
+                        </button>
+
+                    </td>
+
+                </tr>
+
+
+
+                <!-- SHIPMENT 3 -->
+
+                <tr>
+
+                    <td>
+                        <a class="tracking-number">
+                            SW123458
+                        </a>
+                    </td>
+
+                    <td>
+                        eBay Seller
+                    </td>
+
+                    <td>
+                        Bob Johnson
+                    </td>
+
+                    <td>
+                        Seattle, WA
+                        →
+                        Chicago, IL
+                    </td>
+
+                    <td>
+                        2026-06-06
+                    </td>
+
+                    <td>
+                        3.8 kg
+                    </td>
+
+                    <td>
+                        <p class="status pending">
+                            Pending
+                        </p>
+                    </td>
+
+                    <td>
+
+                        <button
+                            class="view-button"
+                            onclick="viewShipment('SW123458')"
+                        >
+                            View
+                        </button>
+
+                        <button
+                            class="more-button"
+                            onclick="moreOptions('SW123458')"
+                        >
+                            ⋮
+                        </button>
+
+                    </td>
+
+                </tr>
+
+
+
+                <!-- SHIPMENT 4 -->
+
+                <tr>
+
+                    <td>
+                        <a class="tracking-number">
+                            SW123459
+                        </a>
+                    </td>
+
+                    <td>
+                        Walmart
+                    </td>
+
+                    <td>
+                        Alice Brown
+                    </td>
+
+                    <td>
+                        Dallas, TX
+                        →
+                        Houston, TX
+                    </td>
+
+                    <td>
+                        2026-06-05
+                    </td>
+
+                    <td>
+                        5.0 kg
+                    </td>
+
+                    <td>
+                        <p class="status in-transit">
+                            In Transit
+                        </p>
+                    </td>
+
+                    <td>
+
+                        <button
+                            class="view-button"
+                            onclick="viewShipment('SW123459')"
+                        >
+                            View
+                        </button>
+
+                        <button
+                            class="more-button"
+                            onclick="moreOptions('SW123459')"
+                        >
+                            ⋮
+                        </button>
+
+                    </td>
+
+                </tr>
+
+
+
+                <!-- SHIPMENT 5 -->
+
+                <tr>
+
+                    <td>
+                        <a class="tracking-number">
+                            SW123460
+                        </a>
+                    </td>
+
+                    <td>
+                        Target
+                    </td>
+
+                    <td>
+                        Michael Lee
+                    </td>
+
+                    <td>
+                        Boston, MA
+                        →
+                        Miami, FL
+                    </td>
+
+                    <td>
+                        2026-06-03
+                    </td>
+
+                    <td>
+                        4.1 kg
+                    </td>
+
+                    <td>
+                        <p class="status delivered">
+                            Delivered
+                        </p>
+                    </td>
+
+                    <td>
+
+                        <button
+                            class="view-button"
+                            onclick="viewShipment('SW123460')"
+                        >
+                            View
+                        </button>
+
+                        <button
+                            class="more-button"
+                            onclick="moreOptions('SW123460')"
+                        >
+                            ⋮
+                        </button>
+
+                    </td>
+
+                </tr>
+
+
+
+                <!-- SHIPMENT 6 -->
+
+                <tr>
+
+                    <td>
+                        <a class="tracking-number">
+                            SW123461
+                        </a>
+                    </td>
+
+                    <td>
+                        Samsung
+                    </td>
+
+                    <td>
+                        Emily Davis
+                    </td>
+
+                    <td>
+                        Denver, CO
+                        →
+                        Phoenix, AZ
+                    </td>
+
+                    <td>
+                        2026-06-02
+                    </td>
+
+                    <td>
+                        3.0 kg
+                    </td>
+
+                    <td>
+                        <p class="status delayed">
+                            Delayed
+                        </p>
+                    </td>
+
+                    <td>
+
+                        <button
+                            class="view-button"
+                            onclick="viewShipment('SW123461')"
+                        >
+                            View
+                        </button>
+
+                        <button
+                            class="more-button"
+                            onclick="moreOptions('SW123461')"
+                        >
+                            ⋮
+                        </button>
+
+                    </td>
+
+                </tr>
+
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+
+    <!-- ================= PAGINATION ================= -->
+
+    <div class="table-bottom">
+
+
+        <p>
+            Showing 1–6 of 24 shipments
+        </p>
+
+
+        <div class="pagination">
+
+            <button>
+                ‹
+            </button>
+
+            <button class="page-active">
+                1
+            </button>
+
+            <button>
+                2
+            </button>
+
+            <button>
+                3
+            </button>
+
+            <button>
+                4
+            </button>
+
+            <button>
+                ›
+            </button>
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+
+<!-- ================= BULK MANAGEMENT ================= -->
+
+<section class="bulk-management">
+
+
+    <div class="bulk-icon">
+        📦
+    </div>
+
+
+    <div class="bulk-content">
+
+        <h2>
+            Need to manage multiple shipments at once?
+        </h2>
+
+        <p>
+            Use bulk actions to update status,
+            assign drivers, or download reports.
+        </p>
+
+    </div>
+
+
+    <button
+        class="bulk-button"
+        onclick="manageBulk()"
+    >
+
+        Manage in Bulk →
+        
+    </button>
+
+
+    <div class="bulk-boxes">
+
+        📦 📦 📦
+
+    </div>
+
+
+</section>
+
+
+</main>
+
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+
+    <div class="footer-logo">
+
+        <div class="footer-brand">
+
+            <div class="footer-icon">
+                L
+            </div>
+
+            <h2>
+                LogiTrack
+            </h2>
+
+        </div>
+
+        <p>
+            Smarter deliveries. Better logistics.
+        </p>
+
+    </div>
+
+
+
+    <div class="footer-column">
+
+        <h3>
+            Quick Links
+        </h3>
+
+        <a href="#">
+            Home
+        </a>
+
+        <a href="#">
+            Track Shipment
+        </a>
+
+        <a href="#">
+            Dashboard
+        </a>
+
+        <a href="#">
+            Manage
+        </a>
+
+        <a href="#">
+            Contact
+        </a>
+
+    </div>
+
+
+
+    <div class="footer-column">
+
+        <h3>
+            Support
+        </h3>
+
+        <a href="#">
+            Help Center
+        </a>
+
+        <a href="#">
+            Shipping Guidelines
+        </a>
+
+        <a href="#">
+            Terms of Service
+        </a>
+
+        <a href="#">
+            Privacy Policy
+        </a>
+
+        <a href="#">
+            FAQ
+        </a>
+
+    </div>
+
+
+
+    <div class="footer-column">
+
+        <h3>
+            Company
+        </h3>
+
+        <a href="#">
+            About Us
+        </a>
+
+        <a href="#">
+            Careers
+        </a>
+
+        <a href="#">
+            Blog
+        </a>
+
+        <a href="#">
+            Partners
+        </a>
+
+    </div>
+
+
+
+    <div class="footer-message">
+
+        <div class="leaf">
+            ♧
+        </div>
+
+        <div>
+
+            <h3>
+                A Cleaner, Brighter Tomorrow
+            </h3>
+
+            <p>
+                Optimizing routes. Reducing emissions.
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="footer-bottom">
+
+        <p>
+            © 2026 LogiTrack. All rights reserved.
+        </p>
+
+        <div>
+            ▶ &nbsp;&nbsp; in &nbsp;&nbsp; ♥ &nbsp;&nbsp; ◎
+        </div>
+
+    </div>
+
+
+</footer>
+
+
+
+<!-- ================= JAVASCRIPT ================= -->
+
+<script>
+
+
+function filterShipments() {
+
+    var searchValue =
+        document
+        .getElementById("searchInput")
+        .value
+        .toLowerCase();
+
+
+    var statusValue =
+        document
+        .getElementById("statusFilter")
+        .value;
+
+
+    var rows =
+        document
+        .getElementById("shipmentTable")
+        .getElementsByTagName("tr");
+
+
+    for (var i = 0; i < rows.length; i++) {
+
+
+        var rowText =
+            rows[i]
+            .innerText
+            .toLowerCase();
+
+
+        var statusElement =
+            rows[i]
+            .querySelector(".status");
+
+
+        var rowStatus = "";
+
+
+        if (statusElement) {
+
+            rowStatus =
+                statusElement.innerText;
+
+        }
+
+
+        var searchMatch =
+            rowText.includes(searchValue);
+
+
+        var statusMatch =
+            statusValue === "all" ||
+            rowStatus === statusValue;
+
+
+        if (
+            searchMatch &&
+            statusMatch
+        ) {
+
+            rows[i].style.display = "";
+
+        } else {
+
+            rows[i].style.display = "none";
+
+        }
+
+    }
+
+}
+
+
+
+function resetFilters() {
+
+    document
+        .getElementById("searchInput")
+        .value = "";
+
+
+    document
+        .getElementById("statusFilter")
+        .value = "all";
+
+
+    document
+        .getElementById("dateFilter")
+        .value = "all";
+
+
+    filterShipments();
+
+}
+
+
+
+function viewShipment(trackingNumber) {
+
+    alert(
+        "Opening shipment " +
+        trackingNumber
+    );
+
+}
+
+
+
+function moreOptions(trackingNumber) {
+
+    alert(
+        "More options for " +
+        trackingNumber
+    );
+
+}
+
+
+
+function addShipment() {
+
+    alert(
+        "Add Shipment form will open here."
+    );
+
+}
+
+
+
+function manageBulk() {
+
+    alert(
+        "Bulk shipment management will open here."
+    );
+
+}
+
+
+</script>
+
+
+</body>
+
+</html>
