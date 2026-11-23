@@ -65,6 +65,37 @@
             </a>
         </nav>
 
+        <div class="header-tools" aria-label="Quick tools">
+            <button class="tool-button command-trigger" type="button" aria-label="Open search (Command K)" data-command-open>
+                <span aria-hidden="true">⌕</span><span class="tool-label">Search</span><kbd>⌘ K</kbd>
+            </button>
+            <div class="tool-popover-wrap">
+                <button class="icon-button" type="button" aria-label="Notifications" aria-expanded="false" data-notifications-toggle>
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg>
+                    <span class="unread-dot" data-unread-dot></span>
+                </button>
+                <section class="popover-panel notifications-panel" data-notifications-panel hidden aria-label="Notifications">
+                    <div class="popover-heading"><div><strong>Notifications</strong><small>Demo activity</small></div><button type="button" class="text-action" data-mark-all>Mark all read</button></div>
+                    <div class="notification-list" data-notification-list></div>
+                    <button type="button" class="popover-footer-action" data-clear-notifications>Clear notifications</button>
+                </section>
+            </div>
+            <div class="tool-popover-wrap profile-wrap">
+                <button class="profile-trigger" type="button" aria-expanded="false" data-profile-toggle>
+                    <span class="avatar">LA</span><span class="profile-copy"><strong>Logistics Admin</strong><small>Administrator</small></span>
+                    <span class="chevron" aria-hidden="true">⌄</span>
+                </button>
+                <section class="popover-panel profile-panel" data-profile-panel hidden aria-label="Profile menu">
+                    <div class="profile-summary"><span class="avatar avatar-large">LA</span><span><strong>Logistics Admin</strong><small>Demo administrator</small></span></div>
+                    <a href="dashboard.html">My Profile <span>↗</span></a>
+                    <a href="dashboard.html">Account Settings <span>↗</span></a>
+                    <button type="button" data-theme-toggle><span data-theme-label>Switch to dark mode</span><span>◐</span></button>
+                    <a href="contact.html">Help &amp; Support <span>↗</span></a>
+                    <button type="button" data-demo-session>End demo session <span>↗</span></button>
+                </section>
+            </div>
+        </div>
+
         <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="main-nav">
             <span></span><span></span><span></span>
         </button>
@@ -198,11 +229,14 @@
 
                     <form class="track-form" action="tracking.html" method="get">
                         <label class="visually-hidden" for="trackingId">Tracking ID</label>
-                        <input id="trackingId" name="trackingId" type="text" placeholder="e.g. LT-204183" autocomplete="off" required>
-                        <button type="submit">Track</button>
+                        <input id="trackingId" name="trackingId" type="text" placeholder="e.g. LT-204183" autocomplete="off" list="tracking-suggestions" required>
+                        <datalist id="tracking-suggestions"><option value="LT-204183"><option value="LT-204179"><option value="LT-204171"><option value="LT-204166"><option value="LT-204158"></datalist>
+                        <button type="button" class="track-clear" data-track-clear aria-label="Clear tracking ID" hidden>×</button>
+                        <button type="submit" data-track-submit>Track</button>
                     </form>
 
                     <a href="contact.html" class="help-link">Can't find your ID?</a>
+                    <div class="recent-searches" data-recent-searches hidden></div>
                 </div>
 
                 <div class="waybill-bottom">
@@ -244,22 +278,22 @@
         <dl class="stats-list">
             <div class="stat">
                 <dt>Total shipments</dt>
-                <dd>1,248</dd>
+                <dd data-count="1248">1,248</dd>
             </div>
 
             <div class="stat">
                 <dt>Delivered successfully</dt>
-                <dd>1,226</dd>
+                <dd data-count="1226">1,226</dd>
             </div>
 
             <div class="stat">
                 <dt>Active drivers</dt>
-                <dd>125</dd>
+                <dd data-count="125">125</dd>
             </div>
 
             <div class="stat">
                 <dt>Delivery success rate</dt>
-                <dd>98.2%</dd>
+                <dd data-count="98.2" data-suffix="%">98.2%</dd>
             </div>
         </dl>
     </section>
@@ -369,6 +403,12 @@
                         <span>Sample data</span>
                     </div>
 
+                    <div class="board-controls">
+                        <label class="board-search"><span class="visually-hidden">Search shipments</span><span aria-hidden="true">⌕</span><input type="search" placeholder="Search ID, route or driver" data-board-search></label>
+                        <select aria-label="Filter by shipment status" data-board-filter><option value="all">All statuses</option><option>In transit</option><option>Out for delivery</option><option>Delivered</option><option>Picked up</option><option>Delayed</option></select>
+                        <select aria-label="Sort shipments" data-board-sort><option value="id">Sort: Shipment ID</option><option value="route">Sort: Route</option><option value="status">Sort: Status</option></select>
+                        <button type="button" class="clear-filters" data-board-clear>Clear</button>
+                    </div>
                     <div class="board-scroll">
                         <table>
                             <caption class="visually-hidden">Sample list of today's shipments</caption>
@@ -382,7 +422,7 @@
                                 </tr>
                             </thead>
 
-                            <tbody>
+                            <tbody data-shipment-rows>
                                 <tr>
                                     <th scope="row">LT-204183</th>
                                     <td>Agra to Mathura</td>
@@ -422,6 +462,7 @@
                     </div>
 
                     <div class="board-foot">
+                        <span class="board-result-count" data-board-count>Showing 5 demo shipments</span>
                         <a href="shipments.html" class="board-link">
                             View all shipments
                             <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -432,6 +473,20 @@
                 </div>
 
             </div>
+        </div>
+    </section>
+
+    <section class="quick-actions-section" aria-labelledby="quick-actions-title">
+        <div class="container">
+            <div class="section-head compact-head"><h2 id="quick-actions-title">Your operations, one click away</h2><p>Jump into the tools you use most. These shortcuts open the existing LogiTrack pages.</p></div>
+            <div class="quick-actions-grid">
+                <a class="quick-action-card" href="shipments.html"><span class="quick-action-icon">＋</span><strong>Create shipment</strong><small>Start a new booking</small><span class="quick-action-arrow">↗</span></a>
+                <a class="quick-action-card" href="tracking.html"><span class="quick-action-icon">⌖</span><strong>Track shipment</strong><small>Follow a delivery</small><span class="quick-action-arrow">↗</span></a>
+                <a class="quick-action-card" href="drivers.html"><span class="quick-action-icon">♧</span><strong>Manage drivers</strong><small>View your driver team</small><span class="quick-action-arrow">↗</span></a>
+                <a class="quick-action-card" href="dashboard.html"><span class="quick-action-icon">▦</span><strong>Open dashboard</strong><small>Review operations</small><span class="quick-action-arrow">↗</span></a>
+                <a class="quick-action-card" href="reports.html"><span class="quick-action-icon">↗</span><strong>View reports</strong><small>Explore performance</small><span class="quick-action-arrow">↗</span></a>
+            </div>
+            <div class="activity-strip"><div><span class="eyebrow">LIVE DEMO FEED</span><h3>Recent activity</h3><p>Illustrative events from the sample shipment dataset.</p></div><ul data-activity-feed></ul></div>
         </div>
     </section>
 
@@ -495,29 +550,19 @@
     </div>
 </footer>
 
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-    const header = document.querySelector(".site-header");
-    const toggle = document.querySelector(".menu-toggle");
-    const nav = document.querySelector("#main-nav");
-
-    if (!header || !toggle || !nav) return;
-
-    toggle.addEventListener("click", () => {
-        const open = header.classList.toggle("nav-open");
-        toggle.setAttribute("aria-expanded", String(open));
-        toggle.setAttribute("aria-label", open ? "Close navigation" : "Open navigation");
-    });
-
-    nav.querySelectorAll("a").forEach(link => {
-        link.addEventListener("click", () => {
-            header.classList.remove("nav-open");
-            toggle.setAttribute("aria-expanded", "false");
-            toggle.setAttribute("aria-label", "Open navigation");
-        });
-    });
-});
-</script>
+<div class="command-backdrop" data-command-backdrop hidden>
+    <section class="command-dialog" role="dialog" aria-modal="true" aria-labelledby="command-title" aria-describedby="command-help">
+        <div class="command-search-row"><span aria-hidden="true">⌕</span><input type="search" placeholder="Search pages, shipments and actions..." data-command-input aria-label="Search commands"><kbd>ESC</kbd></div>
+        <h2 id="command-title" class="visually-hidden">Quick search</h2>
+        <p id="command-help" class="command-hint">Navigate anywhere in LogiTrack. Use ↑ ↓ to move and Enter to select.</p>
+        <div class="command-results" data-command-results></div>
+        <div class="command-bottom"><span>LOGITRACK QUICK NAVIGATION</span><span><kbd>↑</kbd><kbd>↓</kbd> Navigate <kbd>↵</kbd> Open</span></div>
+    </section>
+</div>
+<div class="toast-region" data-toast-region aria-live="polite" aria-atomic="false"></div>
+<button class="back-to-top" type="button" aria-label="Back to top" data-back-to-top>↑</button>
+<div class="scroll-progress" data-scroll-progress></div>
+<script src="script.js" defer></script>
 
 </body>
 </html>
