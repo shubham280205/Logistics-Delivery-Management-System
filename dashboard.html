@@ -1,1257 +1,2440 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <title>LogiTrack Dashboard</title>
-
-    <link rel="stylesheet" href="style.css" />
-
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
     <style>
+      :root {
+        --bg-page: #f4f7fb;
+        --bg-card: #ffffff;
+        --primary-blue: #2563eb;
+        --primary-blue-dark: #1d4ed8;
+        --navy-text: #0f294a;
+        --text-main: #1e293b;
+        --text-muted: #64748b;
+        --border-light: #e2e8f0;
+        --green: #10b981;
+        --green-bg: #d1fae5;
+        --green-text: #059669;
+        --amber: #f59e0b;
+        --amber-bg: #fef3c7;
+        --amber-text: #d97706;
+        --red: #ef4444;
+        --red-bg: #fee2e2;
+        --red-text: #dc2626;
+        --purple: #8b5cf6;
+        --shadow-sm: 0 2px 10px rgba(15, 41, 74, 0.04);
+        --shadow-md: 0 8px 24px rgba(15, 41, 74, 0.07);
+        --radius-lg: 18px;
+        --radius-md: 12px;
+      }
+
       * {
         box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family:
+          "Inter",
+          -apple-system,
+          BlinkMacSystemFont,
+          sans-serif;
       }
 
       body {
-        margin: 0;
-        background: #f5f8fc;
-        font-family: Arial, Helvetica, sans-serif;
-        color: #102f63;
+        background-color: var(--bg-page);
+        color: var(--text-main);
+        line-height: 1.5;
       }
 
-      .dashboard {
-        width: 92%;
-        max-width: 1400px;
-        margin: auto;
-        padding: 28px 0 45px;
+      /* ================= NAVBAR (STATIC LINKS) ================= */
+      .navbar {
+        background: #ffffff;
+        border-bottom: 1px solid var(--border-light);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        padding: 14px 48px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
       }
 
-      .hero {
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        text-decoration: none;
+      }
+
+      .brand-logo {
+        width: 42px;
+        height: 42px;
+        background: var(--primary-blue);
+        color: #ffffff;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 20px;
+      }
+
+      .brand-info h1 {
+        font-size: 19px;
+        font-weight: 700;
+        color: var(--navy-text);
+        line-height: 1.2;
+      }
+
+      .brand-info span {
+        font-size: 12px;
+        color: var(--text-muted);
+        display: block;
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .nav-link {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 18px;
+        border-radius: 10px;
+        text-decoration: none;
+        color: #334155;
+        font-size: 14.5px;
+        font-weight: 500;
+        transition: all 0.2s ease;
+      }
+
+      .nav-link:hover {
+        background: #f1f5f9;
+        color: var(--navy-text);
+      }
+
+      .nav-link.active {
+        background: var(--primary-blue);
+        color: #ffffff;
+        font-weight: 600;
+        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+      }
+
+      .nav-link svg {
+        width: 17px;
+        height: 17px;
+      }
+
+      /* ================= CONTAINER ================= */
+      .container {
+        max-width: 1340px;
+        margin: 0 auto;
+        padding: 28px 36px 48px;
+      }
+
+      /* ================= HERO BANNER ================= */
+      .hero-banner {
         position: relative;
-        height: 310px;
-        min-height: 0;
+        border-radius: 20px;
         overflow: hidden;
-        border-radius: 22px;
-        margin-bottom: 22px;
-
-        background-image:
+        min-height: 410px;
+        display: flex;
+        align-items: center;
+        padding: 56px 64px;
+        margin-bottom: 28px;
+        box-shadow: var(--shadow-md);
+        background:
           linear-gradient(
             90deg,
-            rgba(245, 249, 255, 0.98) 0%,
-            rgba(245, 249, 255, 0.94) 28%,
-            rgba(245, 249, 255, 0.45) 48%,
-            rgba(245, 249, 255, 0.05) 70%
+            rgba(255, 255, 255, 0.96) 0%,
+            rgba(255, 255, 255, 0.88) 38%,
+            rgba(255, 255, 255, 0.15) 70%,
+            rgba(15, 41, 74, 0.1) 100%
           ),
-          url("assets/dashboard-hero.png");
-
-        background-size: cover;
-        background-position: center;
-
-        border: 1px solid #dfe9f5;
-
-        box-shadow: 0 8px 30px rgba(25, 65, 110, 0.08);
+          url("https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1600&q=80")
+            center/cover no-repeat;
       }
 
       .hero-content {
-        position: relative;
+        max-width: 520px;
         z-index: 2;
-
-        width: 48%;
-
-        padding: 52px 0 40px 48px;
       }
 
-      .hero-small {
-        color: #1769df;
-
+      .hero-eyebrow {
         font-size: 12px;
         font-weight: 700;
-
-        letter-spacing: 2px;
-
+        letter-spacing: 1.5px;
+        color: var(--primary-blue);
         text-transform: uppercase;
-
-        margin-bottom: 12px;
+        margin-bottom: 14px;
       }
 
-      .hero h1 {
-        margin: 0 0 14px;
-
-        font-size: 50px;
-        line-height: 1.05;
-
-        color: #0c326c;
+      .hero-title {
+        font-size: 46px;
+        font-weight: 800;
+        color: var(--navy-text);
+        line-height: 1.12;
+        margin-bottom: 18px;
       }
 
-      .hero h1 span {
-        color: #1769df;
-      }
-
-      .hero p {
-        max-width: 430px;
-
-        margin: 0;
-
-        color: #526b8b;
-
+      .hero-subtitle {
         font-size: 16px;
+        color: #475569;
+        margin-bottom: 28px;
         line-height: 1.6;
       }
 
-      .hero-badges {
+      .hero-pills {
         display: flex;
-
-        gap: 10px;
-
-        margin-top: 22px;
+        align-items: center;
+        gap: 12px;
+        flex-wrap: wrap;
       }
 
-      .hero-badge {
-        padding: 8px 13px;
-
-        border-radius: 20px;
-
-        background: rgba(255, 255, 255, 0.85);
-
-        border: 1px solid rgba(23, 105, 223, 0.12);
-
-        color: #416287;
-
-        font-size: 11px;
-
+      .pill-badge {
+        background: rgba(255, 255, 255, 0.94);
+        border: 1px solid #e2e8f0;
+        padding: 8px 16px;
+        border-radius: 999px;
+        font-size: 13px;
         font-weight: 600;
+        color: var(--navy-text);
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+        cursor: pointer;
+        transition: all 0.2s ease;
       }
 
-      .stats-grid {
+      .pill-badge:hover {
+        border-color: var(--primary-blue);
+        background: #eff6ff;
+        transform: translateY(-1px);
+      }
+
+      .live-dot {
+        width: 7px;
+        height: 7px;
+        background: var(--primary-blue);
+        border-radius: 50%;
+        animation: pulse 1.8s infinite;
+      }
+
+      @keyframes pulse {
+        0% {
+          box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.6);
+        }
+        70% {
+          box-shadow: 0 0 0 7px rgba(37, 99, 235, 0);
+        }
+        100% {
+          box-shadow: 0 0 0 0 rgba(37, 99, 235, 0);
+        }
+      }
+
+      /* ================= KPI CARDS ================= */
+      .kpi-grid {
         display: grid;
-
         grid-template-columns: repeat(4, 1fr);
-
-        gap: 16px;
-
-        margin-bottom: 20px;
-      }
-
-      .stat-card {
-        background: white;
-
-        border: 1px solid #e0e8f2;
-
-        border-radius: 16px;
-
-        padding: 20px;
-
-        min-height: 145px;
-
-        box-shadow: 0 5px 18px rgba(29, 74, 130, 0.05);
-
-        transition: 0.2s ease;
-      }
-
-      .stat-card:hover {
-        transform: translateY(-3px);
-
-        box-shadow: 0 10px 25px rgba(29, 74, 130, 0.09);
-      }
-
-      .stat-top {
-        display: flex;
-
-        justify-content: space-between;
-
-        align-items: center;
-      }
-
-      .stat-icon {
-        width: 43px;
-        height: 43px;
-
-        display: flex;
-
-        justify-content: center;
-        align-items: center;
-
-        border-radius: 12px;
-
-        font-size: 20px;
-
-        font-weight: bold;
-      }
-
-      .blue {
-        background: #e7f1ff;
-        color: #1769df;
-      }
-
-      .yellow {
-        background: #fff4d9;
-        color: #d79500;
-      }
-
-      .green {
-        background: #e1f8ef;
-        color: #00a879;
-      }
-
-      .purple {
-        background: #f0e8ff;
-        color: #753bd1;
-      }
-
-      .trend {
-        padding: 5px 8px;
-
-        border-radius: 20px;
-
-        font-size: 11px;
-
-        font-weight: 700;
-      }
-
-      .trend.up {
-        background: #e5f8f0;
-        color: #008d70;
-      }
-
-      .trend.down {
-        background: #ffe9e9;
-        color: #d83c3c;
-      }
-
-      .stat-card h3 {
-        margin: 13px 0 5px;
-
-        color: #647995;
-
-        font-size: 14px;
-
-        font-weight: 600;
-      }
-
-      .stat-number {
-        color: #102f63;
-
-        font-size: 32px;
-
-        font-weight: 800;
-      }
-
-      .last-month {
-        margin-top: 5px;
-
-        color: #8a9bb0;
-
-        font-size: 11px;
+        gap: 22px;
+        margin-bottom: 26px;
       }
 
       .card {
-        background: white;
+        background: var(--bg-card);
+        border-radius: var(--radius-lg);
+        padding: 24px 26px;
+        box-shadow: var(--shadow-sm);
+        border: 1px solid rgba(226, 232, 240, 0.7);
+        transition:
+          transform 0.2s ease,
+          box-shadow 0.2s ease;
+      }
 
-        border: 1px solid #e0e8f2;
+      .card:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
+      }
 
-        border-radius: 16px;
+      .kpi-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 18px;
+      }
 
-        padding: 24px;
+      .icon-box {
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
 
-        box-shadow: 0 5px 18px rgba(29, 74, 130, 0.045);
+      .icon-blue {
+        background: #e0edff;
+        color: var(--primary-blue);
+      }
+      .icon-amber {
+        background: #fef3c7;
+        color: var(--amber);
+      }
+      .icon-green {
+        background: #d1fae5;
+        color: var(--green);
+      }
+      .icon-purple {
+        background: #ede9fe;
+        color: var(--purple);
+      }
+
+      .trend-pill {
+        font-size: 12.5px;
+        font-weight: 600;
+        padding: 4px 10px;
+        border-radius: 999px;
+        display: inline-flex;
+        align-items: center;
+        gap: 3px;
+      }
+
+      .trend-up {
+        background: var(--green-bg);
+        color: var(--green-text);
+      }
+      .trend-down {
+        background: var(--red-bg);
+        color: var(--red-text);
+      }
+
+      .kpi-label {
+        font-size: 14px;
+        font-weight: 600;
+        color: #64748b;
+        margin-bottom: 6px;
+      }
+
+      .kpi-value {
+        font-size: 34px;
+        font-weight: 800;
+        color: var(--navy-text);
+        letter-spacing: -0.5px;
+        margin-bottom: 6px;
+      }
+
+      .kpi-sub {
+        font-size: 12.5px;
+        color: #94a3b8;
+      }
+
+      /* ================= CHARTS ROW ================= */
+      .charts-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 22px;
+        margin-bottom: 26px;
       }
 
       .card-header {
         display: flex;
-
-        justify-content: space-between;
-
         align-items: center;
+        justify-content: space-between;
+        padding-bottom: 18px;
+        border-bottom: 1px solid #f1f5f9;
+        margin-bottom: 22px;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
 
-        margin-bottom: 18px;
+      .card-title-group {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .mini-icon {
+        width: 34px;
+        height: 34px;
+        border-radius: 9px;
+        background: #eff6ff;
+        color: var(--primary-blue);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .mini-icon.amber {
+        background: #fff7ed;
+        color: #f97316;
       }
 
       .card-title {
-        display: flex;
-
-        align-items: center;
-
-        gap: 10px;
-      }
-
-      .card-icon {
-        width: 32px;
-        height: 32px;
-
-        display: flex;
-
-        align-items: center;
-        justify-content: center;
-
-        border-radius: 9px;
-
-        background: #edf5ff;
-
-        color: #1769df;
-
-        font-weight: bold;
-      }
-
-      .card-title h2 {
-        margin: 0;
-
         font-size: 18px;
-
-        color: #12366d;
+        font-weight: 700;
+        color: var(--navy-text);
       }
 
-      .filter {
-        padding: 7px 11px;
-
-        border-radius: 8px;
-
-        background: #f5f8fc;
-
-        border: 1px solid #e3eaf3;
-
-        color: #627792;
-
-        font-size: 11px;
+      .select-pill {
+        background: #f8fafc;
+        border: 1px solid var(--border-light);
+        border-radius: 9px;
+        padding: 7px 14px;
+        font-size: 13px;
+        font-weight: 500;
+        color: #475569;
+        cursor: pointer;
+        outline: none;
+        transition: border-color 0.2s;
       }
 
-      .charts-grid {
-        display: grid;
-
-        grid-template-columns: 1.1fr 1fr;
-
-        gap: 16px;
-
-        margin-bottom: 16px;
+      .select-pill:hover,
+      .select-pill:focus {
+        border-color: var(--primary-blue);
       }
 
-      .bar-chart {
-        height: 215px;
-
-        display: flex;
-
-        align-items: flex-end;
-
-        gap: 16px;
-
-        padding: 10px 10px 0;
-
-        border-bottom: 1px solid #dfe7f1;
-
-        background: repeating-linear-gradient(
-          to bottom,
-          transparent 0,
-          transparent 52px,
-          #edf2f7 53px,
-          transparent 54px
-        );
-      }
-
-      .bar-item {
-        flex: 1;
-
-        height: 100%;
-
-        display: flex;
-
-        flex-direction: column;
-
-        justify-content: flex-end;
-
-        align-items: center;
-      }
-
-      .bar {
-        width: 58%;
-
-        max-width: 48px;
-
-        min-height: 8px;
-
-        border-radius: 7px 7px 2px 2px;
-
-        background: linear-gradient(180deg, #55a0ff, #1769df);
-
-        box-shadow: 0 5px 12px rgba(23, 105, 223, 0.15);
-      }
-
-      .bar-label {
-        margin-top: 9px;
-
-        color: #71839e;
-
-        font-size: 11px;
-      }
-
-      /* REVENUE */
-
-      .revenue-box {
+      .chart-canvas-box {
         position: relative;
-
-        height: 215px;
-
-        overflow: hidden;
+        height: 255px;
+        width: 100%;
       }
 
-      .revenue-line {
-        position: absolute;
-
-        left: 2%;
-
-        bottom: 25px;
-
-        width: 96%;
-
-        height: 175px;
-      }
-
-      .line {
-        fill: none;
-
-        stroke: #12a982;
-
-        stroke-width: 4;
-
-        stroke-linecap: round;
-
-        stroke-linejoin: round;
-      }
-
-      .line-area {
-        fill: #dff7ef;
-
-        opacity: 0.7;
-      }
-
-      .point {
-        fill: white;
-
-        stroke: #12a982;
-
-        stroke-width: 4;
-      }
-
-      .month-labels {
-        position: absolute;
-
-        left: 3%;
-        right: 2%;
-
-        bottom: 4px;
-
+      /* ================= DONUT + QUICK STATS ================= */
+      .donut-layout {
         display: flex;
-
-        justify-content: space-between;
-
-        color: #71839e;
-
-        font-size: 11px;
-      }
-
-      .lower-grid {
-        display: grid;
-
-        grid-template-columns: 1fr 1fr;
-
-        gap: 16px;
-
-        margin-bottom: 16px;
-      }
-
-      .status-content {
-        min-height: 205px;
-
-        display: flex;
-
+        align-items: center;
         justify-content: space-around;
-
-        align-items: center;
-
-        gap: 20px;
+        padding: 14px 10px;
+        gap: 24px;
       }
 
-      .donut {
-        width: 165px;
-        height: 165px;
-
-        border-radius: 50%;
-
-        display: flex;
-
-        align-items: center;
-        justify-content: center;
-
-        background: conic-gradient(
-          #16a88b 0 53%,
-          #f5a623 53% 83%,
-          #438df5 83% 98%,
-          #ef5350 98% 100%
-        );
+      .donut-container {
+        position: relative;
+        width: 210px;
+        height: 210px;
+        flex-shrink: 0;
       }
 
-      .donut-inner {
-        width: 98px;
-        height: 98px;
-
+      .donut-center {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 118px;
+        height: 118px;
         border-radius: 50%;
-
-        background: white;
-
         display: flex;
-
         flex-direction: column;
-
-        justify-content: center;
-
         align-items: center;
+        justify-content: center;
+        pointer-events: none;
+        padding: 8px;
+        text-align: center;
       }
 
-      .donut-inner strong {
-        color: #12366d;
-
-        font-size: 20px;
+      .donut-center strong {
+        font-size: clamp(16px, 2vw, 22px);
+        font-weight: 800;
+        color: var(--navy-text);
+        line-height: 1.15;
+        max-width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
       }
 
-      .donut-inner span {
+      .donut-center span {
+        font-size: 11px;
+        color: #64748b;
         margin-top: 3px;
-
-        color: #8b9aae;
-
-        font-size: 9px;
+        line-height: 1.2;
       }
 
-      .status-list {
+      .legend-list {
+        flex: 1;
+        max-width: 240px;
         display: flex;
-
         flex-direction: column;
-
-        gap: 14px;
-
-        width: 150px;
+        gap: 18px;
       }
 
-      .status-row {
+      .legend-item {
         display: flex;
-
         align-items: center;
-
-        gap: 8px;
-
-        color: #617691;
-
-        font-size: 12px;
+        justify-content: space-between;
+        font-size: 14px;
       }
 
-      .status-dot {
-        width: 9px;
-        height: 9px;
+      .legend-left {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: #475569;
+        font-weight: 500;
+      }
 
+      .legend-dot {
+        width: 10px;
+        height: 10px;
         border-radius: 50%;
       }
 
-      .status-row strong {
-        margin-left: auto;
-
-        color: #173b6e;
+      .legend-val {
+        font-weight: 700;
+        color: var(--navy-text);
       }
 
-      /* QUICK STATS */
-
+      /* Quick Stats 2x2 */
       .quick-grid {
         display: grid;
-
         grid-template-columns: 1fr 1fr;
-
-        gap: 12px;
-
-        min-height: 205px;
+        gap: 16px;
+        padding-top: 4px;
       }
 
-      .quick-card {
+      .stat-tile {
+        border-radius: 14px;
+        padding: 22px 24px;
+        border: 1px solid rgba(226, 232, 240, 0.8);
+      }
+
+      .stat-tile.blue {
+        background: #f3f7ff;
+      }
+      .stat-tile.green {
+        background: #effaf5;
+      }
+      .stat-tile.purple {
+        background: #f7f4ff;
+      }
+      .stat-tile.amber {
+        background: #fef9ef;
+      }
+
+      .stat-tile span {
+        display: block;
+        font-size: 13px;
+        color: #64748b;
+        font-weight: 500;
+        margin-bottom: 8px;
+      }
+
+      .stat-tile strong {
+        font-size: 26px;
+        font-weight: 800;
+        color: var(--navy-text);
+      }
+
+      /* ================= RECENT SHIPMENTS TABLE & CONTROLS ================= */
+      .table-card {
+        margin-bottom: 28px;
+      }
+
+      .table-controls {
         display: flex;
-
-        flex-direction: column;
-
-        justify-content: center;
-
-        padding: 16px;
-
-        border-radius: 12px;
-
-        border: 1px solid #e3ebf5;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
       }
 
-      .quick-card p {
-        margin: 0 0 7px;
-
-        color: #71839e;
-
-        font-size: 11px;
+      .search-box {
+        position: relative;
+        display: flex;
+        align-items: center;
       }
 
-      .quick-card strong {
-        color: #12366d;
-
-        font-size: 23px;
+      .search-box svg {
+        position: absolute;
+        left: 11px;
+        color: #94a3b8;
+        width: 15px;
+        height: 15px;
+        pointer-events: none;
       }
 
-      .quick-blue {
-        background: #f2f7ff;
+      .search-input {
+        background: #f8fafc;
+        border: 1px solid var(--border-light);
+        border-radius: 9px;
+        padding: 7px 12px 7px 33px;
+        font-size: 13px;
+        color: var(--text-main);
+        width: 220px;
+        outline: none;
+        transition: all 0.2s;
       }
 
-      .quick-green {
-        background: #effbf7;
+      .search-input:focus {
+        background: #ffffff;
+        border-color: var(--primary-blue);
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
       }
 
-      .quick-purple {
-        background: #f8f3ff;
+      .view-all-link {
+        color: var(--primary-blue);
+        font-size: 13.5px;
+        font-weight: 600;
+        cursor: pointer;
+        background: #eff6ff;
+        border: 1px solid #dbeafe;
+        padding: 7px 13px;
+        border-radius: 9px;
+        transition: all 0.2s;
       }
 
-      .quick-yellow {
-        background: #fffaf0;
+      .view-all-link:hover {
+        background: #dbeafe;
       }
 
-      .recent-card {
-        margin-bottom: 16px;
-      }
-
-      .view-all {
-        color: #1769df;
-
-        font-size: 12px;
-
-        font-weight: 700;
-      }
-
-      .table-wrapper {
+      .table-responsive {
         overflow-x: auto;
       }
 
       table {
         width: 100%;
-
         border-collapse: collapse;
-
-        min-width: 650px;
-      }
-
-      th {
-        padding: 12px 10px;
-
         text-align: left;
+      }
 
-        background: #f7f9fc;
-
-        color: #71839e;
-
-        font-size: 11px;
-
-        letter-spacing: 0.5px;
-
+      thead th {
+        background: #f8fafc;
+        color: #64748b;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.6px;
         text-transform: uppercase;
+        padding: 15px 20px;
+        border-bottom: 1px solid #e2e8f0;
       }
 
-      td {
-        padding: 13px 10px;
-
-        border-bottom: 1px solid #edf2f7;
-
-        color: #526a89;
-
-        font-size: 13px;
+      tbody tr {
+        cursor: pointer;
+        transition: background 0.15s ease;
       }
 
-      tbody tr:hover td {
-        background: #fbfdff;
+      tbody td {
+        padding: 18px 20px;
+        border-bottom: 1px solid #f1f5f9;
+        font-size: 14.5px;
+        color: #334155;
       }
 
-      td:first-child {
-        color: #1769df;
+      tbody tr:last-child td {
+        border-bottom: none;
+      }
 
+      tbody tr:hover {
+        background: #f8fafc;
+      }
+
+      .tracking-id {
+        color: var(--primary-blue);
         font-weight: 700;
       }
 
-      .badge {
+      tbody tr:hover .tracking-id {
+        text-decoration: underline;
+      }
+
+      .status-badge {
         display: inline-block;
-
-        padding: 5px 9px;
-
-        border-radius: 20px;
-
-        font-size: 10px;
-
-        font-weight: 700;
+        padding: 5px 13px;
+        border-radius: 999px;
+        font-size: 12.5px;
+        font-weight: 600;
       }
 
-      .badge-transit {
-        background: #e8f2ff;
-
-        color: #1769df;
+      .status-transit {
+        background: #e0edff;
+        color: #2563eb;
+      }
+      .status-delivered {
+        background: #d1fae5;
+        color: #059669;
+      }
+      .status-pending {
+        background: #fef3c7;
+        color: #d97706;
+      }
+      .status-cancelled {
+        background: #fee2e2;
+        color: #dc2626;
       }
 
-      .badge-delivered {
-        background: #def7ee;
-
-        color: #008d70;
-      }
-
-      .badge-pending {
-        background: #fff1d5;
-
-        color: #b77700;
-      }
-
-      .bottom-banner {
-        min-height: 105px;
-
-        position: relative;
-
-        overflow: hidden;
-
-        border-radius: 16px;
-
-        padding: 22px 28px;
-
-        display: flex;
-
+      .delete-row-btn {
+        display: inline-flex;
         align-items: center;
-
-        background: linear-gradient(100deg, #0e3976, #1769df);
-
-        box-shadow: 0 8px 20px rgba(23, 105, 223, 0.15);
+        gap: 5px;
+        padding: 6px 12px;
+        border-radius: 8px;
+        border: 1px solid #fecaca;
+        background: #fff5f5;
+        color: #dc2626;
+        font-size: 12.5px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.15s ease;
       }
 
-      .bottom-banner h3 {
-        margin: 0 0 5px;
+      .delete-row-btn:hover {
+        background: #fee2e2;
+        border-color: #f87171;
+      }
 
-        color: white;
+      /* ================= BOTTOM CTA BANNER ================= */
+      .bottom-banner {
+        background: linear-gradient(
+          90deg,
+          #0b3b8c 0%,
+          #1659c7 55%,
+          #1d6ce0 100%
+        );
+        border-radius: 18px;
+        padding: 36px 44px;
+        color: #ffffff;
+        box-shadow: 0 10px 25px rgba(22, 89, 199, 0.22);
+      }
 
-        font-size: 18px;
+      .bottom-banner h2 {
+        font-size: 22px;
+        font-weight: 700;
+        margin-bottom: 8px;
       }
 
       .bottom-banner p {
-        margin: 0;
-
-        color: #dceaff;
-
-        font-size: 12px;
+        font-size: 14.5px;
+        color: rgba(255, 255, 255, 0.88);
       }
 
-      @media (max-width: 1050px) {
-        .stats-grid {
-          grid-template-columns: 1fr 1fr;
-        }
+      /* ================= MODAL & TOAST ================= */
+      .input-group label {
+        display: block;
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--navy-text);
+        margin-bottom: 6px;
+      }
 
-        .charts-grid,
-        .lower-grid {
-          grid-template-columns: 1fr;
-        }
+      .input-control {
+        width: 100%;
+        padding: 11px 14px;
+        border: 1px solid #cbd5e1;
+        border-radius: 10px;
+        font-size: 14px;
+        outline: none;
+      }
 
-        .hero-content {
-          width: 58%;
+      .input-control:focus {
+        border-color: var(--primary-blue);
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+      }
+
+      .btn-primary {
+        background: var(--primary-blue);
+        color: #fff;
+        border: none;
+        padding: 10px 18px;
+        border-radius: 10px;
+        font-size: 13.5px;
+        font-weight: 600;
+        cursor: pointer;
+      }
+
+      .btn-primary:hover {
+        background: var(--primary-blue-dark);
+      }
+
+      .btn-secondary {
+        background: #f1f5f9;
+        color: #334155;
+        border: 1px solid #cbd5e1;
+        padding: 10px 16px;
+        border-radius: 10px;
+        font-size: 13.5px;
+        font-weight: 600;
+        cursor: pointer;
+      }
+
+      .btn-danger {
+        background: #fee2e2;
+        color: #dc2626;
+        border: 1px solid #fecaca;
+        padding: 10px 16px;
+        border-radius: 10px;
+        font-size: 13.5px;
+        font-weight: 600;
+        cursor: pointer;
+      }
+
+      .btn-danger:hover {
+        background: #fecaca;
+      }
+
+      .modal-backdrop {
+        position: fixed;
+        inset: 0;
+        background: rgba(15, 23, 42, 0.5);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        z-index: 999;
+        padding: 20px;
+      }
+
+      .modal-backdrop.open {
+        display: flex;
+      }
+
+      .modal-box {
+        background: #fff;
+        border-radius: 18px;
+        max-width: 500px;
+        width: 100%;
+        padding: 28px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.18);
+      }
+
+      .modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-bottom: 14px;
+        border-bottom: 1px solid #f1f5f9;
+        margin-bottom: 18px;
+      }
+
+      .close-btn {
+        background: #f1f5f9;
+        border: none;
+        width: 32px;
+        height: 32px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 700;
+      }
+
+      .detail-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        background: #f8fafc;
+        padding: 16px;
+        border-radius: 12px;
+        margin-bottom: 18px;
+        font-size: 13.5px;
+      }
+
+      .detail-item span {
+        display: block;
+        font-size: 11.5px;
+        color: #64748b;
+        text-transform: uppercase;
+        font-weight: 600;
+      }
+
+      .detail-item strong {
+        color: var(--navy-text);
+        font-size: 14px;
+      }
+
+      .toast-container {
+        position: fixed;
+        bottom: 24px;
+        right: 24px;
+        z-index: 1200;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .toast {
+        background: var(--navy-text);
+        color: #ffffff;
+        padding: 12px 18px;
+        border-radius: 12px;
+        font-size: 13.5px;
+        font-weight: 500;
+        box-shadow: 0 10px 25px rgba(15, 41, 74, 0.25);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        animation: slideIn 0.25s ease;
+      }
+
+      .toast-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--green);
+        flex-shrink: 0;
+      }
+
+      @keyframes slideIn {
+        from {
+          opacity: 0;
+          transform: translateX(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
         }
       }
 
-      @media (max-width: 700px) {
-        .dashboard {
-          width: 94%;
+      @media (max-width: 1080px) {
+        .kpi-grid {
+          grid-template-columns: repeat(2, 1fr);
         }
-
-        .stats-grid {
+        .charts-row {
           grid-template-columns: 1fr;
         }
-
-        .hero {
-          height: 360px;
-
-          background-position: center;
+        .navbar {
+          padding: 14px 20px;
+          flex-wrap: wrap;
+          gap: 12px;
         }
+      }
 
-        .hero-content {
-          width: 100%;
-
-          padding: 32px 25px;
+      @media (max-width: 640px) {
+        .kpi-grid {
+          grid-template-columns: 1fr;
         }
-
-        .hero h1 {
+        .hero-banner {
+          padding: 32px 24px;
+          min-height: 320px;
+        }
+        .hero-title {
           font-size: 32px;
         }
-
-        .status-content {
+        .donut-layout {
           flex-direction: column;
+        }
+        .quick-grid {
+          grid-template-columns: 1fr;
+        }
+        .search-input {
+          width: 100%;
         }
       }
     </style>
   </head>
-
   <body>
-    <header class="site-header">
-    <div class="header-inner">
-        <a href="index.html" class="logo" aria-label="LogiTrack home">
-            <svg class="logo-mark" viewBox="0 0 32 32" aria-hidden="true">
-                <rect width="32" height="32" rx="8" fill="#1a5fd0"/>
-                <path d="M10 7.5v14.5h8" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                <circle cx="23.5" cy="22" r="3.2" fill="#f0a020"/>
-            </svg>
-            <span class="logo-word">Logi<b>Track</b></span>
+    <!-- TOP NAVIGATION (Home, Track Shipment, Manage, Contact kept static) -->
+    <header class="navbar">
+      <a href="dashboard.html" class="brand">
+        <div class="brand-logo">L</div>
+        <div class="brand-info">
+          <h1>LogiTrack</h1>
+          <span>Delivery Management</span>
+        </div>
+      </a>
+
+      <nav class="nav-links">
+        <a href="home.html" class="nav-link">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+            <polyline points="9 22 9 12 15 12 15 22" />
+          </svg>
+          Home
         </a>
+        <a href="track.html" class="nav-link">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <circle cx="12" cy="12" r="10" />
+            <circle cx="12" cy="12" r="3" />
+          </svg>
+          Track Shipment
+        </a>
+        <a href="dashboard.html" class="nav-link active">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <rect x="3" y="3" width="7" height="7" />
+            <rect x="14" y="3" width="7" height="7" />
+            <rect x="14" y="14" width="7" height="7" />
+            <rect x="3" y="14" width="7" height="7" />
+          </svg>
+          Dashboard
+        </a>
+        <a href="manage.html" class="nav-link">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <circle cx="12" cy="12" r="3" />
+            <path
+              d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"
+            />
+          </svg>
+          Manage
+        </a>
+        <a href="contact.html" class="nav-link">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"
+            />
+          </svg>
+          Contact
+        </a>
+      </nav>
+    </header>
 
-        <nav class="nav" id="main-nav" aria-label="Main">
-            <a href="index.html">Home</a>
-
-            <a href="tracking.html">
-                <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M12 21s7-6.1 7-11.2A7 7 0 0 0 5 9.8C5 14.9 12 21 12 21Z"/>
-                    <circle cx="12" cy="9.8" r="2.3"/>
-                </svg>
-                Track Shipment
-            </a>
-
-            <!-- Dashboard -->
-            <a href="dashboard.html">
-                <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true">
-                    <rect x="4" y="4" width="6" height="6" rx="1"/>
-                    <rect x="14" y="4" width="6" height="6" rx="1"/>
-                    <rect x="4" y="14" width="6" height="6" rx="1"/>
-                    <rect x="14" y="14" width="6" height="6" rx="1"/>
-                </svg>
-                Dashboard
-            </a>
-
-            <a href="manage.html">
-                <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.09a2 2 0 0 1 1 1.74v.5a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.38a2 2 0 0 0-.73-2.73l-.15-.09a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/>
-                    <circle cx="12" cy="12" r="3"/>
-                </svg>
-                Manage
-            </a>
-
-            <a href="contact.html">
-                <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M6.6 10.8a15.7 15.7 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1.1-.2c1.2.5 2.5.7 3.8.7a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.6 21 3 13.4 3 4a1 1 0 0 1 1-1h3.3a1 1 0 0 1 1 1c0 1.3.2 2.6.7 3.8a1 1 0 0 1-.2 1.1L6.6 10.8Z"/>
-                </svg>
-                Contact
-            </a>
-        </nav>
-
-        <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="main-nav">
-            <span></span><span></span><span></span>
-        </button>
-    </div>
-</header>
-
-    <main class="dashboard">
-      <section class="hero">
+    <main class="container">
+      <!-- Hero Banner (Updated date pill removed) -->
+      <div class="hero-banner">
         <div class="hero-content">
-          <div class="hero-small">REAL MOVEMENT. REAL IMPACT.</div>
-
-          <h1>
-            Operations
-            <span> in Real Time </span>
-          </h1>
-
-          <p>
+          <div class="hero-eyebrow">REAL MOVEMENT. REAL IMPACT.</div>
+          <h2 class="hero-title">Operations in Real Time</h2>
+          <p class="hero-subtitle">
             Track performance, monitor shipments and keep your delivery
             operations moving smoothly.
           </p>
-
-          <div class="hero-badges">
-            <div class="hero-badge">â— Live Operations</div>
-
-            <div class="hero-badge">Updated Today</div>
-          </div>
-        </div>
-      </section>
-
-      <section class="stats-grid">
-        <div class="stat-card">
-          <div class="stat-top">
-            <div class="stat-icon blue">â–£</div>
-
-            <div class="trend up">â†‘ 12.5%</div>
-          </div>
-
-          <h3>Total Shipments</h3>
-
-          <div class="stat-number">12,459</div>
-
-          <div class="last-month">vs. last month</div>
-        </div>
-
-        <div class="stat-card">
-          <div class="stat-top">
-            <div class="stat-icon yellow">â—·</div>
-
-            <div class="trend up">â†‘ 8.2%</div>
-          </div>
-
-          <h3>Pending Deliveries</h3>
-
-          <div class="stat-number">1,847</div>
-
-          <div class="last-month">vs. last month</div>
-        </div>
-
-        <div class="stat-card">
-          <div class="stat-top">
-            <div class="stat-icon green">âœ“</div>
-
-            <div class="trend up">â†‘ 18.7%</div>
-          </div>
-
-          <h3>Delivered Today</h3>
-
-          <div class="stat-number">3,256</div>
-
-          <div class="last-month">vs. last month</div>
-        </div>
-
-        <div class="stat-card">
-          <div class="stat-top">
-            <div class="stat-icon purple">â–°</div>
-
-            <div class="trend down">â†“ 3.1%</div>
-          </div>
-
-          <h3>Active Deliveries</h3>
-
-          <div class="stat-number">892</div>
-
-          <div class="last-month">vs. last month</div>
-        </div>
-      </section>
-
-      <section class="charts-grid">
-        <div class="card">
-          <div class="card-header">
-            <div class="card-title">
-              <div class="card-icon">â–¥</div>
-
-              <h2>Monthly Shipments</h2>
-            </div>
-
-            <div class="filter">Last 6 Months â–¾</div>
-          </div>
-
-          <div class="bar-chart">
-            <div class="bar-item">
-              <div class="bar" style="height: 55%"></div>
-
-              <div class="bar-label">Jan</div>
-            </div>
-
-            <div class="bar-item">
-              <div class="bar" style="height: 48%"></div>
-
-              <div class="bar-label">Feb</div>
-            </div>
-
-            <div class="bar-item">
-              <div class="bar" style="height: 68%"></div>
-
-              <div class="bar-label">Mar</div>
-            </div>
-
-            <div class="bar-item">
-              <div class="bar" style="height: 62%"></div>
-
-              <div class="bar-label">Apr</div>
-            </div>
-
-            <div class="bar-item">
-              <div class="bar" style="height: 88%"></div>
-
-              <div class="bar-label">May</div>
-            </div>
-
-            <div class="bar-item">
-              <div class="bar" style="height: 81%"></div>
-
-              <div class="bar-label">Jun</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-header">
-            <div class="card-title">
-              <div class="card-icon">â†—</div>
-
-              <h2>Revenue Trend</h2>
-            </div>
-
-            <div class="filter">Last 6 Months â–¾</div>
-          </div>
-
-          <div class="revenue-box">
-            <svg
-              class="revenue-line"
-              viewBox="0 0 600 180"
-              preserveAspectRatio="none"
+          <div class="hero-pills">
+            <button
+              type="button"
+              class="pill-badge"
+              id="simulateLiveBtn"
+              title="Click to simulate a new live dispatch"
             >
-              <path
-                class="line-area"
-                d="
-                        M0 130
-                        L100 145
-                        L200 95
-                        L300 105
-                        L400 45
-                        L500 65
-                        L600 50
-                        L600 180
-                        L0 180
-                        Z
-                        "
-              ></path>
+              <span class="live-dot"></span> Live Operations
+            </button>
+          </div>
+        </div>
+      </div>
 
-              <path
-                class="line"
-                d="
-                        M0 130
-                        L100 145
-                        L200 95
-                        L300 105
-                        L400 45
-                        L500 65
-                        L600 50
-                        "
-              ></path>
+      <!-- 4 KPI Cards -->
+      <div class="kpi-grid">
+        <div class="card">
+          <div class="kpi-top">
+            <div class="icon-box icon-blue">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <rect x="3" y="3" width="18" height="18" rx="3" />
+                <rect x="8" y="8" width="8" height="8" rx="1" />
+              </svg>
+            </div>
+            <span class="trend-pill" id="trend-total">--</span>
+          </div>
+          <div class="kpi-label">Total Shipments</div>
+          <div class="kpi-value" id="kpi-total">--</div>
+          <div class="kpi-sub">vs. last month</div>
+        </div>
 
-              <circle class="point" cx="0" cy="130" r="5"></circle>
+        <div class="card">
+          <div class="kpi-top">
+            <div class="icon-box icon-amber">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <circle cx="12" cy="12" r="9" />
+                <polyline points="12 7 12 12 15 14" />
+              </svg>
+            </div>
+            <span class="trend-pill" id="trend-pending">--</span>
+          </div>
+          <div class="kpi-label">Pending Deliveries</div>
+          <div class="kpi-value" id="kpi-pending">--</div>
+          <div class="kpi-sub">vs. last month</div>
+        </div>
 
-              <circle class="point" cx="100" cy="145" r="5"></circle>
+        <div class="card">
+          <div class="kpi-top">
+            <div class="icon-box icon-green">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+              >
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+            </div>
+            <span class="trend-pill" id="trend-delivered">--</span>
+          </div>
+          <div class="kpi-label">Delivered Today</div>
+          <div class="kpi-value" id="kpi-delivered">--</div>
+          <div class="kpi-sub">vs. last month</div>
+        </div>
 
-              <circle class="point" cx="200" cy="95" r="5"></circle>
+        <div class="card">
+          <div class="kpi-top">
+            <div class="icon-box icon-purple">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path d="M5 7h15l-2 10H3L5 7z" />
+              </svg>
+            </div>
+            <span class="trend-pill" id="trend-active">--</span>
+          </div>
+          <div class="kpi-label">Active Deliveries</div>
+          <div class="kpi-value" id="kpi-active">--</div>
+          <div class="kpi-sub">vs. last month</div>
+        </div>
+      </div>
 
-              <circle class="point" cx="300" cy="105" r="5"></circle>
+      <!-- Row 1 Charts: Monthly Shipments & Revenue Trend -->
+      <div class="charts-row">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title-group">
+              <div class="mini-icon">
+                <svg
+                  width="17"
+                  height="17"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.2"
+                >
+                  <line x1="18" y1="20" x2="18" y2="10" />
+                  <line x1="12" y1="20" x2="12" y2="4" />
+                  <line x1="6" y1="20" x2="6" y2="14" />
+                </svg>
+              </div>
+              <h3 class="card-title">Monthly Shipments</h3>
+            </div>
+            <select class="select-pill" id="shipmentsPeriodSelect">
+              <option value="6m" selected>Last 6 Months</option>
+              <option value="7d">Last 7 Days</option>
+              <option value="1y">Last 1 Year</option>
+            </select>
+          </div>
+          <div class="chart-canvas-box">
+            <canvas id="monthlyShipmentsChart"></canvas>
+          </div>
+        </div>
 
-              <circle class="point" cx="400" cy="45" r="5"></circle>
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title-group">
+              <div class="mini-icon">
+                <svg
+                  width="17"
+                  height="17"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.2"
+                >
+                  <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" />
+                  <polyline points="17 6 23 6 23 12" />
+                </svg>
+              </div>
+              <h3 class="card-title">Revenue Trend</h3>
+            </div>
+            <select class="select-pill" id="revenuePeriodSelect">
+              <option value="6m" selected>Last 6 Months</option>
+              <option value="7d">Last 7 Days</option>
+              <option value="1y">Last 1 Year</option>
+            </select>
+          </div>
+          <div class="chart-canvas-box">
+            <canvas id="revenueTrendChart"></canvas>
+          </div>
+        </div>
+      </div>
 
-              <circle class="point" cx="500" cy="65" r="5"></circle>
+      <!-- Row 2 Charts: Shipment Status Donut & Quick Stats -->
+      <div class="charts-row">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title-group">
+              <div class="mini-icon">
+                <svg
+                  width="17"
+                  height="17"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.2"
+                >
+                  <path d="M21.21 15.89A10 10 0 1 1 8 2.83" />
+                  <path d="M22 12A10 10 0 0 0 12 2v10z" />
+                </svg>
+              </div>
+              <h3 class="card-title">Shipment Status</h3>
+            </div>
+          </div>
 
-              <circle class="point" cx="600" cy="50" r="5"></circle>
-            </svg>
+          <div class="donut-layout">
+            <div class="donut-container">
+              <canvas id="shipmentStatusChart"></canvas>
+              <div class="donut-center">
+                <strong id="donut-total">--</strong>
+                <span>Total Shipments</span>
+              </div>
+            </div>
 
-            <div class="month-labels">
-              <span>Jan</span>
-              <span>Feb</span>
-              <span>Mar</span>
-              <span>Apr</span>
-              <span>May</span>
-              <span>Jun</span>
+            <div class="legend-list">
+              <div class="legend-item">
+                <div class="legend-left">
+                  <span class="legend-dot" style="background: #10b981"></span
+                  >Delivered
+                </div>
+                <span class="legend-val" id="legend-delivered">--%</span>
+              </div>
+              <div class="legend-item">
+                <div class="legend-left">
+                  <span class="legend-dot" style="background: #f59e0b"></span
+                  >Pending
+                </div>
+                <span class="legend-val" id="legend-pending">--%</span>
+              </div>
+              <div class="legend-item">
+                <div class="legend-left">
+                  <span class="legend-dot" style="background: #3b82f6"></span>In
+                  Transit
+                </div>
+                <span class="legend-val" id="legend-transit">--%</span>
+              </div>
+              <div class="legend-item">
+                <div class="legend-left">
+                  <span class="legend-dot" style="background: #ef4444"></span
+                  >Cancelled
+                </div>
+                <span class="legend-val" id="legend-cancelled">--%</span>
+              </div>
             </div>
           </div>
         </div>
-      </section>
 
-      <section class="lower-grid">
+        <!-- Quick Stats -->
         <div class="card">
           <div class="card-header">
-            <div class="card-title">
-              <div class="card-icon">â—”</div>
-
-              <h2>Shipment Status</h2>
-            </div>
-          </div>
-
-          <div class="status-content">
-            <div class="donut">
-              <div class="donut-inner">
-                <strong> 12,459 </strong>
-
-                <span> Total Shipments </span>
+            <div class="card-title-group">
+              <div class="mini-icon amber">
+                <svg
+                  width="17"
+                  height="17"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+                </svg>
               </div>
-            </div>
-
-            <div class="status-list">
-              <div class="status-row">
-                <span class="status-dot" style="background: #16a88b"> </span>
-
-                Delivered
-
-                <strong> 53% </strong>
-              </div>
-
-              <div class="status-row">
-                <span class="status-dot" style="background: #f5a623"> </span>
-
-                Pending
-
-                <strong> 30% </strong>
-              </div>
-
-              <div class="status-row">
-                <span class="status-dot" style="background: #438df5"> </span>
-
-                In Transit
-
-                <strong> 15% </strong>
-              </div>
-
-              <div class="status-row">
-                <span class="status-dot" style="background: #ef5350"> </span>
-
-                Cancelled
-
-                <strong> 2% </strong>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- QUICK STATS -->
-
-        <div class="card">
-          <div class="card-header">
-            <div class="card-title">
-              <div class="card-icon">âš¡</div>
-
-              <h2>Quick Stats</h2>
+              <h3 class="card-title">Quick Stats</h3>
             </div>
           </div>
 
           <div class="quick-grid">
-            <div class="quick-card quick-blue">
-              <p>Active Customers</p>
-
-              <strong> 8,247 </strong>
+            <div class="stat-tile blue">
+              <span>Active Customers</span>
+              <strong id="qs-customers">--</strong>
             </div>
-
-            <div class="quick-card quick-green">
-              <p>Monthly Revenue</p>
-
-              <strong> $88,000 </strong>
+            <div class="stat-tile green">
+              <span>Monthly Revenue</span>
+              <strong id="qs-revenue">--</strong>
             </div>
-
-            <div class="quick-card quick-purple">
-              <p>Active Vehicles</p>
-
-              <strong> 156 </strong>
+            <div class="stat-tile purple">
+              <span>Active Vehicles</span>
+              <strong id="qs-vehicles">--</strong>
             </div>
-
-            <div class="quick-card quick-yellow">
-              <p>Avg. Delivery Time</p>
-
-              <strong> 2.4 days </strong>
+            <div class="stat-tile amber">
+              <span>Avg. Delivery Time</span>
+              <strong id="qs-avg-time">--</strong>
             </div>
           </div>
         </div>
-      </section>
+      </div>
 
-      <section class="card recent-card">
+      <!-- Recent Shipments Table with Delete Option -->
+      <div class="card table-card">
         <div class="card-header">
-          <div class="card-title">
-            <div class="card-icon">â–°</div>
-
-            <h2>Recent Shipments</h2>
+          <div class="card-title-group">
+            <div class="mini-icon">
+              <svg
+                width="17"
+                height="17"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path d="M5 7h15l-2 10H3L5 7z" />
+              </svg>
+            </div>
+            <h3 class="card-title">Recent Shipments</h3>
           </div>
 
-          <div class="view-all">View All â†’</div>
+          <div class="table-controls">
+            <div class="search-box">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <circle cx="11" cy="11" r="8" />
+                <line x1="21" y1="21" x2="16.65" y2="16.65" />
+              </svg>
+              <input
+                type="text"
+                id="tableSearchInput"
+                class="search-input"
+                placeholder="Search ID, customer, city..."
+              />
+            </div>
+
+            <select id="tableStatusFilter" class="select-pill">
+              <option value="ALL">All Statuses</option>
+              <option value="In Transit">In Transit</option>
+              <option value="Delivered">Delivered</option>
+              <option value="Pending">Pending</option>
+              <option value="Cancelled">Cancelled</option>
+            </select>
+
+            <button type="button" class="view-all-link" id="toggleAllBtn">
+              View All →
+            </button>
+          </div>
         </div>
 
-        <div class="table-wrapper">
+        <div class="table-responsive">
           <table>
             <thead>
               <tr>
-                <th>Tracking ID</th>
-
-                <th>Customer</th>
-
-                <th>Destination</th>
-
-                <th>Status</th>
-
-                <th>Date</th>
+                <th>TRACKING ID</th>
+                <th>CUSTOMER</th>
+                <th>DESTINATION</th>
+                <th>STATUS</th>
+                <th>DATE</th>
+                <th>ACTION</th>
               </tr>
             </thead>
-
-            <tbody>
-              <tr>
-                <td>SW123456</td>
-
-                <td>John Doe</td>
-
-                <td>New York, NY</td>
-
-                <td>
-                  <span class="badge badge-transit"> In Transit </span>
-                </td>
-
-                <td>2026-06-06</td>
-              </tr>
-
-              <tr>
-                <td>SW123457</td>
-
-                <td>Jane Smith</td>
-
-                <td>Los Angeles, CA</td>
-
-                <td>
-                  <span class="badge badge-delivered"> Delivered </span>
-                </td>
-
-                <td>2026-06-06</td>
-              </tr>
-
-              <tr>
-                <td>SW123458</td>
-
-                <td>Bob Johnson</td>
-
-                <td>Chicago, IL</td>
-
-                <td>
-                  <span class="badge badge-pending"> Pending </span>
-                </td>
-
-                <td>2026-06-05</td>
-              </tr>
-
-              <tr>
-                <td>SW123459</td>
-
-                <td>Alice Brown</td>
-
-                <td>Houston, TX</td>
-
-                <td>
-                  <span class="badge badge-transit"> In Transit </span>
-                </td>
-
-                <td>2026-06-05</td>
-              </tr>
-
-              <tr>
-                <td>SW123460</td>
-
-                <td>Charlie Wilson</td>
-
-                <td>Phoenix, AZ</td>
-
-                <td>
-                  <span class="badge badge-delivered"> Delivered </span>
-                </td>
-
-                <td>2026-06-04</td>
-              </tr>
-            </tbody>
+            <tbody id="shipmentsTableBody"></tbody>
           </table>
         </div>
-      </section>
+      </div>
 
-      <section class="bottom-banner">
-        <div>
-          <h3>Smarter logistics. Smoother operations.</h3>
-
-          <p>
-            Keep every shipment moving with a clear view of your delivery
-            network.
-          </p>
-        </div>
-      </section>
+      <!-- Bottom Blue CTA Banner -->
+      <div class="bottom-banner">
+        <h2>Smarter logistics. Smoother operations.</h2>
+        <p>
+          Keep every shipment moving with a clear view of your delivery network.
+        </p>
+      </div>
     </main>
+
+    <!-- SHIPMENT DETAIL, STATUS UPDATE & DELETE MODAL -->
+    <div class="modal-backdrop" id="shipmentModal">
+      <div class="modal-box" id="modalBox">
+        <div class="modal-header">
+          <h3 id="modalTitle" style="color: var(--navy-text)">
+            Shipment Details
+          </h3>
+          <button type="button" class="close-btn" id="closeModalBtn">✕</button>
+        </div>
+        <div id="modalBody"></div>
+      </div>
+    </div>
+
+    <!-- TOAST NOTIFICATION CONTAINER -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script>
+      (() => {
+        // =======================================================================
+        // 1. CENTRALIZED DASHBOARD STATE & STORAGE KEYS
+        // =======================================================================
+        const STORAGE_KEYS = {
+          SHIPMENTS: "logitrack_shipments_v3",
+          HISTORY: "logitrack_metrics_history_v3",
+        };
+
+        const TODAY_ISO = new Date().toISOString().split("T")[0];
+
+        const DEFAULT_SHIPMENTS = [
+          {
+            id: "SW123456",
+            customer: "John Doe",
+            destination: "New York, NY",
+            status: "In Transit",
+            date: "2026-06-06",
+            value: 4850,
+            vehicleId: "TRK-101",
+            dispatchHoursAgo: 38,
+            deliveryHours: null,
+            hub: "Newark Distribution Hub #02",
+          },
+          {
+            id: "SW123457",
+            customer: "Jane Smith",
+            destination: "Los Angeles, CA",
+            status: "Delivered",
+            date: TODAY_ISO,
+            value: 6420,
+            vehicleId: "TRK-104",
+            dispatchHoursAgo: 52,
+            deliveryHours: 48,
+            hub: "LA Metro Terminal #03",
+          },
+          {
+            id: "SW123458",
+            customer: "Bob Johnson",
+            destination: "Chicago, IL",
+            status: "Pending",
+            date: "2026-06-05",
+            value: 3200,
+            vehicleId: "TRK-108",
+            dispatchHoursAgo: 14,
+            deliveryHours: null,
+            hub: "Midwest Freight Hub #01",
+          },
+          {
+            id: "SW123459",
+            customer: "Alice Brown",
+            destination: "Houston, TX",
+            status: "In Transit",
+            date: "2026-06-05",
+            value: 5190,
+            vehicleId: "TRK-112",
+            dispatchHoursAgo: 44,
+            deliveryHours: null,
+            hub: "Gulf Coast Logistics #04",
+          },
+          {
+            id: "SW123460",
+            customer: "Charlie Wilson",
+            destination: "Phoenix, AZ",
+            status: "Delivered",
+            date: TODAY_ISO,
+            value: 4100,
+            vehicleId: "TRK-115",
+            dispatchHoursAgo: 64,
+            deliveryHours: 58,
+            hub: "Southwest Depot #02",
+          },
+          {
+            id: "SW123461",
+            customer: "David Miller",
+            destination: "Miami, FL",
+            status: "In Transit",
+            date: "2026-06-04",
+            value: 7300,
+            vehicleId: "TRK-119",
+            dispatchHoursAgo: 31,
+            deliveryHours: null,
+            hub: "South Florida Port #05",
+          },
+          {
+            id: "SW123462",
+            customer: "Emma Davis",
+            destination: "Denver, CO",
+            status: "Delivered",
+            date: TODAY_ISO,
+            value: 5890,
+            vehicleId: "TRK-121",
+            dispatchHoursAgo: 70,
+            deliveryHours: 62,
+            hub: "Mountain Express Hub #01",
+          },
+          {
+            id: "SW123463",
+            customer: "Sophia Martinez",
+            destination: "Seattle, WA",
+            status: "Delivered",
+            date: "2026-06-03",
+            value: 8150,
+            vehicleId: "TRK-125",
+            dispatchHoursAgo: 80,
+            deliveryHours: 60,
+            hub: "Pacific Northwest Terminal",
+          },
+          {
+            id: "SW123464",
+            customer: "Liam Anderson",
+            destination: "Boston, MA",
+            status: "Pending",
+            date: "2026-06-03",
+            value: 2940,
+            vehicleId: "TRK-129",
+            dispatchHoursAgo: 9,
+            deliveryHours: null,
+            hub: "New England Freight Center",
+          },
+          {
+            id: "SW123465",
+            customer: "Olivia Taylor",
+            destination: "Atlanta, GA",
+            status: "Delivered",
+            date: "2026-06-02",
+            value: 6780,
+            vehicleId: "TRK-133",
+            dispatchHoursAgo: 72,
+            deliveryHours: 55,
+            hub: "Southeast Regional Hub",
+          },
+          {
+            id: "SW123466",
+            customer: "Noah Thomas",
+            destination: "Dallas, TX",
+            status: "In Transit",
+            date: "2026-06-02",
+            value: 5450,
+            vehicleId: "TRK-137",
+            dispatchHoursAgo: 26,
+            deliveryHours: null,
+            hub: "North Texas Hub #03",
+          },
+          {
+            id: "SW123467",
+            customer: "Ava Jackson",
+            destination: "Portland, OR",
+            status: "Pending",
+            date: "2026-06-01",
+            value: 3610,
+            vehicleId: "TRK-140",
+            dispatchHoursAgo: 18,
+            deliveryHours: null,
+            hub: "Columbia River Depot",
+          },
+          {
+            id: "SW123468",
+            customer: "Ethan White",
+            destination: "San Diego, CA",
+            status: "Delivered",
+            date: "2026-06-01",
+            value: 7890,
+            vehicleId: "TRK-142",
+            dispatchHoursAgo: 68,
+            deliveryHours: 52,
+            hub: "SoCal Border Logistics",
+          },
+          {
+            id: "SW123469",
+            customer: "Mia Harris",
+            destination: "Detroit, MI",
+            status: "Pending",
+            date: "2026-05-31",
+            value: 4120,
+            vehicleId: "TRK-145",
+            dispatchHoursAgo: 12,
+            deliveryHours: null,
+            hub: "Great Lakes Distribution",
+          },
+          {
+            id: "SW123470",
+            customer: "Lucas Clark",
+            destination: "Nashville, TN",
+            status: "Delivered",
+            date: "2026-05-30",
+            value: 6250,
+            vehicleId: "TRK-148",
+            dispatchHoursAgo: 76,
+            deliveryHours: 61,
+            hub: "Mid-South Hub #02",
+          },
+          {
+            id: "SW123471",
+            customer: "Isabella Lewis",
+            destination: "Charlotte, NC",
+            status: "Delivered",
+            date: "2026-05-29",
+            value: 5940,
+            vehicleId: "TRK-151",
+            dispatchHoursAgo: 74,
+            deliveryHours: 59,
+            hub: "Carolina Freight Gateway",
+          },
+          {
+            id: "SW123472",
+            customer: "Mason Robinson",
+            destination: "Austin, TX",
+            status: "Delivered",
+            date: "2026-05-28",
+            value: 5720,
+            vehicleId: "TRK-154",
+            dispatchHoursAgo: 65,
+            deliveryHours: 54,
+            hub: "Central Texas Terminal",
+          },
+          {
+            id: "SW123473",
+            customer: "Amelia Walker",
+            destination: "San Jose, CA",
+            status: "Pending",
+            date: "2026-05-27",
+            value: 3100,
+            vehicleId: "TRK-156",
+            dispatchHoursAgo: 6,
+            deliveryHours: null,
+            hub: "Silicon Valley Express",
+          },
+          {
+            id: "SW123474",
+            customer: "Logan Hall",
+            destination: "Columbus, OH",
+            status: "Cancelled",
+            date: "2026-05-26",
+            value: 2150,
+            vehicleId: null,
+            dispatchHoursAgo: 40,
+            deliveryHours: null,
+            hub: "Ohio Valley Depot",
+          },
+          {
+            id: "SW123475",
+            customer: "Harper Allen",
+            destination: "Minneapolis, MN",
+            status: "Delivered",
+            date: "2026-05-25",
+            value: 4200,
+            vehicleId: "TRK-160",
+            dispatchHoursAgo: 79,
+            deliveryHours: 64,
+            hub: "Twin Cities Logistics",
+          },
+        ];
+
+        const DEFAULT_METRICS_HISTORY = {
+          lastMonthBaseline: {
+            totalShipments: 18,
+            pendingDeliveries: 5,
+            deliveredToday: 3,
+            activeDeliveries: 5,
+          },
+          timeframes: {
+            "6m": {
+              labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
+              shipments: [1850, 1620, 2280, 2060, 2890, 2680],
+              revenue: [62000, 57500, 72500, 69000, 86500, 88000],
+            },
+            "7d": {
+              labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+              shipments: [410, 485, 460, 540, 620, 390, 351],
+              revenue: [11200, 13400, 12800, 15100, 17900, 10800, 9600],
+            },
+            "1y": {
+              labels: [
+                "Jul",
+                "Aug",
+                "Sep",
+                "Oct",
+                "Nov",
+                "Dec",
+                "Jan",
+                "Feb",
+                "Mar",
+                "Apr",
+                "May",
+                "Jun",
+              ],
+              shipments: [
+                1520, 1740, 1910, 2150, 2480, 2710, 1850, 1620, 2280, 2060,
+                2890, 2680,
+              ],
+              revenue: [
+                51000, 56000, 60500, 67000, 76000, 83500, 62000, 57500, 72500,
+                69000, 86500, 88000,
+              ],
+            },
+          },
+        };
+
+        const state = {
+          shipmentsData: [],
+          metricsHistory: {},
+          selectedTimeframe: "6m",
+          searchQuery: "",
+          statusFilter: "ALL",
+          showAllRows: false,
+          charts: {
+            bar: null,
+            line: null,
+            donut: null,
+          },
+        };
+
+        // =======================================================================
+        // 2. DATA PERSISTENCE (localStorage)
+        // =======================================================================
+        function loadStateFromStorage() {
+          try {
+            const savedShipments = localStorage.getItem(STORAGE_KEYS.SHIPMENTS);
+            const savedHistory = localStorage.getItem(STORAGE_KEYS.HISTORY);
+
+            if (savedShipments && savedHistory) {
+              state.shipmentsData = JSON.parse(savedShipments);
+              state.metricsHistory = JSON.parse(savedHistory);
+            } else {
+              state.shipmentsData = structuredClone(DEFAULT_SHIPMENTS);
+              state.metricsHistory = structuredClone(DEFAULT_METRICS_HISTORY);
+              saveStateToStorage();
+            }
+          } catch (err) {
+            state.shipmentsData = structuredClone(DEFAULT_SHIPMENTS);
+            state.metricsHistory = structuredClone(DEFAULT_METRICS_HISTORY);
+          }
+        }
+
+        function saveStateToStorage() {
+          localStorage.setItem(
+            STORAGE_KEYS.SHIPMENTS,
+            JSON.stringify(state.shipmentsData),
+          );
+          localStorage.setItem(
+            STORAGE_KEYS.HISTORY,
+            JSON.stringify(state.metricsHistory),
+          );
+        }
+
+        // =======================================================================
+        // 3. DYNAMIC METRICS & KPI CALCULATION ENGINE
+        // =======================================================================
+        function computeTrend(current, previous) {
+          if (!previous || previous === 0) return { pct: "0.0%", isUp: true };
+          const delta = ((current - previous) / previous) * 100;
+          const absPct = Math.abs(delta).toFixed(1);
+          return {
+            pct: `${delta >= 0 ? "↑" : "↓"} ${absPct}%`,
+            isUp: delta >= 0,
+          };
+        }
+
+        function calculateMetrics() {
+          const data = state.shipmentsData;
+          const baseline = state.metricsHistory.lastMonthBaseline;
+
+          const totalShipments = data.length;
+          const statusCounts = {
+            Delivered: 0,
+            Pending: 0,
+            "In Transit": 0,
+            Cancelled: 0,
+          };
+
+          let deliveredToday = 0;
+          let monthlyRevenue = 0;
+          let totalDeliveryHours = 0;
+          let deliveredWithTimeCount = 0;
+
+          const uniqueCustomers = new Set();
+          const activeVehicles = new Set();
+
+          data.forEach((item) => {
+            if (statusCounts.hasOwnProperty(item.status)) {
+              statusCounts[item.status] += 1;
+            }
+            if (item.customer) {
+              uniqueCustomers.add(item.customer.trim().toLowerCase());
+            }
+            if (item.status === "Delivered" && item.date === TODAY_ISO) {
+              deliveredToday += 1;
+            }
+            if (item.status === "Delivered" || item.status === "In Transit") {
+              monthlyRevenue += Number(item.value || 0);
+              if (item.vehicleId) {
+                activeVehicles.add(item.vehicleId);
+              }
+            }
+            if (
+              item.status === "Delivered" &&
+              typeof item.deliveryHours === "number"
+            ) {
+              totalDeliveryHours += item.deliveryHours;
+              deliveredWithTimeCount += 1;
+            }
+          });
+
+          const pendingDeliveries = statusCounts.Pending;
+          const activeDeliveries = statusCounts["In Transit"];
+
+          const statusPercentages = {
+            Delivered: totalShipments
+              ? Math.round((statusCounts.Delivered / totalShipments) * 100)
+              : 0,
+            Pending: totalShipments
+              ? Math.round((statusCounts.Pending / totalShipments) * 100)
+              : 0,
+            "In Transit": totalShipments
+              ? Math.round((statusCounts["In Transit"] / totalShipments) * 100)
+              : 0,
+            Cancelled: totalShipments
+              ? Math.round((statusCounts.Cancelled / totalShipments) * 100)
+              : 0,
+          };
+
+          const avgHours =
+            deliveredWithTimeCount > 0
+              ? totalDeliveryHours / deliveredWithTimeCount
+              : 0;
+          const avgDeliveryDays = (avgHours / 24).toFixed(1);
+
+          return {
+            kpis: {
+              total: {
+                value: totalShipments,
+                trend: computeTrend(totalShipments, baseline.totalShipments),
+              },
+              pending: {
+                value: pendingDeliveries,
+                trend: computeTrend(
+                  pendingDeliveries,
+                  baseline.pendingDeliveries,
+                ),
+              },
+              deliveredToday: {
+                value: deliveredToday,
+                trend: computeTrend(deliveredToday, baseline.deliveredToday),
+              },
+              active: {
+                value: activeDeliveries,
+                trend: computeTrend(
+                  activeDeliveries,
+                  baseline.activeDeliveries,
+                ),
+              },
+            },
+            quickStats: {
+              activeCustomers: uniqueCustomers.size,
+              monthlyRevenue,
+              activeVehicles: activeVehicles.size,
+              avgDeliveryTime: `${avgDeliveryDays} days`,
+            },
+            donut: {
+              total: totalShipments,
+              counts: statusCounts,
+              percentages: statusPercentages,
+            },
+          };
+        }
+
+        // =======================================================================
+        // 4. DOM RENDERING FUNCTIONS
+        // =======================================================================
+        function renderKPIs(metrics) {
+          const { kpis, quickStats } = metrics;
+
+          const applyTrend = (elId, trendObj) => {
+            const el = document.getElementById(elId);
+            el.textContent = trendObj.pct;
+            el.className = `trend-pill ${trendObj.isUp ? "trend-up" : "trend-down"}`;
+          };
+
+          document.getElementById("kpi-total").textContent =
+            kpis.total.value.toLocaleString();
+          applyTrend("trend-total", kpis.total.trend);
+
+          document.getElementById("kpi-pending").textContent =
+            kpis.pending.value.toLocaleString();
+          applyTrend("trend-pending", kpis.pending.trend);
+
+          document.getElementById("kpi-delivered").textContent =
+            kpis.deliveredToday.value.toLocaleString();
+          applyTrend("trend-delivered", kpis.deliveredToday.trend);
+
+          document.getElementById("kpi-active").textContent =
+            kpis.active.value.toLocaleString();
+          applyTrend("trend-active", kpis.active.trend);
+
+          const currencyFormatter = new Intl.NumberFormat("en-US", {
+            style: "currency",
+            currency: "USD",
+            maximumFractionDigits: 0,
+          });
+
+          document.getElementById("qs-customers").textContent =
+            quickStats.activeCustomers.toLocaleString();
+          document.getElementById("qs-revenue").textContent =
+            currencyFormatter.format(quickStats.monthlyRevenue);
+          document.getElementById("qs-vehicles").textContent =
+            quickStats.activeVehicles.toLocaleString();
+          document.getElementById("qs-avg-time").textContent =
+            quickStats.avgDeliveryTime;
+        }
+
+        function renderCharts(metrics) {
+          Chart.defaults.font.family = "'Inter', sans-serif";
+          Chart.defaults.color = "#64748b";
+
+          const tfData =
+            state.metricsHistory.timeframes[state.selectedTimeframe];
+
+          // --- Monthly Shipments Bar Chart ---
+          const barCtx = document
+            .getElementById("monthlyShipmentsChart")
+            .getContext("2d");
+          if (!state.charts.bar) {
+            const barGrad = barCtx.createLinearGradient(0, 0, 0, 250);
+            barGrad.addColorStop(0, "#4f94ff");
+            barGrad.addColorStop(1, "#2563eb");
+
+            state.charts.bar = new Chart(barCtx, {
+              type: "bar",
+              data: {
+                labels: tfData.labels,
+                datasets: [
+                  {
+                    label: "Shipments",
+                    data: tfData.shipments,
+                    backgroundColor: barGrad,
+                    hoverBackgroundColor: "#1d4ed8",
+                    borderRadius: {
+                      topLeft: 8,
+                      topRight: 8,
+                      bottomLeft: 3,
+                      bottomRight: 3,
+                    },
+                    borderSkipped: false,
+                    barPercentage: 0.56,
+                    categoryPercentage: 0.8,
+                  },
+                ],
+              },
+              options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                animation: { duration: 500, easing: "easeOutQuart" },
+                plugins: {
+                  legend: { display: false },
+                  tooltip: {
+                    backgroundColor: "#0f294a",
+                    padding: 10,
+                    cornerRadius: 8,
+                    displayColors: false,
+                    callbacks: {
+                      label: (ctx) =>
+                        `${ctx.parsed.y.toLocaleString()} Shipments`,
+                    },
+                  },
+                },
+                scales: {
+                  x: {
+                    grid: { display: false },
+                    border: { color: "#e2e8f0" },
+                    ticks: {
+                      font: { size: 12.5, weight: "500" },
+                      color: "#64748b",
+                      padding: 6,
+                    },
+                  },
+                  y: {
+                    beginAtZero: true,
+                    border: { display: false },
+                    grid: { color: "#f1f5f9" },
+                    ticks: { display: false },
+                  },
+                },
+              },
+            });
+          } else {
+            state.charts.bar.data.labels = tfData.labels;
+            state.charts.bar.data.datasets[0].data = tfData.shipments;
+            state.charts.bar.update();
+          }
+
+          // --- Revenue Trend Line Chart ---
+          const lineCtx = document
+            .getElementById("revenueTrendChart")
+            .getContext("2d");
+          if (!state.charts.line) {
+            const lineGrad = lineCtx.createLinearGradient(0, 0, 0, 240);
+            lineGrad.addColorStop(0, "rgba(16, 185, 129, 0.18)");
+            lineGrad.addColorStop(1, "rgba(16, 185, 129, 0.0)");
+
+            state.charts.line = new Chart(lineCtx, {
+              type: "line",
+              data: {
+                labels: tfData.labels,
+                datasets: [
+                  {
+                    label: "Revenue",
+                    data: tfData.revenue,
+                    borderColor: "#10b981",
+                    borderWidth: 3.2,
+                    backgroundColor: lineGrad,
+                    fill: true,
+                    tension: 0.15,
+                    pointBackgroundColor: "#ffffff",
+                    pointBorderColor: "#10b981",
+                    pointBorderWidth: 3,
+                    pointRadius: 5,
+                    pointHoverRadius: 7,
+                    pointHoverBackgroundColor: "#10b981",
+                    pointHoverBorderColor: "#ffffff",
+                  },
+                ],
+              },
+              options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                animation: { duration: 500, easing: "easeOutQuart" },
+                plugins: {
+                  legend: { display: false },
+                  tooltip: {
+                    backgroundColor: "#0f294a",
+                    padding: 10,
+                    cornerRadius: 8,
+                    displayColors: false,
+                    callbacks: {
+                      label: (ctx) => `$${ctx.parsed.y.toLocaleString()}`,
+                    },
+                  },
+                },
+                scales: {
+                  x: {
+                    grid: { display: false },
+                    border: { display: false },
+                    ticks: {
+                      font: { size: 12.5, weight: "500" },
+                      color: "#64748b",
+                      padding: 6,
+                    },
+                  },
+                  y: {
+                    beginAtZero: false,
+                    border: { display: false },
+                    grid: { color: "#f1f5f9" },
+                    ticks: { display: false },
+                  },
+                },
+              },
+            });
+          } else {
+            state.charts.line.data.labels = tfData.labels;
+            state.charts.line.data.datasets[0].data = tfData.revenue;
+            state.charts.line.update();
+          }
+
+          // --- Shipment Status Donut Chart ---
+          const { donut } = metrics;
+          const donutDataset = [
+            donut.counts.Delivered,
+            donut.counts.Pending,
+            donut.counts["In Transit"],
+            donut.counts.Cancelled,
+          ];
+
+          const donutCtx = document
+            .getElementById("shipmentStatusChart")
+            .getContext("2d");
+          if (!state.charts.donut) {
+            state.charts.donut = new Chart(donutCtx, {
+              type: "doughnut",
+              data: {
+                labels: ["Delivered", "Pending", "In Transit", "Cancelled"],
+                datasets: [
+                  {
+                    data: donutDataset,
+                    backgroundColor: [
+                      "#10b981",
+                      "#f59e0b",
+                      "#3b82f6",
+                      "#ef4444",
+                    ],
+                    borderWidth: 0,
+                    hoverOffset: 5,
+                  },
+                ],
+              },
+              options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: "66%",
+                animation: { duration: 450 },
+                plugins: {
+                  legend: { display: false },
+                  tooltip: {
+                    backgroundColor: "#0f294a",
+                    padding: 10,
+                    cornerRadius: 8,
+                    callbacks: {
+                      label: (ctx) => {
+                        const total = ctx.dataset.data.reduce(
+                          (a, b) => a + b,
+                          0,
+                        );
+                        const pct = total
+                          ? Math.round((ctx.parsed / total) * 100)
+                          : 0;
+                        return ` ${ctx.label}: ${ctx.parsed.toLocaleString()} (${pct}%)`;
+                      },
+                    },
+                  },
+                },
+              },
+            });
+          } else {
+            state.charts.donut.data.datasets[0].data = donutDataset;
+            state.charts.donut.update();
+          }
+
+          document.getElementById("donut-total").textContent =
+            donut.total.toLocaleString();
+          document.getElementById("legend-delivered").textContent =
+            `${donut.percentages.Delivered}%`;
+          document.getElementById("legend-pending").textContent =
+            `${donut.percentages.Pending}%`;
+          document.getElementById("legend-transit").textContent =
+            `${donut.percentages["In Transit"]}%`;
+          document.getElementById("legend-cancelled").textContent =
+            `${donut.percentages.Cancelled}%`;
+        }
+
+        function renderTable() {
+          const tbody = document.getElementById("shipmentsTableBody");
+          const query = state.searchQuery.toLowerCase();
+
+          const filtered = state.shipmentsData.filter((item) => {
+            const matchesStatus =
+              state.statusFilter === "ALL" ||
+              item.status === state.statusFilter;
+            const matchesSearch =
+              !query ||
+              item.id.toLowerCase().includes(query) ||
+              item.customer.toLowerCase().includes(query) ||
+              item.destination.toLowerCase().includes(query);
+            return matchesStatus && matchesSearch;
+          });
+
+          const visibleRows = state.showAllRows
+            ? filtered
+            : filtered.slice(0, 5);
+
+          if (visibleRows.length === 0) {
+            tbody.innerHTML = `
+            <tr>
+              <td colspan="6" style="text-align:center; padding:28px; color:#64748b;">
+                No shipments match your current search or filter criteria.
+              </td>
+            </tr>
+          `;
+            return;
+          }
+
+          tbody.innerHTML = visibleRows
+            .map((s) => {
+              const badgeClass =
+                s.status === "Delivered"
+                  ? "status-delivered"
+                  : s.status === "Pending"
+                    ? "status-pending"
+                    : s.status === "Cancelled"
+                      ? "status-cancelled"
+                      : "status-transit";
+
+              return `
+            <tr data-shipment-id="${s.id}">
+              <td><span class="tracking-id">${s.id}</span></td>
+              <td>${s.customer}</td>
+              <td>${s.destination}</td>
+              <td><span class="status-badge ${badgeClass}">${s.status}</span></td>
+              <td>${s.date}</td>
+              <td>
+                <button type="button" class="delete-row-btn" data-delete-id="${s.id}" title="Delete shipment ${s.id}">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/></svg>
+                  Delete
+                </button>
+              </td>
+            </tr>
+          `;
+            })
+            .join("");
+
+          const toggleBtn = document.getElementById("toggleAllBtn");
+          toggleBtn.textContent = state.showAllRows
+            ? "Show Top 5 ↑"
+            : `View All (${filtered.length}) →`;
+        }
+
+        function refreshDashboardUI() {
+          const metrics = calculateMetrics();
+          renderKPIs(metrics);
+          renderCharts(metrics);
+          renderTable();
+        }
+
+        // =======================================================================
+        // 5. DASHBOARD ACTIONS: DELETE, STATUS UPDATE, LIVE SYNC & TOASTS
+        // =======================================================================
+        function showToast(message) {
+          const container = document.getElementById("toastContainer");
+          const toast = document.createElement("div");
+          toast.className = "toast";
+          toast.innerHTML = `<span class="toast-dot"></span><span>${message}</span>`;
+          container.appendChild(toast);
+
+          setTimeout(() => {
+            toast.style.opacity = "0";
+            toast.style.transform = "translateX(20px)";
+            toast.style.transition = "all 0.25s ease";
+            setTimeout(() => toast.remove(), 260);
+          }, 2800);
+        }
+
+        function deleteShipment(shipmentId) {
+          const idx = state.shipmentsData.findIndex((s) => s.id === shipmentId);
+          if (idx === -1) return;
+
+          state.shipmentsData.splice(idx, 1);
+          saveStateToStorage();
+          refreshDashboardUI();
+          showToast(`Deleted shipment ${shipmentId}`);
+        }
+
+        function openShipmentModal(shipmentId) {
+          const item = state.shipmentsData.find((s) => s.id === shipmentId);
+          if (!item) return;
+
+          document.getElementById("modalTitle").textContent =
+            `Shipment ${item.id}`;
+
+          const formattedVal = new Intl.NumberFormat("en-US", {
+            style: "currency",
+            currency: "USD",
+            maximumFractionDigits: 0,
+          }).format(item.value || 0);
+
+          document.getElementById("modalBody").innerHTML = `
+          <div class="detail-grid">
+            <div class="detail-item"><span>Customer</span><strong>${item.customer}</strong></div>
+            <div class="detail-item"><span>Destination</span><strong>${item.destination}</strong></div>
+            <div class="detail-item"><span>Dispatch Date</span><strong>${item.date}</strong></div>
+            <div class="detail-item"><span>Shipment Value</span><strong>${formattedVal}</strong></div>
+            <div class="detail-item"><span>Assigned Vehicle</span><strong>${item.vehicleId || "Unassigned"}</strong></div>
+            <div class="detail-item"><span>Facility Hub</span><strong>${item.hub}</strong></div>
+          </div>
+
+          <div class="input-group" style="margin-bottom:18px;">
+            <label for="modalStatusSelect">Update Delivery Status</label>
+            <select id="modalStatusSelect" class="input-control">
+              <option value="Pending" ${item.status === "Pending" ? "selected" : ""}>Pending</option>
+              <option value="In Transit" ${item.status === "In Transit" ? "selected" : ""}>In Transit</option>
+              <option value="Delivered" ${item.status === "Delivered" ? "selected" : ""}>Delivered</option>
+              <option value="Cancelled" ${item.status === "Cancelled" ? "selected" : ""}>Cancelled</option>
+            </select>
+          </div>
+
+          <div style="display:flex; justify-content:space-between; align-items:center; gap:10px;">
+            <button type="button" class="btn-danger" id="modalDeleteBtn">Delete Shipment</button>
+            <div style="display:flex; gap:10px;">
+              <button type="button" class="btn-secondary" id="modalCancelBtn">Cancel</button>
+              <button type="button" class="btn-primary" id="modalSaveStatusBtn">Save Status</button>
+            </div>
+          </div>
+        `;
+
+          document.getElementById("shipmentModal").classList.add("open");
+
+          document.getElementById("modalCancelBtn").onclick =
+            closeShipmentModal;
+          document.getElementById("modalDeleteBtn").onclick = () => {
+            closeShipmentModal();
+            deleteShipment(shipmentId);
+          };
+          document.getElementById("modalSaveStatusBtn").onclick = () => {
+            const newStatus =
+              document.getElementById("modalStatusSelect").value;
+            updateShipmentStatus(shipmentId, newStatus);
+            closeShipmentModal();
+          };
+        }
+
+        function closeShipmentModal() {
+          document.getElementById("shipmentModal").classList.remove("open");
+        }
+
+        function updateShipmentStatus(shipmentId, newStatus) {
+          const target = state.shipmentsData.find((s) => s.id === shipmentId);
+          if (!target || target.status === newStatus) return;
+
+          const prevStatus = target.status;
+          target.status = newStatus;
+
+          if (newStatus === "Delivered") {
+            target.date = TODAY_ISO;
+            target.deliveryHours = target.dispatchHoursAgo || 48;
+          }
+          if (newStatus === "In Transit" && !target.vehicleId) {
+            target.vehicleId = `TRK-${Math.floor(160 + Math.random() * 35)}`;
+          }
+
+          saveStateToStorage();
+          refreshDashboardUI();
+          showToast(`${shipmentId} updated: ${prevStatus} → ${newStatus}`);
+        }
+
+        function simulateLiveOperation() {
+          const customers = [
+            "Daniel Kim",
+            "Rachel Green",
+            "Kevin Patel",
+            "Hannah Lee",
+            "Carlos Rivera",
+          ];
+          const cities = [
+            "San Francisco, CA",
+            "Philadelphia, PA",
+            "Orlando, FL",
+            "Salt Lake City, UT",
+            "St. Louis, MO",
+          ];
+          const nextNum = 123456 + Math.floor(Math.random() * 800000);
+
+          const newRecord = {
+            id: `SW${nextNum}`,
+            customer: customers[Math.floor(Math.random() * customers.length)],
+            destination: cities[Math.floor(Math.random() * cities.length)],
+            status: "In Transit",
+            date: TODAY_ISO,
+            value: Math.floor(3200 + Math.random() * 4800),
+            vehicleId: `TRK-${Math.floor(165 + Math.random() * 30)}`,
+            dispatchHoursAgo: 1,
+            deliveryHours: null,
+            hub: "Automated Regional Hub #01",
+          };
+
+          state.shipmentsData.unshift(newRecord);
+
+          const movable = state.shipmentsData.find(
+            (s, i) =>
+              i > 0 && (s.status === "In Transit" || s.status === "Pending"),
+          );
+          if (movable) {
+            movable.status = "Delivered";
+            movable.date = TODAY_ISO;
+            movable.deliveryHours = 46;
+          }
+
+          saveStateToStorage();
+          refreshDashboardUI();
+          showToast(
+            `Live sync: Dispatched ${newRecord.id}${movable ? ` & delivered ${movable.id}` : ""}`,
+          );
+        }
+
+        // =======================================================================
+        // 6. EVENT BINDINGS (DASHBOARD ONLY)
+        // =======================================================================
+        function bindEvents() {
+          document
+            .getElementById("simulateLiveBtn")
+            .addEventListener("click", simulateLiveOperation);
+
+          const syncTimeframe = (val) => {
+            state.selectedTimeframe = val;
+            document.getElementById("shipmentsPeriodSelect").value = val;
+            document.getElementById("revenuePeriodSelect").value = val;
+            renderCharts(calculateMetrics());
+            showToast(
+              `Charts updated to ${val === "7d" ? "Last 7 Days" : val === "1y" ? "Last 1 Year" : "Last 6 Months"}`,
+            );
+          };
+
+          document
+            .getElementById("shipmentsPeriodSelect")
+            .addEventListener("change", (e) => syncTimeframe(e.target.value));
+          document
+            .getElementById("revenuePeriodSelect")
+            .addEventListener("change", (e) => syncTimeframe(e.target.value));
+
+          document
+            .getElementById("tableSearchInput")
+            .addEventListener("input", (e) => {
+              state.searchQuery = e.target.value;
+              renderTable();
+            });
+
+          document
+            .getElementById("tableStatusFilter")
+            .addEventListener("change", (e) => {
+              state.statusFilter = e.target.value;
+              renderTable();
+              showToast(
+                `Filtered shipments: ${e.target.value === "ALL" ? "All Statuses" : e.target.value}`,
+              );
+            });
+
+          document
+            .getElementById("toggleAllBtn")
+            .addEventListener("click", () => {
+              state.showAllRows = !state.showAllRows;
+              renderTable();
+            });
+
+          // Table click delegation: Delete button vs Row modal
+          document
+            .getElementById("shipmentsTableBody")
+            .addEventListener("click", (e) => {
+              const deleteBtn = e.target.closest("button[data-delete-id]");
+              if (deleteBtn) {
+                e.stopPropagation();
+                deleteShipment(deleteBtn.dataset.deleteId);
+                return;
+              }
+
+              const row = e.target.closest("tr[data-shipment-id]");
+              if (row) {
+                openShipmentModal(row.dataset.shipmentId);
+              }
+            });
+
+          document
+            .getElementById("closeModalBtn")
+            .addEventListener("click", closeShipmentModal);
+          document
+            .getElementById("shipmentModal")
+            .addEventListener("click", (e) => {
+              if (e.target.id === "shipmentModal") closeShipmentModal();
+            });
+        }
+
+        // =======================================================================
+        // 7. BOOTSTRAP DASHBOARD
+        // =======================================================================
+        function initApp() {
+          loadStateFromStorage();
+          refreshDashboardUI();
+          bindEvents();
+        }
+
+        window.addEventListener("DOMContentLoaded", initApp);
+      })();
+    </script>
   </body>
 </html>
-
