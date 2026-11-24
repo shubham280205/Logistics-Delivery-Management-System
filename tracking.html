@@ -1,17 +1,13 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Track Shipment | LogiTrack</title>
-
     <link rel="stylesheet" href="style.css">
 
     <style>
-    
-
         * {
             box-sizing: border-box;
         }
@@ -23,13 +19,11 @@
             font-family: Arial, sans-serif;
         }
 
-
         .track-hero {
             position: relative;
             min-height: 555px;
             margin: 0;
             overflow: hidden;
-
             background-image:
                 linear-gradient(
                     90deg,
@@ -40,7 +34,6 @@
                     rgba(244, 249, 255, 0.05) 100%
                 ),
                 url("assets/tracking-bg.png");
-
             background-size: cover;
             background-position: center;
         }
@@ -48,7 +41,6 @@
         .track-hero-content {
             position: relative;
             z-index: 2;
-
             max-width: 1200px;
             margin: auto;
             padding: 65px 35px;
@@ -56,9 +48,7 @@
 
         .track-eyebrow {
             display: inline-block;
-
             margin-bottom: 12px;
-
             color: #4b6b9d;
             font-size: 15px;
             font-weight: 700;
@@ -68,7 +58,6 @@
         .track-title {
             max-width: 540px;
             margin: 0;
-
             color: #142b5c;
             font-size: 58px;
             line-height: 1.05;
@@ -82,57 +71,44 @@
         .track-description {
             max-width: 520px;
             margin: 20px 0 30px;
-
             color: #536b91;
             font-size: 19px;
             line-height: 1.55;
         }
 
-     
-
         .tracking-card {
             width: 665px;
             max-width: 100%;
-
             padding: 20px 22px;
-
             background: rgba(255, 255, 255, 0.95);
             border: 1px solid rgba(210, 225, 245, 0.9);
             border-radius: 14px;
-
             box-shadow: 0 15px 40px rgba(35, 78, 130, 0.14);
         }
 
         .tracking-search {
             display: flex;
             align-items: center;
-
             width: 100%;
             height: 54px;
-
             border: 1px solid #d7e4f5;
             border-radius: 9px;
             background: white;
-
             overflow: hidden;
         }
 
         .search-icon {
             padding-left: 16px;
-
             color: #142b5c;
             font-size: 23px;
         }
 
         .tracking-search input {
             flex: 1;
-
             height: 100%;
             padding: 0 15px;
-
             border: none;
             outline: none;
-
             color: #20375f;
             font-size: 15px;
         }
@@ -144,14 +120,11 @@
         .track-button {
             height: 100%;
             padding: 0 30px;
-
             border: none;
             background: #1769e0;
             color: white;
-
             font-size: 16px;
             font-weight: 700;
-
             cursor: pointer;
         }
 
@@ -164,9 +137,7 @@
             align-items: center;
             flex-wrap: wrap;
             gap: 10px;
-
             margin-top: 17px;
-
             color: #263b61;
             font-size: 14px;
         }
@@ -178,72 +149,52 @@
 
         .example {
             padding: 9px 17px;
-
             border-radius: 9px;
             background: #e5efff;
-
             color: #1769e0;
             font-weight: 700;
             font-size: 13px;
         }
 
-      
-
         .status-card {
             position: absolute;
             z-index: 3;
-
             top: 55px;
             right: 13%;
-
             width: 225px;
-
             padding: 22px 20px;
-
             background: rgba(255, 255, 255, 0.91);
             border: 1px solid rgba(255, 255, 255, 0.8);
             border-radius: 14px;
-
             box-shadow: 0 15px 35px rgba(34, 70, 110, 0.18);
-
             backdrop-filter: blur(5px);
         }
 
         .status-item {
             position: relative;
-
             display: flex;
             gap: 13px;
-
             min-height: 58px;
         }
 
         .status-item:not(:last-child)::after {
             content: "";
-
             position: absolute;
-
             left: 10px;
             top: 22px;
-
             width: 2px;
             height: 42px;
-
             background: #b9cdea;
         }
 
         .status-dot {
             position: relative;
             z-index: 2;
-
             width: 21px;
             height: 21px;
-
             flex-shrink: 0;
-
             border-radius: 50%;
             background: #1769e0;
-
             box-shadow: 0 0 0 6px #e4efff;
         }
 
@@ -254,10 +205,8 @@
 
         .status-text strong {
             display: block;
-
             color: #172c53;
             font-size: 14px;
-
             margin-bottom: 4px;
         }
 
@@ -266,15 +215,11 @@
             font-size: 12px;
         }
 
-      
-
         .features {
             max-width: 1200px;
             margin: auto;
-
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-
             padding: 35px 25px;
         }
 
@@ -282,9 +227,7 @@
             display: flex;
             align-items: center;
             gap: 18px;
-
             padding: 10px 25px;
-
             border-right: 1px solid #dce7f4;
         }
 
@@ -295,46 +238,35 @@
         .feature-icon {
             width: 58px;
             height: 58px;
-
             display: flex;
             align-items: center;
             justify-content: center;
-
             flex-shrink: 0;
-
             border-radius: 50%;
             background: #e3efff;
-
             color: #1769e0;
             font-size: 25px;
         }
 
         .feature h3 {
             margin: 0 0 6px;
-
             color: #152952;
             font-size: 16px;
         }
 
         .feature p {
             margin: 0;
-
             color: #647b9e;
             font-size: 13px;
             line-height: 1.45;
         }
 
-    
-
         .lower-section {
             max-width: 1200px;
             margin: 5px auto 50px;
-
             display: grid;
             grid-template-columns: 2fr 1fr;
-
             gap: 25px;
-
             padding: 0 25px;
         }
 
@@ -342,10 +274,8 @@
             display: flex;
             align-items: center;
             gap: 25px;
-
             min-height: 150px;
             padding: 25px 30px;
-
             border-radius: 14px;
             background: #edf5ff;
         }
@@ -353,16 +283,12 @@
         .customer-avatar {
             width: 75px;
             height: 75px;
-
             display: flex;
             align-items: center;
             justify-content: center;
-
             flex-shrink: 0;
-
             border-radius: 50%;
             background: #d5e7ff;
-
             color: #1769e0;
             font-size: 28px;
         }
@@ -375,16 +301,13 @@
 
         .customer-name {
             margin-top: 8px;
-
             color: #526e99;
             font-size: 13px;
         }
 
         .green-card {
             padding: 25px;
-
             border-radius: 14px;
-
             background: linear-gradient(
                 135deg,
                 #edfafa,
@@ -394,14 +317,12 @@
 
         .green-card h3 {
             margin: 0 0 10px;
-
             color: #193c62;
             font-size: 17px;
         }
 
         .green-card p {
             margin: 0 0 18px;
-
             color: #5d7894;
             font-size: 13px;
             line-height: 1.5;
@@ -414,10 +335,7 @@
             text-decoration: none;
         }
 
-   
-
         @media (max-width: 1000px) {
-
             .status-card {
                 right: 5%;
             }
@@ -436,22 +354,19 @@
         }
 
         @media (max-width: 750px) {
-
             .track-hero {
                 min-height: auto;
-
                 background-position: 65% center;
-
                 background-image:
-    linear-gradient(
-        90deg,
-        rgba(244, 249, 255, 0.80) 0%,
-        rgba(244, 249, 255, 0.60) 25%,
-        rgba(244, 249, 255, 0.25) 45%,
-        rgba(244, 249, 255, 0.05) 70%,
-        rgba(244, 249, 255, 0.00) 100%
-    ),
-    url("assets/tracking-bg.png");
+                    linear-gradient(
+                        90deg,
+                        rgba(244, 249, 255, 0.80) 0%,
+                        rgba(244, 249, 255, 0.60) 25%,
+                        rgba(244, 249, 255, 0.25) 45%,
+                        rgba(244, 249, 255, 0.05) 70%,
+                        rgba(244, 249, 255, 0.00) 100%
+                    ),
+                    url("assets/tracking-bg.png");
             }
 
             .track-hero-content {
@@ -468,10 +383,8 @@
 
             .status-card {
                 position: relative;
-
                 top: auto;
                 right: auto;
-
                 margin: 30px auto 0;
             }
 
@@ -482,7 +395,6 @@
             .tracking-search {
                 height: auto;
                 flex-direction: column;
-
                 border: none;
                 overflow: visible;
                 gap: 10px;
@@ -495,7 +407,6 @@
             .tracking-search input {
                 width: 100%;
                 height: 52px;
-
                 border: 1px solid #d7e4f5;
                 border-radius: 9px;
             }
@@ -503,20 +414,17 @@
             .track-button {
                 width: 100%;
                 height: 52px;
-
                 border-radius: 9px;
             }
 
             .features {
                 grid-template-columns: 1fr;
-
                 padding: 25px 20px;
             }
 
             .feature {
                 border-right: none;
                 border-bottom: 1px solid #dce7f4;
-
                 padding: 20px 5px;
             }
 
@@ -526,13 +434,11 @@
 
             .lower-section {
                 grid-template-columns: 1fr;
-
                 padding: 0 20px;
             }
         }
 
         @media (max-width: 500px) {
-
             .track-title {
                 font-size: 35px;
             }
@@ -558,66 +464,66 @@
     </style>
 </head>
 
-
 <body>
 
-
+    <!-- SHARED NAVBAR -->
     <header class="site-header">
-    <div class="header-inner">
-        <a href="index.html" class="logo" aria-label="LogiTrack home">
-            <svg class="logo-mark" viewBox="0 0 32 32" aria-hidden="true">
-                <rect width="32" height="32" rx="8" fill="#1a5fd0"/>
-                <path d="M10 7.5v14.5h8" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                <circle cx="23.5" cy="22" r="3.2" fill="#f0a020"/>
-            </svg>
-            <span class="logo-word">Logi<b>Track</b></span>
-        </a>
+        <div class="header-inner">
 
-        <nav class="nav" id="main-nav" aria-label="Main">
-            <a href="index.html">Home</a>
-
-<<<<<<< HEAD
-            
-                       <a href="tracking.html" aria-current="page">
-                <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M12 21s7-6.1 7-11.2A7 7 0 0 0 5 9.8C5 14.9 12 21 12 21Z"/>
-                    <circle cx="12" cy="9.8" r="2.3"/>
+            <a href="index.html" class="logo" aria-label="LogiTrack home">
+                <svg class="logo-mark" viewBox="0 0 32 32" aria-hidden="true">
+                    <rect width="32" height="32" rx="8" fill="#1a5fd0"/>
+                    <path d="M10 7.5v14.5h8" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                    <circle cx="23.5" cy="22" r="3.2" fill="#f0a020"/>
                 </svg>
-                Track Shipment
+                <span class="logo-word">Logi<b>Track</b></span>
             </a>
 
-            <a href="dashboard.html">
-                <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true">
-                    <rect x="4" y="4" width="6" height="6" rx="1"/>
-                    <rect x="14" y="4" width="6" height="6" rx="1"/>
-                    <rect x="4" y="14" width="6" height="6" rx="1"/>
-                    <rect x="14" y="14" width="6" height="6" rx="1"/>
-                </svg>
-                Dashboard
-            </a>
+            <nav class="nav" id="main-nav" aria-label="Main">
 
-            <a href="manage.html">
-                <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.09a2 2 0 0 1 1 1.74v.5a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.38a2 2 0 0 0-.73-2.73l-.15-.09a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/>
-                    <circle cx="12" cy="12" r="3"/>
-                </svg>
-                Manage
-            </a>
->>>>>>> e22c1ec (Update tracking.html)
-            <a href="contact.html">
-                <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M6.6 10.8a15.7 15.7 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1.1-.2c1.2.5 2.5.7 3.8.7a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.6 21 3 13.4 3 4a1 1 0 0 1 1-1h3.3a1 1 0 0 1 1 1c0 1.3.2 2.6.7 3.8a1 1 0 0 1-.2 1.1L6.6 10.8Z"/>
-                </svg>
-                Contact
-            </a>
-        </nav>
+                <a href="index.html">Home</a>
 
-        <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="main-nav">
-            <span></span><span></span><span></span>
-        </button>
-    </div>
-</header>
+                <a href="tracking.html" aria-current="page">
+                    <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M12 21s7-6.1 7-11.2A7 7 0 0 0 5 9.8C5 14.9 12 21 12 21Z"/>
+                        <circle cx="12" cy="9.8" r="2.3"/>
+                    </svg>
+                    Track Shipment
+                </a>
 
+                <a href="dashboard.html">
+                    <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true">
+                        <rect x="4" y="4" width="6" height="6" rx="1"/>
+                        <rect x="14" y="4" width="6" height="6" rx="1"/>
+                        <rect x="4" y="14" width="6" height="6" rx="1"/>
+                        <rect x="14" y="14" width="6" height="6" rx="1"/>
+                    </svg>
+                    Dashboard
+                </a>
+
+                <a href="manage.html">
+                    <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.09a2 2 0 0 1 1 1.74v.5a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.38a2 2 0 0 0-.73-2.73l-.15-.09a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/>
+                        <circle cx="12" cy="12" r="3"/>
+                    </svg>
+                    Manage
+                </a>
+
+                <a href="contact.html">
+                    <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M6.6 10.8a15.7 15.7 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1.1-.2c1.2.5 2.5.7 3.8.7a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.6 21 3 13.4 3 4a1 1 0 0 1 1-1h3.3a1 1 0 0 1 1 1c0 1.3.2 2.6.7 3.8a1 1 0 0 1-.2 1.1L6.6 10.8Z"/>
+                    </svg>
+                    Contact
+                </a>
+
+            </nav>
+
+            <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="main-nav">
+                <span></span><span></span><span></span>
+            </button>
+
+        </div>
+    </header>
 
     <section class="track-hero">
 
@@ -638,9 +544,6 @@
                 updates on your shipment's journey.
             </p>
 
-
-        
-
             <div class="tracking-card">
 
                 <div class="tracking-search">
@@ -659,7 +562,6 @@
                     </button>
 
                 </div>
-
 
                 <div class="examples">
 
@@ -685,146 +587,87 @@
 
         </div>
 
-
-
         <div class="status-card">
 
             <div class="status-item">
-
                 <div class="status-dot"></div>
-
                 <div class="status-text">
                     <strong>Picked Up</strong>
                     <span>10:24 AM</span>
                 </div>
-
             </div>
 
-
             <div class="status-item">
-
                 <div class="status-dot"></div>
-
                 <div class="status-text">
                     <strong>In Transit</strong>
                     <span>01:15 PM</span>
                 </div>
-
             </div>
 
-
             <div class="status-item">
-
                 <div class="status-dot"></div>
-
                 <div class="status-text">
                     <strong>Out for Delivery</strong>
                     <span>Expected 4:30 PM</span>
                 </div>
-
             </div>
 
-
             <div class="status-item">
-
                 <div class="status-dot gray"></div>
-
                 <div class="status-text">
                     <strong>Delivered</strong>
                     <span>Pending</span>
                 </div>
-
             </div>
 
         </div>
 
     </section>
-
-
 
     <section class="features">
 
         <div class="feature">
-
-            <div class="feature-icon">
-                □
-            </div>
-
+            <div class="feature-icon">□</div>
             <div>
                 <h3>Real-Time Updates</h3>
-
-                <p>
-                    Know where your package is at every step.
-                </p>
+                <p>Know where your package is at every step.</p>
             </div>
-
         </div>
 
-
         <div class="feature">
-
-            <div class="feature-icon">
-                ●
-            </div>
-
+            <div class="feature-icon">●</div>
             <div>
                 <h3>Live Tracking</h3>
-
-                <p>
-                    See your shipment on a real map.
-                </p>
+                <p>See your shipment on a real map.</p>
             </div>
-
         </div>
 
-
         <div class="feature">
-
-            <div class="feature-icon">
-                ♢
-            </div>
-
+            <div class="feature-icon">♢</div>
             <div>
                 <h3>Safe & Reliable</h3>
-
-                <p>
-                    Your deliveries are in trusted hands.
-                </p>
+                <p>Your deliveries are in trusted hands.</p>
             </div>
-
         </div>
 
-
         <div class="feature">
-
-            <div class="feature-icon">
-                ♧
-            </div>
-
+            <div class="feature-icon">♧</div>
             <div>
                 <h3>People First</h3>
-
-                <p>
-                    A smoother, human logistics experience.
-                </p>
+                <p>A smoother, human logistics experience.</p>
             </div>
-
         </div>
 
     </section>
 
-
     <section class="lower-section">
-
 
         <div class="testimonial">
 
-            <div class="customer-avatar">
-                ♡
-            </div>
+            <div class="customer-avatar">♡</div>
 
             <div>
-
                 <div class="quote">
                     “I love how easy it is to track my orders.
                     LogiTrack keeps me updated at every step!”
@@ -833,32 +676,26 @@
                 <div class="customer-name">
                     — Priya S., Verified Customer
                 </div>
-
             </div>
 
         </div>
 
-
         <div class="green-card">
 
-            <h3>
-                🌱 A Greener Tomorrow
-            </h3>
+            <h3>🌱 A Greener Tomorrow</h3>
 
             <p>
                 Every tracked delivery helps us build
                 a cleaner, more connected world.
             </p>
 
-            <a href="#">
-                Learn More →
-            </a>
+            <a href="#">Learn More →</a>
 
         </div>
 
     </section>
 
+    <script src="tracking.js"></script>
 
 </body>
-
 </html>
