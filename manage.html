@@ -48,25 +48,29 @@
         </a>
 
 
-        <a href="tracking.html">
+        <a href="pages/tracking.html">
             <span class="nav-icon">⌾</span>
             Track Shipment
         </a>
 
 
-        <a href="dashboard.html">
+        <a href="pages/dashboard.html">
             <span class="nav-icon">⊞</span>
             Dashboard
         </a>
 
 
+<<<<<<< HEAD
         <a href="index.html" class="active">
+=======
+        <a href="manage.html" class="active">
+>>>>>>> 72f5e15 (Added JavaScript functionality to manage page)
             <span class="nav-icon">⚙</span>
             Manage
         </a>
 
 
-        <a href="contact.html">
+        <a href="pages/contact.html">
             <span class="nav-icon">☎</span>
             Contact
         </a>
@@ -406,6 +410,23 @@
 
 
 
+<<<<<<< HEAD
+=======
+    <div class="table-tools">
+        <div id="bulkPanel" class="bulk-panel" hidden>
+            <strong id="selCount">0 selected</strong>
+            <select id="bulkStatus"><option>Pending</option><option>In Transit</option><option>Delivered</option><option>Delayed</option></select>
+            <button class="btn" data-bulk="status">Apply status</button>
+            <button class="btn" data-bulk="export">Export selected</button>
+            <button class="btn danger" data-bulk="delete">Delete</button>
+            <button class="btn" data-bulk="exit">Done</button>
+        </div>
+        <span class="hint">Shortcuts: <kbd>/</kbd> search &middot; <kbd>N</kbd> new shipment</span>
+        <button class="btn" id="liveBtn">○ Live updates: OFF</button>
+        <button class="btn" id="exportBtn">⇩ Export CSV</button>
+    </div>
+
+>>>>>>> 72f5e15 (Added JavaScript functionality to manage page)
     <!-- ================= TABLE ================= -->
 
     <div class="table-container">
@@ -455,6 +476,7 @@
 
 
 
+<<<<<<< HEAD
             <tbody id="shipmentTable">
 
 
@@ -818,6 +840,9 @@
 
 
             </tbody>
+=======
+            <tbody id="shipmentTable"></tbody>
+>>>>>>> 72f5e15 (Added JavaScript functionality to manage page)
 
         </table>
 
@@ -828,6 +853,7 @@
     <!-- ================= PAGINATION ================= -->
 
     <div class="table-bottom">
+<<<<<<< HEAD
 
 
         <p>
@@ -867,6 +893,12 @@
     </div>
 
 
+=======
+        <p>Loading shipments…</p>
+        <div class="pagination" id="pagination"></div>
+    </div>
+
+>>>>>>> 72f5e15 (Added JavaScript functionality to manage page)
 </section>
 
 
@@ -1073,6 +1105,7 @@
 
 <!-- ================= JAVASCRIPT ================= -->
 
+<<<<<<< HEAD
 <script>
 
 
@@ -1215,8 +1248,15 @@ function manageBulk() {
 
 
 </script>
+=======
+<script src="manage.js"></script>
+>>>>>>> 72f5e15 (Added JavaScript functionality to manage page)
 
 
 </body>
 
+<<<<<<< HEAD
 </html>
+=======
+</html>
+>>>>>>> 72f5e15 (Added JavaScript functionality to manage page)
