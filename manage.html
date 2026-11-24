@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Manage Deliveries | LogiTrack</title>
+
+    <link rel="stylesheet" href="manage.css">
+
+</head>
+
+
+<body>
+
+
+<!-- ================= NAVBAR ================= -->
+
+<header class="navbar">
+
+    <div class="logo">
+
+        <div class="logo-icon">
+            L
+        </div>
+
+        <div>
+
+            <h2>LogiTrack</h2>
+
+            <span>
+                Delivery Management
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <nav class="nav-links">
+
+        <a href="index.html">
+            <span class="nav-icon">⌂</span>
+            Home
+        </a>
+
+
+        <a href="pages/tracking.html">
+            <span class="nav-icon">⌾</span>
+            Track Shipment
+        </a>
+
+
+        <a href="pages/dashboard.html">
+            <span class="nav-icon">⊞</span>
+            Dashboard
+        </a>
+
+
+        <a href="manage.html" class="active">
+            <span class="nav-icon">⚙</span>
+            Manage
+        </a>
+
+
+        <a href="pages/contact.html">
+            <span class="nav-icon">☎</span>
+            Contact
+        </a>
+
+    </nav>
+
+</header>
+
+
+
+<!-- ================= MAIN ================= -->
+
+<main>
+
+
+<!-- ================= HERO ================= -->
+
+<section class="manage-hero">
+
+
+    <div class="hero-overlay"></div>
+
+
+    <div class="manage-hero-content">
+
+        <p class="hero-label">
+            OPERATIONS MADE SIMPLE
+        </p>
+
+
+        <h1>
+            Manage Deliveries
+            <br>
+            <span>with Confidence</span>
+        </h1>
+
+
+        <p class="hero-description">
+
+            Keep your shipments, routes, and resources
+            organized every step of the way.
+
+        </p>
+
+
+        <div class="hero-features">
+
+
+            <div class="hero-feature">
+
+                <div class="hero-feature-icon">
+                    📦
+                </div>
+
+                <p>
+                    Organize
+                    <br>
+                    Shipments
+                </p>
+
+            </div>
+
+
+            <div class="hero-feature">
+
+                <div class="hero-feature-icon">
+                    👥
+                </div>
+
+                <p>
+                    Coordinate
+                    <br>
+                    Drivers
+                </p>
+
+            </div>
+
+
+            <div class="hero-feature">
+
+                <div class="hero-feature-icon">
+                    🔗
+                </div>
+
+                <p>
+                    Optimize
+                    <br>
+                    Routes
+                </p>
+
+            </div>
+
+
+            <div class="hero-feature">
+
+                <div class="hero-feature-icon">
+                    📊
+                </div>
+
+                <p>
+                    Improve
+                    <br>
+                    Efficiency
+                </p>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= STATISTICS ================= -->
+
+<section class="management-stats">
+
+
+    <div class="management-stat">
+
+        <div class="management-stat-icon blue">
+            📦
+        </div>
+
+        <div>
+
+            <p>Total Shipments</p>
+
+            <h2 id="totalShipments">
+                248
+            </h2>
+
+            <small class="positive">
+                ↑ 12%
+            </small>
+
+            <small>
+                vs last week
+            </small>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="management-stat">
+
+        <div class="management-stat-icon blue">
+            🚚
+        </div>
+
+        <div>
+
+            <p>In Transit</p>
+
+            <h2 id="transitShipments">
+                36
+            </h2>
+
+            <small class="neutral">
+                →
+            </small>
+
+            <small>
+                On the move
+            </small>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="management-stat">
+
+        <div class="management-stat-icon green">
+            ✓
+        </div>
+
+        <div>
+
+            <p>Delivered</p>
+
+            <h2 id="deliveredShipments">
+                186
+            </h2>
+
+            <small class="positive">
+                ↑ 8%
+            </small>
+
+            <small>
+                vs last week
+            </small>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="management-stat">
+
+        <div class="management-stat-icon red">
+            !
+        </div>
+
+        <div>
+
+            <p>Pending / Delayed</p>
+
+            <h2 id="pendingShipments">
+                26
+            </h2>
+
+            <small class="negative">
+                ↓ 3%
+            </small>
+
+            <small>
+                Require attention
+            </small>
+
+        </div>
+
+    </div>
+
+
+
+    <button
+        class="add-shipment-button"
+        onclick="addShipment()"
+    >
+
+        + Add Shipment
+
+    </button>
+
+
+</section>
+
+
+
+<!-- ================= SHIPMENT AREA ================= -->
+
+<section class="shipment-section">
+
+
+    <!-- SEARCH AND FILTER -->
+
+    <div class="filter-box">
+
+
+        <div class="search-container">
+
+            <span>
+                ⌕
+            </span>
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search by tracking number, sender, receiver, or destination..."
+                onkeyup="filterShipments()"
+            >
+
+        </div>
+
+
+
+        <select
+            id="statusFilter"
+            onchange="filterShipments()"
+        >
+
+            <option value="all">
+                All Status
+            </option>
+
+            <option value="In Transit">
+                In Transit
+            </option>
+
+            <option value="Delivered">
+                Delivered
+            </option>
+
+            <option value="Pending">
+                Pending
+            </option>
+
+            <option value="Delayed">
+                Delayed
+            </option>
+
+        </select>
+
+
+
+        <select
+            id="dateFilter"
+            onchange="filterShipments()"
+        >
+
+            <option value="all">
+                All Dates
+            </option>
+
+            <option value="recent">
+                Recent
+            </option>
+
+            <option value="old">
+                Older
+            </option>
+
+        </select>
+
+
+
+        <button
+            class="reset-button"
+            onclick="resetFilters()"
+        >
+
+            ↻ Reset
+
+        </button>
+
+
+    </div>
+
+
+
+    <div class="table-tools">
+        <div id="bulkPanel" class="bulk-panel" hidden>
+            <strong id="selCount">0 selected</strong>
+            <select id="bulkStatus"><option>Pending</option><option>In Transit</option><option>Delivered</option><option>Delayed</option></select>
+            <button class="btn" data-bulk="status">Apply status</button>
+            <button class="btn" data-bulk="export">Export selected</button>
+            <button class="btn danger" data-bulk="delete">Delete</button>
+            <button class="btn" data-bulk="exit">Done</button>
+        </div>
+        <span class="hint">Shortcuts: <kbd>/</kbd> search &middot; <kbd>N</kbd> new shipment</span>
+        <button class="btn" id="liveBtn">○ Live updates: OFF</button>
+        <button class="btn" id="exportBtn">⇩ Export CSV</button>
+    </div>
+
+    <!-- ================= TABLE ================= -->
+
+    <div class="table-container">
+
+        <table>
+
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        Tracking No.
+                    </th>
+
+                    <th>
+                        Sender
+                    </th>
+
+                    <th>
+                        Receiver
+                    </th>
+
+                    <th>
+                        Route
+                    </th>
+
+                    <th>
+                        Date
+                    </th>
+
+                    <th>
+                        Weight
+                    </th>
+
+                    <th>
+                        Status
+                    </th>
+
+                    <th>
+                        Actions
+                    </th>
+
+                </tr>
+
+            </thead>
+
+
+
+            <tbody id="shipmentTable"></tbody>
+
+        </table>
+
+    </div>
+
+
+
+    <!-- ================= PAGINATION ================= -->
+
+    <div class="table-bottom">
+        <p>Loading shipments…</p>
+        <div class="pagination" id="pagination"></div>
+    </div>
+
+</section>
+
+
+
+<!-- ================= BULK MANAGEMENT ================= -->
+
+<section class="bulk-management">
+
+
+    <div class="bulk-icon">
+        📦
+    </div>
+
+
+    <div class="bulk-content">
+
+        <h2>
+            Need to manage multiple shipments at once?
+        </h2>
+
+        <p>
+            Use bulk actions to update status,
+            assign drivers, or download reports.
+        </p>
+
+    </div>
+
+
+    <button
+        class="bulk-button"
+        onclick="manageBulk()"
+    >
+
+        Manage in Bulk →
+        
+    </button>
+
+
+    <div class="bulk-boxes">
+
+        📦 📦 📦
+
+    </div>
+
+
+</section>
+
+
+</main>
+
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+
+    <div class="footer-logo">
+
+        <div class="footer-brand">
+
+            <div class="footer-icon">
+                L
+            </div>
+
+            <h2>
+                LogiTrack
+            </h2>
+
+        </div>
+
+        <p>
+            Smarter deliveries. Better logistics.
+        </p>
+
+    </div>
+
+
+
+    <div class="footer-column">
+
+        <h3>
+            Quick Links
+        </h3>
+
+        <a href="#">
+            Home
+        </a>
+
+        <a href="#">
+            Track Shipment
+        </a>
+
+        <a href="#">
+            Dashboard
+        </a>
+
+        <a href="#">
+            Manage
+        </a>
+
+        <a href="#">
+            Contact
+        </a>
+
+    </div>
+
+
+
+    <div class="footer-column">
+
+        <h3>
+            Support
+        </h3>
+
+        <a href="#">
+            Help Center
+        </a>
+
+        <a href="#">
+            Shipping Guidelines
+        </a>
+
+        <a href="#">
+            Terms of Service
+        </a>
+
+        <a href="#">
+            Privacy Policy
+        </a>
+
+        <a href="#">
+            FAQ
+        </a>
+
+    </div>
+
+
+
+    <div class="footer-column">
+
+        <h3>
+            Company
+        </h3>
+
+        <a href="#">
+            About Us
+        </a>
+
+        <a href="#">
+            Careers
+        </a>
+
+        <a href="#">
+            Blog
+        </a>
+
+        <a href="#">
+            Partners
+        </a>
+
+    </div>
+
+
+
+    <div class="footer-message">
+
+        <div class="leaf">
+            ♧
+        </div>
+
+        <div>
+
+            <h3>
+                A Cleaner, Brighter Tomorrow
+            </h3>
+
+            <p>
+                Optimizing routes. Reducing emissions.
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="footer-bottom">
+
+        <p>
+            © 2026 LogiTrack. All rights reserved.
+        </p>
+
+        <div>
+            ▶ &nbsp;&nbsp; in &nbsp;&nbsp; ♥ &nbsp;&nbsp; ◎
+        </div>
+
+    </div>
+
+
+</footer>
+
+
+
+<!-- ================= JAVASCRIPT ================= -->
+
+<script src="manage.js"></script>
+
+
+</body>
+
+</html>
