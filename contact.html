@@ -1,0 +1,1166 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | LogiTrack</title>
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Shared Website CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Contact Page CSS -->
+    <link rel="stylesheet" href="css/contact.css">
+
+    <!-- Extra styles needed by the JavaScript -->
+    <style>
+        .field-error { display: block; color: #d93025; margin-top: 6px; font-size: .85rem; }
+        input.invalid, select.invalid, textarea.invalid { border-color: #d93025 !important; }
+        .char-counter { display: block; text-align: right; color: #6b7280; margin-top: 4px; font-size: .8rem; }
+
+        .form-status { margin-bottom: 14px; border-radius: 8px; font-size: .95rem; }
+        .form-status.success { padding: 12px 14px; background: #e6f4ea; color: #137333; }
+        .form-status.error { padding: 12px 14px; background: #fdecea; color: #b3261e; }
+
+        /* Active link: white text so it stays readable on the blue button */
+        .nav a.active,
+        .nav a.active:hover { color: #fff !important; }
+
+        /* Footer logo fix: visible text and styled "L" icon on the dark footer */
+        .contact-footer .footer-logo { display: flex; align-items: center; gap: 12px; }
+        .contact-footer .footer-logo h2 { color: #fff; margin: 0; font-size: 1.4rem; line-height: 1.2; }
+        .contact-footer .footer-logo span { color: #9db2d6; font-size: .9rem; }
+        .contact-footer .footer-logo .logo-icon {
+            width: 42px; height: 42px; border-radius: 10px; flex-shrink: 0;
+            background: #1a5fd0; color: #fff; font-weight: 700; font-size: 1.3rem;
+            display: grid; place-items: center;
+        }
+
+        .send-button:disabled { opacity: .7; cursor: not-allowed; }
+
+        .copy-toast {
+            position: fixed; left: 50%; bottom: 28px; transform: translateX(-50%);
+            background: #1f2937; color: #fff; padding: 10px 18px; border-radius: 8px;
+            font-size: .9rem; z-index: 999; opacity: 0; pointer-events: none;
+            transition: opacity .2s;
+        }
+        .copy-toast.show { opacity: 1; }
+
+        @media (max-width: 768px) {
+            .nav { display: none; }
+            .nav.open { display: flex; flex-direction: column; }
+        }
+    </style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/shared-navbar.css">
+<link rel="stylesheet" href="css/shared-admin.css">
+</head>
+
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <header class="site-header">
+    <div class="header-inner">
+        <a href="index.html" class="logo" aria-label="LogiTrack home">
+            <svg class="logo-mark" viewBox="0 0 32 32" aria-hidden="true">
+                <rect width="32" height="32" rx="8" fill="#1a5fd0"/>
+                <path d="M10 7.5v14.5h8" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="23.5" cy="22" r="3.2" fill="#f0a020"/>
+            </svg>
+            <span class="logo-word">Logi<b>Track</b></span>
+        </a>
+        <nav class="nav" id="main-nav" aria-label="Main navigation">
+            <a href="index.html">
+                <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5.5 9.5V21h13V9.5"/><path d="M9.5 21v-7h5v7"/></svg>
+                <span>Home</span>
+            </a>
+            <a href="tracking.html">
+                <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-6.1 7-11.2A7 7 0 0 0 5 9.8C5 14.9 12 21 12 21Z"/><circle cx="12" cy="9.8" r="2.3"/></svg>
+                <span>Track Shipment</span>
+            </a>
+            <a href="dashboard.html">
+                <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="6" height="6" rx="1"/><rect x="14" y="4" width="6" height="6" rx="1"/><rect x="4" y="14" width="6" height="6" rx="1"/><rect x="14" y="14" width="6" height="6" rx="1"/></svg>
+                <span>Dashboard</span>
+            </a>
+            <a href="manage.html">
+                <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.09a2 2 0 0 1 1 1.74v.5a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.38a2 2 0 0 0-.73-2.73l-.15-.09a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
+                <span>Manage</span>
+            </a>
+            <a href="contact.html" aria-current="page">
+                <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.7 15.7 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1.1-.2c1.2.5 2.5.7 3.8.7a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.6 21 3 13.4 3 4a1 1 0 0 1 1-1h3.3a1 1 0 0 1 1 1c0 1.3.2 2.6.7 3.8a1 1 0 0 1-.2 1.1L6.6 10.8Z"/></svg>
+                <span>Contact</span>
+            </a>
+        </nav>
+        <button class="menu-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="main-nav">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</header>
+
+
+    <!-- ================= HERO SECTION ================= -->
+
+    <section class="contact-hero">
+        <div class="contact-hero-content">
+
+            <span class="hero-small-title">GET IN TOUCH</span>
+
+            <h1>We're Here to <span>Help</span></h1>
+
+            <p>
+                Have a question, need support, or want to
+                partner with us? Reach out and we'll be happy
+                to hear from you.
+            </p>
+
+            <!-- Quick Contact -->
+            <div class="quick-contact">
+
+                <div class="quick-item">
+                    <div class="quick-icon"><i class="bi bi-envelope"></i></div>
+                    <div>
+                        <strong><a href="mailto:support@logitrack.com" style="color:inherit;text-decoration:none;">support@logitrack.com</a></strong>
+                        <small>Email us anytime</small>
+                    </div>
+                </div>
+
+                <div class="quick-item">
+                    <div class="quick-icon"><i class="bi bi-telephone"></i></div>
+                    <div>
+                        <strong><a href="tel:+911234567890" style="color:inherit;text-decoration:none;">+91 12345 67890</a></strong>
+                        <small>Call us for assistance</small>
+                    </div>
+                </div>
+
+                <div class="quick-item">
+                    <div class="quick-icon"><i class="bi bi-geo-alt"></i></div>
+                    <div>
+                        <strong>Mathura, India</strong>
+                        <small>Our headquarters</small>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ================= CONTACT SECTION ================= -->
+
+    <section class="contact-section">
+        <div class="contact-wrapper">
+
+            <!-- ========== LEFT SIDE ========== -->
+            <div class="contact-information">
+
+                <!-- EMAIL -->
+                <div class="info-card">
+                    <div class="info-icon"><i class="bi bi-envelope"></i></div>
+                    <div>
+                        <h3>Email Us</h3>
+                        <p><a href="mailto:support@logitrack.com" style="color:inherit;text-decoration:none;">support@logitrack.com</a></p>
+                        <span>We'll respond within 24 hours.</span>
+                    </div>
+                </div>
+
+                <!-- PHONE -->
+                <div class="info-card">
+                    <div class="info-icon"><i class="bi bi-telephone"></i></div>
+                    <div>
+                        <h3>Call Us</h3>
+                        <p><a href="tel:+911234567890" style="color:inherit;text-decoration:none;">+91 12345 67890</a></p>
+                        <span>Mon &ndash; Fri, 9:00 AM &ndash; 6:00 PM</span>
+                    </div>
+                </div>
+
+                <!-- ADDRESS -->
+                <div class="info-card">
+                    <div class="info-icon"><i class="bi bi-geo-alt"></i></div>
+                    <div>
+                        <h3>Visit Us</h3>
+                        <p>GLA University, Mathura, India</p>
+                        <span>Our office is open on weekdays.</span>
+                    </div>
+                </div>
+
+                <!-- ========== MAP ========== -->
+                <div class="map-box">
+                    <div class="map-background">
+                        <div class="map-road road-one"></div>
+                        <div class="map-road road-two"></div>
+                        <div class="map-road road-three"></div>
+
+                        <div class="map-pin">
+                            <i class="bi bi-geo-alt-fill"></i>
+                        </div>
+
+                        <div class="map-label">
+                            <strong>GLA University</strong>
+                            <span>Mathura, India</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!-- ========== RIGHT SIDE FORM ========== -->
+            <div class="contact-form-card">
+
+                <div class="form-heading">
+                    <div class="form-icon"><i class="bi bi-send"></i></div>
+                    <div>
+                        <h2>Send Us a Message</h2>
+                        <p>
+                            Fill out the form below and we'll
+                            get back to you as soon as possible.
+                        </p>
+                    </div>
+                </div>
+
+                <form id="contact-form" novalidate>
+
+                    <!-- NAME + EMAIL -->
+                    <div class="form-row">
+
+                        <div class="form-group">
+                            <label for="name">Your Name <span>*</span></label>
+                            <input type="text" id="name" name="name" placeholder="Enter your name" autocomplete="name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Your Email <span>*</span></label>
+                            <input type="email" id="email" name="email" placeholder="Enter your email" autocomplete="email" required>
+                        </div>
+
+                    </div>
+
+                    <!-- SUBJECT -->
+                    <div class="form-group">
+                        <label for="subject">Subject <span>*</span></label>
+                        <select id="subject" name="subject" required>
+                            <option value="">Select a subject</option>
+                            <option>Shipment Support</option>
+                            <option>Delivery Issue</option>
+                            <option>Business Enquiry</option>
+                            <option>Technical Support</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+
+                    <!-- MESSAGE -->
+                    <div class="form-group">
+                        <label for="message">Message <span>*</span></label>
+                        <textarea id="message" name="message" rows="6" maxlength="500" placeholder="Write your message..." required></textarea>
+                    </div>
+
+                    <!-- STATUS MESSAGE -->
+                    <div id="form-status" class="form-status" role="status" aria-live="polite"></div>
+
+                    <!-- SUBMIT -->
+                    <button type="submit" class="send-button">
+                        <i class="bi bi-send"></i>
+                        Send Message
+                    </button>
+
+                </form>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- ================= SUPPORT STRIP ================= -->
+
+    <section class="support-strip">
+
+        <div class="support-item">
+            <div class="support-icon"><i class="bi bi-headset"></i></div>
+            <div>
+                <strong>Quick Response</strong>
+                <span>Within 24 hours</span>
+            </div>
+        </div>
+
+        <div class="support-item">
+            <div class="support-icon"><i class="bi bi-people"></i></div>
+            <div>
+                <strong>Dedicated Support</strong>
+                <span>We're here to help</span>
+            </div>
+        </div>
+
+        <div class="support-item">
+            <div class="support-icon"><i class="bi bi-heart"></i></div>
+            <div>
+                <strong>Trusted Service</strong>
+                <span>Across the country</span>
+            </div>
+        </div>
+
+    </section>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer class="contact-footer">
+
+        <div class="footer-brand">
+            <div class="footer-logo">
+                <div class="logo-icon">L</div>
+                <div>
+                    <h2>LogiTrack</h2>
+                    <span>Delivery Management</span>
+                </div>
+            </div>
+            <p>Smarter deliveries. Better logistics.</p>
+        </div>
+
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="tracking.html">Track Shipment</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="manage.html">Manage</a>
+            <a href="contact.html">Contact</a>
+        </div>
+
+        <p class="copyright">&copy; 2026 LogiTrack. All rights reserved.</p>
+
+    </footer>
+
+    <!-- Copy toast -->
+    <div class="copy-toast" id="copy-toast" role="status" aria-live="polite"></div>
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+    <!-- ================= JAVASCRIPT ================= -->
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  'use strict';
+
+  var $ = function (s, c) { return (c || document).querySelector(s); };
+  var $$ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
+  function safe(fn) { try { return fn(); } catch (e) { return null; } }
+  function fire(el, type) { el.dispatchEvent(new Event(type, { bubbles: true })); }
+  var reduced = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  var toggle = $('.menu-toggle'), nav = $('#main-nav');
+  var form = $('#contact-form'), statusBox = $('#form-status');
+  var submitBtn = $('.send-button', form);
+  var messageField = form.elements['message'];
+  var subjectField = form.elements['subject'];
+  var emailField = form.elements['email'];
+  var toastEl = $('#copy-toast'), toastTimer;
+
+  function toast(t) {
+    toastEl.textContent = t;
+    toastEl.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { toastEl.classList.remove('show'); }, 2000);
+  }
+
+  /* ---------- INJECTED CSS FOR NEW FEATURES ---------- */
+  var st = document.createElement('style');
+  st.textContent =
+    '.rv{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}' +
+    '.rv.rv-in{opacity:1;transform:none}' +
+    '.site-header{transition:box-shadow .3s}.site-header.scrolled{box-shadow:0 6px 24px rgba(15,30,60,.12)}' +
+    '.type-caret{display:inline-block;width:3px;height:.85em;background:currentColor;margin-left:3px;vertical-align:-.05em;animation:lt-blink 1s steps(1) infinite}' +
+    '@keyframes lt-blink{50%{opacity:0}}' +
+    '.office-badge{display:flex;width:fit-content;align-items:center;gap:7px;margin-top:8px;padding:4px 11px;border-radius:999px;font-size:.78rem;font-weight:600}' +
+    '.office-badge.open{background:#e6f4ea;color:#137333}.office-badge.closed{background:#fff4e5;color:#b45309}' +
+    '.office-badge i{width:8px;height:8px;border-radius:50%;background:currentColor}' +
+    '.office-badge.open i{animation:lt-pulse 1.6s infinite}' +
+    '@keyframes lt-pulse{0%{box-shadow:0 0 0 0 rgba(19,115,51,.5)}100%{box-shadow:0 0 0 8px rgba(19,115,51,0)}}' +
+    '.tools-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px}' +
+    '.tool-btn{border:1px solid #cfd9ee;background:#f5f8ff;color:#1a5fd0;border-radius:999px;padding:5px 13px;font-size:.82rem;cursor:pointer;font-family:inherit}' +
+    '.tool-btn:hover{background:#e6eeff}.tool-btn.rec{background:#fdecea;color:#b3261e;border-color:#f3b7b2}' +
+    '.hint{display:block;margin-top:6px;font-size:.84rem;color:#6b7280}.hint.warn{color:#b45309}' +
+    '.hint button{border:0;background:none;color:#1a5fd0;font-weight:600;cursor:pointer;padding:0;font:inherit;text-decoration:underline}' +
+    '.char-counter.warn{color:#b45309}.char-counter.max{color:#d93025;font-weight:600}' +
+    '.send-button{position:relative;overflow:hidden}' +
+    '.ripple{position:absolute;border-radius:50%;background:rgba(255,255,255,.45);transform:scale(0);animation:lt-rip .6s linear;pointer-events:none}' +
+    '@keyframes lt-rip{to{transform:scale(4);opacity:0}}' +
+    '.to-top{position:fixed;right:22px;bottom:24px;width:46px;height:46px;border-radius:50%;border:0;cursor:pointer;display:grid;place-items:center;opacity:0;transform:translateY(12px);pointer-events:none;transition:.3s;z-index:900;background:conic-gradient(#1a5fd0 var(--p,0%),#dbe4f5 0)}' +
+    '.to-top::before{content:"";position:absolute;inset:4px;border-radius:50%;background:#fff}' +
+    '.to-top i{position:relative;color:#1a5fd0}.to-top.show{opacity:1;transform:none;pointer-events:auto}' +
+    '.ticket-line{display:block;margin-top:6px;font-weight:600}' +
+    '.ticket-line button{margin-left:8px;border:1px solid currentColor;background:none;color:inherit;border-radius:6px;padding:1px 8px;cursor:pointer;font-size:.8rem}' +
+    '.lt-confetti{position:fixed;inset:0;pointer-events:none;z-index:1000}' +
+    '@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}';
+  document.head.appendChild(st);
+
+
+  /* ---------- 1. MOBILE MENU ---------- */
+  function closeMenu() {
+    nav.classList.remove('open');
+    toggle.setAttribute('aria-expanded', 'false');
+  }
+  toggle.addEventListener('click', function () {
+    toggle.setAttribute('aria-expanded', String(nav.classList.toggle('open')));
+  });
+  $$('a', nav).forEach(function (l) { l.addEventListener('click', closeMenu); });
+  window.addEventListener('resize', function () { if (window.innerWidth > 768) closeMenu(); });
+
+
+  /* ---------- 2. ACTIVE NAV LINK ---------- */
+  var currentPage = location.pathname.split('/').pop() || 'index.html';
+  $$('a', nav).forEach(function (l) {
+    if (l.getAttribute('href') === currentPage) {
+      l.classList.add('active');
+      l.setAttribute('aria-current', 'page');
+    }
+  });
+
+
+  /* ---------- 3. CLICK-TO-COPY ADDRESS + MAP LINK ---------- */
+  var addressCard = $$('.info-card')[2];
+  if (addressCard) {
+    addressCard.style.cursor = 'pointer';
+    addressCard.title = 'Click to copy address';
+    addressCard.addEventListener('click', function () {
+      if (!navigator.clipboard) return;
+      navigator.clipboard.writeText('GLA University, Mathura, India').then(
+        function () { toast('Address copied'); },
+        function () { toast('Could not copy address'); });
+    });
+  }
+  var mapBox = $('.map-box');
+  if (mapBox) {
+    mapBox.style.cursor = 'pointer';
+    mapBox.title = 'Open in Google Maps';
+    mapBox.addEventListener('click', function () {
+      window.open('https://www.google.com/maps/search/?api=1&query=' +
+        encodeURIComponent('GLA University, Mathura'), '_blank', 'noopener');
+    });
+  }
+
+
+  /* ---------- 4. SCROLL-REVEAL ANIMATIONS ---------- */
+  if ('IntersectionObserver' in window && !reduced) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        en.target.classList.add('rv-in');
+        io.unobserve(en.target);
+        setTimeout(function () { en.target.style.transitionDelay = ''; }, 1000);
+      });
+    }, { threshold: 0.12 });
+    $$('.info-card, .map-box, .contact-form-card, .support-item, .quick-item').forEach(function (el, i) {
+      el.classList.add('rv');
+      el.style.transitionDelay = (i % 3) * 90 + 'ms';
+      io.observe(el);
+    });
+  }
+
+
+  /* ---------- 5. TYPEWRITER WORD IN HERO TITLE ---------- */
+  var heroWord = $('.contact-hero h1 span');
+  if (heroWord && !reduced) {
+    var words = ['Help', 'Support', 'Guide', 'Assist'], wi = 0, ci = words[0].length, deleting = true;
+    var caret = document.createElement('span');
+    caret.className = 'type-caret';
+    heroWord.insertAdjacentElement('afterend', caret);
+    (function tick() {
+      var delay;
+      if (deleting) {
+        ci--; delay = 55;
+        if (ci <= 0) { deleting = false; wi = (wi + 1) % words.length; delay = 300; }
+      } else {
+        ci++; delay = 110;
+        if (ci >= words[wi].length) { deleting = true; delay = 1800; }
+      }
+      heroWord.textContent = words[wi].slice(0, Math.max(ci, 0)) || '\u00a0';
+      setTimeout(tick, delay);
+    })();
+  }
+
+
+  /* ---------- 6. LIVE OPEN / CLOSED BADGE (India time) ---------- */
+  var phoneSpan = $$('.info-card')[1] && $('span', $$('.info-card')[1]);
+  if (phoneSpan && window.Intl) {
+    var badge = document.createElement('div');
+    phoneSpan.insertAdjacentElement('afterend', badge);
+    var OPEN = 540, CLOSE = 1080;
+    var nowIST = function () {
+      var o = {};
+      new Intl.DateTimeFormat('en-US', { timeZone: 'Asia/Kolkata', weekday: 'short', hour: 'numeric', minute: 'numeric', hour12: false })
+        .formatToParts(new Date()).forEach(function (p) { o[p.type] = p.value; });
+      return { d: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].indexOf(o.weekday), m: (+o.hour % 24) * 60 + +o.minute };
+    };
+    var fmt = function (mins) {
+      var d = Math.floor(mins / 1440), h = Math.floor((mins % 1440) / 60), m = mins % 60;
+      return d ? d + 'd ' + h + 'h' : (h ? h + 'h ' : '') + m + 'm';
+    };
+    var minsUntilOpen = function (t) {
+      for (var i = 0; i < 8; i++) {
+        var day = (t.d + i) % 7;
+        if (day >= 1 && day <= 5) {
+          if (i === 0 && t.m < OPEN) return OPEN - t.m;
+          if (i > 0) return i * 1440 - t.m + OPEN;
+        }
+      }
+      return 0;
+    };
+    var renderStatus = function () {
+      var t = nowIST(), isOpen = t.d >= 1 && t.d <= 5 && t.m >= OPEN && t.m < CLOSE;
+      badge.className = 'office-badge ' + (isOpen ? 'open' : 'closed');
+      badge.innerHTML = '<i></i>' + (isOpen
+        ? 'Open now \u00b7 closes in ' + fmt(CLOSE - t.m)
+        : 'Closed \u00b7 opens in ' + fmt(minsUntilOpen(t)));
+    };
+    renderStatus();
+    setInterval(renderStatus, 30000);
+  }
+
+
+  /* ---------- 7. FORM: COUNTER, VALIDATION, SMART FIELDS ---------- */
+  var counter = document.createElement('small');
+  counter.className = 'char-counter';
+  messageField.insertAdjacentElement('afterend', counter);
+
+  var urgentHint = document.createElement('small');
+  urgentHint.className = 'hint warn';
+  urgentHint.style.display = 'none';
+  urgentHint.textContent = '\u26a1 This looks urgent. We will mark it as high priority.';
+  counter.insertAdjacentElement('afterend', urgentHint);
+  var URGENT = /\b(urgent|asap|emergency|immediately|lost|damaged|stolen|missing|broken)\b/i;
+
+  function updateCounter() {
+    var len = messageField.value.length, max = messageField.maxLength;
+    counter.textContent = len + ' / ' + max;
+    counter.classList.toggle('warn', len >= max * 0.9 && len < max * 0.98);
+    counter.classList.toggle('max', len >= max * 0.98);
+    urgentHint.style.display = URGENT.test(messageField.value) ? 'block' : 'none';
+  }
+  messageField.addEventListener('input', updateCounter);
+  updateCounter();
+
+  var rules = {
+    name: function (v) { return v.trim().length < 2 ? 'Enter your name (at least 2 characters).' : ''; },
+    email: function (v) { return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()) ? '' : 'Enter a valid email address.'; },
+    subject: function (v) { return v === '' ? 'Select a subject.' : ''; },
+    message: function (v) { return v.trim().length < 10 ? 'Write at least 10 characters.' : ''; }
+  };
+
+  function showError(field, msg) {
+    var group = field.closest('.form-group'), err = $('.field-error', group);
+    if (!err) { err = document.createElement('small'); err.className = 'field-error'; group.appendChild(err); }
+    err.textContent = msg;
+    field.classList.toggle('invalid', !!msg);
+    field.setAttribute('aria-invalid', msg ? 'true' : 'false');
+  }
+  function validateField(field) {
+    var msg = rules[field.name](field.value);
+    showError(field, msg);
+    return !msg;
+  }
+  Object.keys(rules).forEach(function (name) {
+    var field = form.elements[name];
+    field.addEventListener('blur', function () { validateField(field); });
+    ['input', 'change'].forEach(function (ev) {
+      field.addEventListener(ev, function () { if (field.classList.contains('invalid')) validateField(field); });
+    });
+  });
+  function setStatus(type, text) {
+    statusBox.className = 'form-status ' + type;
+    statusBox.textContent = text;
+  }
+
+  // Tracking ID field: only shown for shipment-related subjects
+  var trackGroup = document.createElement('div');
+  trackGroup.className = 'form-group';
+  trackGroup.style.display = 'none';
+  trackGroup.innerHTML =
+    '<label for="tracking">Tracking ID <small style="font-weight:400;color:#6b7280">(optional)</small></label>' +
+    '<input type="text" id="tracking" name="tracking" placeholder="e.g. LT-20260123" autocomplete="off" maxlength="24">';
+  subjectField.closest('.form-group').insertAdjacentElement('afterend', trackGroup);
+  var tracking = $('#tracking');
+  var TRACK_RE = /^[A-Z0-9-]{6,24}$/;
+  function trackingVisible() { return trackGroup.style.display !== 'none'; }
+  tracking.addEventListener('input', function () {
+    tracking.value = tracking.value.toUpperCase().replace(/[^A-Z0-9-]/g, '');
+    if (tracking.classList.contains('invalid') && TRACK_RE.test(tracking.value)) showError(tracking, '');
+  });
+
+  // Message templates + voice dictation
+  var templates = {
+    'Shipment Support': 'Hi LogiTrack team, I need an update on my shipment. It was booked on ___ and has not moved for ___ days. Please check its current status.',
+    'Delivery Issue': 'Hello, my delivery was due on ___ but I have not received it. Please look into it and let me know what went wrong.',
+    'Business Enquiry': 'Hello, I am interested in partnering with LogiTrack for ___. Please share your service details and pricing.',
+    'Technical Support': 'Hi, I am facing a problem on the website: ___. It happens when I ___.'
+  };
+  var row = document.createElement('div');
+  row.className = 'tools-row';
+  messageField.insertAdjacentElement('beforebegin', row);
+
+  var tplBtn = document.createElement('button');
+  tplBtn.type = 'button';
+  tplBtn.className = 'tool-btn';
+  tplBtn.style.display = 'none';
+  tplBtn.innerHTML = '<i class="bi bi-magic"></i> Insert template';
+  row.appendChild(tplBtn);
+  tplBtn.addEventListener('click', function () {
+    var t = templates[subjectField.value];
+    if (!t) return;
+    var cur = messageField.value.trim(), start = cur ? cur.length + 2 : 0;
+    messageField.value = ((cur ? cur + '\n\n' : '') + t).slice(0, messageField.maxLength);
+    fire(messageField, 'input');
+    messageField.focus();
+    var i = messageField.value.indexOf('___', start);
+    if (i > -1) messageField.setSelectionRange(i, i + 3);
+  });
+
+  var SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (SR) {
+    var mic = document.createElement('button');
+    mic.type = 'button';
+    mic.className = 'tool-btn';
+    mic.innerHTML = '<i class="bi bi-mic"></i> Dictate';
+    row.appendChild(mic);
+    var rec = new SR(), listening = false;
+    rec.lang = 'en-IN';
+    rec.continuous = true;
+    rec.interimResults = false;
+    mic.addEventListener('click', function () {
+      if (listening) { rec.stop(); return; }
+      try { rec.start(); } catch (e) {}
+    });
+    rec.onstart = function () { listening = true; mic.classList.add('rec'); mic.innerHTML = '<i class="bi bi-stop-circle"></i> Stop'; };
+    rec.onend = function () { listening = false; mic.classList.remove('rec'); mic.innerHTML = '<i class="bi bi-mic"></i> Dictate'; };
+    rec.onerror = function () { toast('Microphone not available'); };
+    rec.onresult = function (ev) {
+      var txt = '';
+      for (var i = ev.resultIndex; i < ev.results.length; i++) {
+        if (ev.results[i].isFinal) txt += ev.results[i][0].transcript;
+      }
+      if (txt) {
+        messageField.value = (messageField.value + ' ' + txt).trim().slice(0, messageField.maxLength);
+        fire(messageField, 'input');
+      }
+    };
+  }
+
+  function syncSubject() {
+    var v = subjectField.value;
+    trackGroup.style.display = (v === 'Shipment Support' || v === 'Delivery Issue') ? '' : 'none';
+    tplBtn.style.display = templates[v] ? '' : 'none';
+    if (!trackingVisible()) showError(tracking, '');
+  }
+  subjectField.addEventListener('change', syncSubject);
+
+  // Email typo suggestion + name tidy-up
+  var emailHint = document.createElement('small');
+  emailHint.className = 'hint';
+  emailHint.style.display = 'none';
+  emailField.closest('.form-group').appendChild(emailHint);
+  var typos = {
+    'gmial.com': 'gmail.com', 'gmai.com': 'gmail.com', 'gmal.com': 'gmail.com', 'gamil.com': 'gmail.com',
+    'gmail.con': 'gmail.com', 'gmail.co': 'gmail.com', 'hotmial.com': 'hotmail.com', 'hotmal.com': 'hotmail.com',
+    'yaho.com': 'yahoo.com', 'yahooo.com': 'yahoo.com', 'outlok.com': 'outlook.com'
+  };
+  emailField.addEventListener('blur', function () {
+    var v = emailField.value.trim(), at = v.lastIndexOf('@');
+    var fix = at > 0 && typos[v.slice(at + 1).toLowerCase()];
+    if (!fix) { emailHint.style.display = 'none'; return; }
+    var suggestion = v.slice(0, at + 1) + fix;
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.textContent = suggestion;
+    b.addEventListener('click', function () {
+      emailField.value = suggestion;
+      emailHint.style.display = 'none';
+      fire(emailField, 'input');
+    });
+    emailHint.textContent = 'Did you mean ';
+    emailHint.appendChild(b);
+    emailHint.appendChild(document.createTextNode('?'));
+    emailHint.style.display = 'block';
+  });
+  form.elements['name'].addEventListener('blur', function (e) {
+    var f = e.target;
+    if (f.value && f.value === f.value.toLowerCase()) {
+      f.value = f.value.replace(/\b\w/g, function (c) { return c.toUpperCase(); });
+    }
+  });
+
+
+  /* ---------- 8. DRAFT AUTOSAVE ---------- */
+  var DRAFT_KEY = 'logitrack_draft', FIELDS = ['name', 'email', 'subject', 'message', 'tracking'], saveT;
+  function saveDraft() {
+    clearTimeout(saveT);
+    saveT = setTimeout(function () {
+      safe(function () {
+        var d = {}, any = false;
+        FIELDS.forEach(function (n) { d[n] = form.elements[n].value; if (d[n]) any = true; });
+        if (any) localStorage.setItem(DRAFT_KEY, JSON.stringify(d)); else localStorage.removeItem(DRAFT_KEY);
+      });
+    }, 400);
+  }
+  form.addEventListener('input', saveDraft);
+  form.addEventListener('change', saveDraft);
+
+  var draft = safe(function () { return JSON.parse(localStorage.getItem(DRAFT_KEY) || 'null'); });
+  if (draft && FIELDS.some(function (n) { return draft[n]; })) {
+    FIELDS.forEach(function (n) { if (draft[n]) form.elements[n].value = draft[n]; });
+    syncSubject();
+    updateCounter();
+    toast('Draft restored');
+  }
+  form.addEventListener('reset', function () {
+    safe(function () { localStorage.removeItem(DRAFT_KEY); });
+    setTimeout(function () { syncSubject(); updateCounter(); emailHint.style.display = 'none'; }, 0);
+  });
+
+
+  /* ---------- 9. SUBMIT ---------- */
+  var lastSent = 0;
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    setStatus('', '');
+
+    var allValid = true;
+    Object.keys(rules).forEach(function (n) { if (!validateField(form.elements[n])) allValid = false; });
+    var tv = trackingVisible() ? tracking.value.trim() : '';
+    if (tv && !TRACK_RE.test(tv)) {
+      showError(tracking, 'Tracking IDs use 6-24 letters, numbers or hyphens.');
+      allValid = false;
+    }
+    if (!allValid) {
+      setStatus('error', 'Fix the highlighted fields and try again.');
+      var bad = $('.invalid', form);
+      if (bad) bad.focus();
+      return;
+    }
+    if (Date.now() - lastSent < 15000) {
+      setStatus('error', 'Please wait a few seconds before sending another message.');
+      return;
+    }
+
+    var msg = messageField.value.trim(), urgent = URGENT.test(msg), tags = [];
+    if (tv) tags.push('[Tracking ID: ' + tv + ']');
+    if (urgent) tags.push('[Priority: HIGH]');
+    var ticket = 'LT-' + Date.now().toString(36).toUpperCase().slice(-6) + Math.random().toString(36).slice(2, 4).toUpperCase();
+
+    var data = {
+      ticket: ticket,
+      name: form.elements['name'].value.trim(),
+      email: emailField.value.trim(),
+      subject: subjectField.value,
+      trackingId: tv,
+      priority: urgent ? 'high' : 'normal',
+      message: (tags.length ? tags.join(' ') + '\n' : '') + msg,
+      sentAt: new Date().toISOString()
+    };
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending...';
+
+    sendMessage(data)
+      .then(function () {
+        lastSent = Date.now();
+        setStatus('success', 'Thanks ' + data.name + '! Your message was sent. We will reply within 24 hours.');
+        showTicket(ticket);
+        confetti();
+        form.reset();
+        updateCounter();
+        Object.keys(rules).forEach(function (n) { showError(form.elements[n], ''); });
+      })
+      .catch(function () {
+        setStatus('error', 'Message not sent. Try again, or email support@logitrack.com.');
+      })
+      .finally(function () {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<i class="bi bi-send"></i> Send Message';
+      });
+  });
+
+  /*
+   * sendMessage(data): DEMO MODE saves to localStorage after 1 second.
+   * REAL MODE: replace the body with a fetch to your backend or Formspree:
+   *
+   *   return fetch('https://formspree.io/f/YOUR_FORM_ID', {
+   *     method: 'POST',
+   *     headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+   *     body: JSON.stringify(data)
+   *   }).then(function (res) { if (!res.ok) throw new Error('Request failed'); });
+   */
+  function sendMessage(data) {
+    return new Promise(function (resolve, reject) {
+      setTimeout(function () {
+        try {
+          var saved = JSON.parse(localStorage.getItem('logitrack_messages') || '[]');
+          saved.push(data);
+          localStorage.setItem('logitrack_messages', JSON.stringify(saved));
+          resolve();
+        } catch (err) { reject(err); }
+      }, 1000);
+    });
+  }
+
+  function showTicket(id) {
+    var line = document.createElement('span');
+    line.className = 'ticket-line';
+    line.textContent = 'Ticket ID: ' + id;
+    var copy = document.createElement('button');
+    copy.type = 'button';
+    copy.textContent = 'Copy';
+    copy.addEventListener('click', function () {
+      if (navigator.clipboard) navigator.clipboard.writeText(id).then(function () { toast('Ticket ID copied'); });
+    });
+    line.appendChild(copy);
+    statusBox.appendChild(line);
+  }
+
+  function confetti() {
+    if (reduced) return;
+    var c = document.createElement('canvas');
+    c.className = 'lt-confetti';
+    c.width = window.innerWidth;
+    c.height = window.innerHeight;
+    document.body.appendChild(c);
+    var x = c.getContext('2d'), cols = ['#1a5fd0', '#f0a020', '#34a853', '#ffffff'], ps = [], i;
+    for (i = 0; i < 140; i++) {
+      ps.push({ x: c.width / 2, y: c.height * 0.6, vx: (Math.random() - 0.5) * 16, vy: -Math.random() * 16 - 6,
+        s: Math.random() * 7 + 4, r: Math.random() * 6, vr: (Math.random() - 0.5) * 0.4, c: cols[i % 4] });
+    }
+    var t0 = performance.now();
+    (function frame(t) {
+      var el = t - t0;
+      x.clearRect(0, 0, c.width, c.height);
+      ps.forEach(function (p) {
+        p.vy += 0.35; p.vx *= 0.99; p.x += p.vx; p.y += p.vy; p.r += p.vr;
+        x.save();
+        x.translate(p.x, p.y);
+        x.rotate(p.r);
+        x.globalAlpha = Math.max(0, 1 - el / 2600);
+        x.fillStyle = p.c;
+        x.fillRect(-p.s / 2, -p.s / 2, p.s, p.s * 0.6);
+        x.restore();
+      });
+      if (el < 2600) requestAnimationFrame(frame); else c.remove();
+    })(t0);
+  }
+
+  // Send-button ripple
+  submitBtn.addEventListener('click', function (e) {
+    var r = submitBtn.getBoundingClientRect(), size = Math.max(r.width, r.height);
+    var s = document.createElement('span');
+    s.className = 'ripple';
+    s.style.cssText = 'width:' + size + 'px;height:' + size + 'px;left:' + (e.clientX - r.left - size / 2) + 'px;top:' + (e.clientY - r.top - size / 2) + 'px';
+    submitBtn.appendChild(s);
+    setTimeout(function () { s.remove(); }, 650);
+  });
+
+
+  /* ---------- 10. KEYBOARD SHORTCUTS ---------- */
+  document.addEventListener('keydown', function (e) {
+    var tag = (document.activeElement && document.activeElement.tagName) || '';
+    if (e.key === 'Escape') {
+      closeMenu();
+    } else if ((e.ctrlKey || e.metaKey) && e.key === 'Enter' && form.contains(document.activeElement)) {
+      e.preventDefault();
+      if (form.requestSubmit) form.requestSubmit(); else submitBtn.click();
+    } else if (e.key === '/' && !/input|textarea|select/i.test(tag)) {
+      e.preventDefault();
+      messageField.focus();
+    }
+  });
+
+
+  /* ---------- 11. BACK-TO-TOP (PROGRESS RING) + HEADER SHADOW ---------- */
+  var toTop = document.createElement('button');
+  toTop.type = 'button';
+  toTop.className = 'to-top';
+  toTop.setAttribute('aria-label', 'Back to top');
+  toTop.innerHTML = '<i class="bi bi-arrow-up"></i>';
+  document.body.appendChild(toTop);
+  toTop.addEventListener('click', function () {
+    window.scrollTo({ top: 0, behavior: reduced ? 'auto' : 'smooth' });
+  });
+
+  var header = $('.site-header'), ticking = false;
+  function onScroll() {
+    var y = window.scrollY, h = document.documentElement.scrollHeight - window.innerHeight;
+    toTop.style.setProperty('--p', (h > 0 ? (y / h) * 100 : 0) + '%');
+    toTop.classList.toggle('show', y > 300);
+    if (header) header.classList.toggle('scrolled', y > 10);
+    ticking = false;
+  }
+  window.addEventListener('scroll', function () {
+    if (!ticking) { ticking = true; requestAnimationFrame(onScroll); }
+  }, { passive: true });
+  onScroll();
+
+});
+</script>
+<script>
+(function () {
+  'use strict';
+
+  /* ===== CONFIG ===== */
+  var AI_ENDPOINT = ''; // optional: your own backend URL for real AI replies, e.g. '/api/chat'
+
+  /* ===== CSS ===== */
+  var st = document.createElement('style');
+  st.textContent =
+    '.lb-fab{position:fixed;right:22px;bottom:84px;width:56px;height:56px;border:0;border-radius:50%;background:#1a5fd0;color:#fff;font-size:1.5rem;cursor:pointer;z-index:950;box-shadow:0 8px 24px rgba(26,95,208,.4);display:grid;place-items:center;transition:transform .2s}' +
+    '.lb-fab:hover{transform:scale(1.07)}' +
+    '.lb-nudge{position:fixed;right:88px;bottom:96px;background:#fff;color:#1f2937;padding:8px 14px;border-radius:12px;font-size:.85rem;box-shadow:0 6px 20px rgba(0,0,0,.15);z-index:950;animation:lb-in .4s}' +
+    '.lb-panel{position:fixed;right:22px;bottom:152px;width:340px;max-height:min(520px,calc(100vh - 180px));display:none;flex-direction:column;background:#fff;border-radius:16px;box-shadow:0 16px 48px rgba(15,30,60,.25);overflow:hidden;z-index:950;font-family:inherit}' +
+    '.lb-panel.open{display:flex;animation:lb-in .25s}' +
+    '@keyframes lb-in{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}' +
+    '.lb-head{background:#1a5fd0;color:#fff;padding:14px 16px;display:flex;justify-content:space-between;align-items:center}' +
+    '.lb-head small{display:block;opacity:.85;font-size:.76rem;margin-top:2px}' +
+    '.lb-x{background:none;border:0;color:#fff;font-size:1.1rem;cursor:pointer}' +
+    '.lb-msgs{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:8px;background:#fff;min-height:200px}' +
+    '.lb-m{max-width:86%;padding:9px 13px;border-radius:14px;font-size:.9rem;line-height:1.45;white-space:pre-line;color:#1f2937}' +
+    '.lb-m.bot{background:#eef3fc;border-bottom-left-radius:4px;align-self:flex-start}' +
+    '.lb-m.me{background:#1a5fd0;color:#fff;border-bottom-right-radius:4px;align-self:flex-end}' +
+    '.lb-acts{display:flex;flex-wrap:wrap;gap:6px;align-self:flex-start}' +
+    '.lb-act,.lb-chip{border:1px solid #1a5fd0;background:#fff;color:#1a5fd0;border-radius:999px;padding:5px 12px;font-size:.8rem;cursor:pointer;text-decoration:none;font-family:inherit}' +
+    '.lb-act:hover,.lb-chip:hover{background:#1a5fd0;color:#fff}' +
+    '.lb-chips{display:flex;gap:6px;flex-wrap:wrap;padding:0 14px 10px}' +
+    '.lb-dots{display:flex;gap:4px;padding:12px 14px}' +
+    '.lb-dots i{width:7px;height:7px;border-radius:50%;background:#9db2d6;animation:lb-b 1s infinite}' +
+    '.lb-dots i:nth-child(2){animation-delay:.15s}.lb-dots i:nth-child(3){animation-delay:.3s}' +
+    '@keyframes lb-b{0%,60%,100%{transform:none}30%{transform:translateY(-5px)}}' +
+    '.lb-form{display:flex;gap:8px;padding:10px;border-top:1px solid #e5eaf3}' +
+    '.lb-form input{flex:1;border:1px solid #cfd9ee;border-radius:999px;padding:9px 14px;font-size:.9rem;outline:none;font-family:inherit}' +
+    '.lb-form input:focus{border-color:#1a5fd0}' +
+    '.lb-form button{border:0;background:#f0a020;color:#fff;width:40px;height:40px;border-radius:50%;cursor:pointer}' +
+    '@media (max-width:480px){.lb-panel{left:12px;right:12px;width:auto;bottom:150px}}';
+  document.head.appendChild(st);
+
+  /* ===== DOM ===== */
+  var fab = document.createElement('button');
+  fab.className = 'lb-fab';
+  fab.type = 'button';
+  fab.setAttribute('aria-label', 'Open chat assistant');
+  fab.innerHTML = '<i class="bi bi-chat-dots-fill"></i>';
+
+  var panel = document.createElement('section');
+  panel.className = 'lb-panel';
+  panel.setAttribute('role', 'dialog');
+  panel.setAttribute('aria-label', 'LogiTrack assistant');
+  panel.innerHTML =
+    '<div class="lb-head"><div><strong>LogiBot</strong><small>\u25cf Online \u00b7 replies instantly</small></div>' +
+    '<button class="lb-x" type="button" aria-label="Close chat"><i class="bi bi-x-lg"></i></button></div>' +
+    '<div class="lb-msgs" aria-live="polite"></div>' +
+    '<div class="lb-chips"></div>' +
+    '<form class="lb-form"><input type="text" maxlength="200" placeholder="Type your question..." aria-label="Your question" autocomplete="off">' +
+    '<button type="submit" aria-label="Send"><i class="bi bi-send-fill"></i></button></form>';
+  document.body.appendChild(panel);
+  document.body.appendChild(fab);
+
+  var msgs = panel.querySelector('.lb-msgs');
+  var chips = panel.querySelector('.lb-chips');
+  var input = panel.querySelector('input');
+  var history = [], greeted = false, nudge;
+
+  function scroll() { msgs.scrollTop = msgs.scrollHeight; }
+  function copy(t) { if (navigator.clipboard) navigator.clipboard.writeText(t); }
+
+  function add(who, text) {
+    var m = document.createElement('div');
+    m.className = 'lb-m ' + who;
+    m.textContent = text;
+    msgs.appendChild(m);
+    scroll();
+    return m;
+  }
+
+  function render(r) {
+    add('bot', r.text);
+    if (r.actions) {
+      var w = document.createElement('div');
+      w.className = 'lb-acts';
+      r.actions.forEach(function (a) {
+        var el = document.createElement(a.href ? 'a' : 'button');
+        el.className = 'lb-act';
+        el.textContent = a.label;
+        if (a.href) { el.href = a.href; } else { el.type = 'button'; el.addEventListener('click', a.fn); }
+        w.appendChild(el);
+      });
+      msgs.appendChild(w);
+      scroll();
+    }
+  }
+
+  /* ===== OPEN / CLOSE ===== */
+  function openChat() {
+    panel.classList.add('open');
+    if (nudge) { nudge.remove(); nudge = null; }
+    if (!greeted) {
+      greeted = true;
+      render({ text: 'Hi! I\u2019m LogiBot, LogiTrack\u2019s virtual assistant. Ask me about tracking, delivery times, pricing or support.' });
+      ['Track my shipment', 'Delivery time', 'Pricing', 'Talk to support'].forEach(function (q) {
+        var c = document.createElement('button');
+        c.type = 'button';
+        c.className = 'lb-chip';
+        c.textContent = q;
+        c.addEventListener('click', function () { send(q); });
+        chips.appendChild(c);
+      });
+    }
+    input.focus();
+  }
+  function closeChat() { panel.classList.remove('open'); }
+  fab.addEventListener('click', function () { panel.classList.contains('open') ? closeChat() : openChat(); });
+  panel.querySelector('.lb-x').addEventListener('click', closeChat);
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeChat(); });
+
+  setTimeout(function () {
+    if (panel.classList.contains('open') || greeted) return;
+    nudge = document.createElement('div');
+    nudge.className = 'lb-nudge';
+    nudge.textContent = '\ud83d\udc4b Need help? Ask me anything';
+    document.body.appendChild(nudge);
+    setTimeout(function () { if (nudge) { nudge.remove(); nudge = null; } }, 6000);
+  }, 6000);
+
+  /* ===== HANDOFF TO THE CONTACT FORM ===== */
+  function handoff(subject, text) {
+    var f = document.getElementById('contact-form');
+    if (!f) return;
+    f.elements['subject'].value = subject;
+    f.elements['subject'].dispatchEvent(new Event('change', { bubbles: true }));
+    if (text) {
+      var m = f.elements['message'];
+      m.value = text.slice(0, m.maxLength);
+      m.dispatchEvent(new Event('input', { bubbles: true }));
+    }
+    closeChat();
+    f.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    setTimeout(function () { f.elements['message'].focus(); }, 600);
+  }
+  function lastUserText() {
+    var u = history.filter(function (h) { return h.role === 'user'; }).slice(-2).map(function (h) { return h.text; });
+    return u.length ? '(From chat) ' + u.join(' | ') : '';
+  }
+
+  /* ===== THE "BRAIN" ===== */
+  function officeLine() {
+    var o = {};
+    new Intl.DateTimeFormat('en-US', { timeZone: 'Asia/Kolkata', weekday: 'short', hour: 'numeric', minute: 'numeric', hour12: false })
+      .formatToParts(new Date()).forEach(function (p) { o[p.type] = p.value; });
+    var d = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].indexOf(o.weekday);
+    var m = (+o.hour % 24) * 60 + +o.minute;
+    return (d > 0 && d < 6 && m >= 540 && m < 1080)
+      ? 'Our phone line is open right now (Mon\u2013Fri, 9 AM\u20136 PM IST): +91 12345 67890.'
+      : 'Our phone line is closed right now (Mon\u2013Fri, 9 AM\u20136 PM IST). Email support@logitrack.com and we\u2019ll reply within 24 hours.';
+  }
+
+  var ID_RE = /\bLT-?[A-Z0-9]{4,}\b/i;
+
+  var intents = [
+    { k: ['hello', 'hey', 'namaste', '^hi'], r: function () {
+      return { text: 'Hello! \ud83d\udc4b How can I help you today?' }; } },
+    { k: ['track', 'where is', 'status', 'shipment', 'parcel', 'package'], r: function (t) {
+      var m = t.match(ID_RE);
+      if (m) {
+        var id = m[0].toUpperCase();
+        return { text: 'Got it: ' + id + '. Tap below to copy the ID and open the tracking page.',
+          actions: [{ label: 'Copy ID & open tracking', fn: function () { copy(id); location.href = 'tracking.html'; } }] };
+      }
+      return { text: 'Sure! Open the tracking page and enter your tracking ID (for example LT-20260123).',
+        actions: [{ label: 'Open tracking page', href: 'tracking.html' }] }; } },
+    { k: ['how long', 'delivery time', 'when will', 'eta', 'days', 'arrive'], r: function () {
+      return { text: 'Delivery time depends on the route and service type. Your tracking page shows the live estimated date for your shipment.',
+        actions: [{ label: 'Track a shipment', href: 'tracking.html' }] }; } },
+    { k: ['price', 'cost', 'rate', 'charge', 'quote', 'how much', 'fee'], r: function () {
+      return { text: 'Pricing depends on weight, distance and service type. Our team can send you an exact quote.',
+        actions: [{ label: 'Request a quote', fn: function () { handoff('Business Enquiry', 'I would like a quote for: '); } }] }; } },
+    { k: ['open', 'hours', 'timing', 'working', 'closed', 'phone', 'call', 'number'], r: function () {
+      return { text: officeLine() }; } },
+    { k: ['email', 'mail', 'contact'], r: function () {
+      return { text: 'You can email support@logitrack.com (reply within 24 hours) or call +91 12345 67890.\n\n' + officeLine() }; } },
+    { k: ['address', 'location', 'where are you', 'office', 'visit'], r: function () {
+      return { text: 'We\u2019re at GLA University, Mathura, India. The office is open on weekdays.',
+        actions: [{ label: 'Open in Google Maps', href: 'https://www.google.com/maps/search/?api=1&query=GLA%20University%20Mathura' }] }; } },
+    { k: ['damaged', 'lost', 'missing', 'late', 'delayed', 'stolen', 'broken', 'complaint', 'refund', 'wrong'], r: function (t) {
+      return { text: 'I\u2019m sorry about that. Let\u2019s get this to our team right away. I can fill in the contact form for you.',
+        actions: [{ label: 'Report this issue', fn: function () { handoff('Delivery Issue', 'I need help with: ' + t + '\n'); } }] }; } },
+    { k: ['partner', 'business', 'bulk', 'enterprise', 'franchise', 'wholesale'], r: function () {
+      return { text: 'We\u2019d love to work with you! Tell us about your business and our team will reach out.',
+        actions: [{ label: 'Start a business enquiry', fn: function () { handoff('Business Enquiry', 'Hello, I am interested in partnering with LogiTrack for '); } }] }; } },
+    { k: ['agent', 'human', 'person', 'support', 'representative', 'help me', 'talk'], r: function () {
+      return { text: 'Of course. I\u2019ll take you to the contact form so our team can help.',
+        actions: [{ label: 'Talk to support', fn: function () { handoff('Other', lastUserText()); } }] }; } },
+    { k: ['thank', 'thanks', 'great', 'awesome'], r: function () {
+      return { text: 'You\u2019re welcome! Anything else I can help with?' }; } },
+    { k: ['bye', 'goodbye'], r: function () {
+      return { text: 'Goodbye! Have a great day. \ud83d\udc4b' }; } }
+  ];
+
+  function rules(text) {
+    if (ID_RE.test(text) && text.trim().split(/\s+/).length <= 3) return intents[1].r(text);
+    var s = text.toLowerCase(), best = null, bs = 0;
+    intents.forEach(function (it) {
+      var sc = 0;
+      it.k.forEach(function (k) { if (new RegExp('\\b' + k).test(s)) sc += k.length > 3 ? 2 : 1; });
+      if (sc > bs) { bs = sc; best = it; }
+    });
+    if (best) return best.r(text);
+    return { text: 'I\u2019m not sure I understood that. I can help with tracking, delivery times, pricing, hours or reporting an issue, or connect you with our team.',
+      actions: [{ label: 'Talk to support', fn: function () { handoff('Other', lastUserText()); } }] };
+  }
+
+  /* Optional: real AI through YOUR backend (never put an API key in this file) */
+  function askAI(text) {
+    if (!AI_ENDPOINT) return Promise.reject();
+    return fetch(AI_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message: text, history: history.slice(-6) })
+    }).then(function (r) { if (!r.ok) throw new Error(); return r.json(); })
+      .then(function (d) { return { text: d.reply }; });
+  }
+
+  /* ===== SEND FLOW ===== */
+  function send(text) {
+    text = text.trim();
+    if (!text) return;
+    chips.style.display = 'none';
+    add('me', text);
+    history.push({ role: 'user', text: text });
+
+    var typing = document.createElement('div');
+    typing.className = 'lb-m bot lb-dots';
+    typing.innerHTML = '<i></i><i></i><i></i>';
+    msgs.appendChild(typing);
+    scroll();
+
+    var started = Date.now();
+    askAI(text).catch(function () { return rules(text); }).then(function (r) {
+      var wait = Math.max(0, 600 + Math.min(text.length * 15, 600) - (Date.now() - started));
+      setTimeout(function () {
+        typing.remove();
+        render(r);
+        history.push({ role: 'bot', text: r.text });
+      }, wait);
+    });
+  }
+
+  panel.querySelector('form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var v = input.value;
+    input.value = '';
+    send(v);
+  });
+})();
+</script>
+
+<script src="js/shared-admin.js" defer></script>
+<script src="script.js" defer></script>
+</body>
+
+</html>
